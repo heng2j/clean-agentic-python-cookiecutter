@@ -52,7 +52,7 @@ _EMAIL = re.compile(
 )
 _INTEGER = re.compile(r"(?:0|[1-9][0-9]*)")
 _PYTHON_VERSIONS = frozenset({"3.12", "3.13"})
-_LICENSES = frozenset({"MIT", "Apache-2.0", "LicenseRef-Proprietary"})
+_LICENSES = frozenset({"MIT", "Apache-2.0"})
 _GITHUB_ACTIONS = frozenset({"yes", "no"})
 _EMAIL_NOT_PROVIDED = "not-provided"
 _PLACEHOLDER_AUTHORS = frozenset(
@@ -135,7 +135,7 @@ def load_preset(path: Path) -> dict[str, str]:
             raise PresetError(f"unknown replay-envelope fields: {sorted(unknown_envelope)}")
         if raw.get("schema_version") != 1 or isinstance(raw.get("schema_version"), bool):
             raise PresetError("replay envelope schema_version must be integer 1")
-        if raw.get("template") != "clean-agentic-python-cookiecutter-v2":
+        if raw.get("template") != "clean-agentic-scientific-python-cookiecutter-v1":
             raise PresetError("replay envelope template id is missing or unsupported")
         candidate = raw["context"]
     else:

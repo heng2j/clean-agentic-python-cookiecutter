@@ -17,6 +17,7 @@ from tools.cleanai_core.model import ConfigurationError
         (["architecture", "--strict"], "command_architecture"),
         (["context-audit", "--strict"], "command_context"),
         (["docs-audit", "--strict"], "command_docs"),
+        (["science-audit", "--strict"], "command_science"),
         (["crap", "--coverage", "coverage.json", "--strict"], "command_crap"),
         (
             ["coverage-policy", "--coverage", "coverage.json", "--strict"],

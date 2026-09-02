@@ -112,8 +112,10 @@ requires a different notice.
 - `Apache-2.0` writes the standard Apache License 2.0 text and a `NOTICE` with
   the selected project, year, and holder. Bracketed text in the Apache appendix
   is part of the canonical license's instructions; it is not project metadata.
-- `LicenseRef-Proprietary` writes an explicit no-grant proprietary notice with
-  the selected year and holder.
+
+This open-source scientific variant intentionally offers only OSI-approved MIT
+and Apache-2.0 code licenses. Data, documentation, figures, model weights,
+dependencies, and other third-party artifacts may have separate terms.
 
 Every generated project also retains the template's MIT terms in
 `TEMPLATE_LICENSE`. The selected project license applies only to rights the

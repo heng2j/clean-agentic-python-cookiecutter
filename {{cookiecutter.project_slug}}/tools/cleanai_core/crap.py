@@ -6,7 +6,7 @@ import ast
 import json
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any
+from typing import Any, override
 
 from .io import (
     atomic_write_text,
@@ -48,15 +48,19 @@ class _ComplexityVisitor(ast.NodeVisitor):
     def __init__(self) -> None:
         self.value = 1
 
-    def visit_FunctionDef(self, _node: ast.FunctionDef) -> None:
+    @override
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
         return
 
-    def visit_AsyncFunctionDef(self, _node: ast.AsyncFunctionDef) -> None:
+    @override
+    def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
         return
 
-    def visit_ClassDef(self, _node: ast.ClassDef) -> None:
+    @override
+    def visit_ClassDef(self, node: ast.ClassDef) -> None:
         return
 
+    @override
     def generic_visit(self, node: ast.AST) -> None:
         if isinstance(
             node,
@@ -86,15 +90,19 @@ class _StatementVisitor(ast.NodeVisitor):
     def __init__(self) -> None:
         self.lines: set[int] = set()
 
-    def visit_FunctionDef(self, _node: ast.FunctionDef) -> None:
+    @override
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
         return
 
-    def visit_AsyncFunctionDef(self, _node: ast.AsyncFunctionDef) -> None:
+    @override
+    def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
         return
 
-    def visit_ClassDef(self, _node: ast.ClassDef) -> None:
+    @override
+    def visit_ClassDef(self, node: ast.ClassDef) -> None:
         return
 
+    @override
     def generic_visit(self, node: ast.AST) -> None:
         if isinstance(node, ast.stmt):
             self.lines.add(node.lineno)
@@ -126,15 +134,18 @@ def callable_blocks(source: str, *, path: str = "<memory>") -> list[CallableBloc
         def __init__(self) -> None:
             self.scope: list[str] = []
 
+        @override
         def visit_ClassDef(self, node: ast.ClassDef) -> None:
             self.scope.append(node.name)
             for child in node.body:
                 self.visit(child)
             self.scope.pop()
 
+        @override
         def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
             self._add(node)
 
+        @override
         def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
             self._add(node)
 
@@ -282,7 +293,11 @@ def build_crap_report(root: Path, coverage_path: Path) -> list[CrapRecord]:
                     crap=round(crap_score(block.complexity, percent), 2),
                 )
             )
-    return sorted(records, key=lambda item: (-item.crap, item.path, item.line, item.callable_id))
+    return sorted(records, key=_crap_sort_key)
+
+
+def _crap_sort_key(item: CrapRecord) -> tuple[float, str, int, str]:
+    return (-item.crap, item.path, item.line, item.callable_id)
 
 
 def command_crap(root: Path, coverage: Path, *, strict: bool) -> int:

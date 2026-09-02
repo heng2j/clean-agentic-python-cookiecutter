@@ -513,6 +513,7 @@ def context_findings(  # noqa: C901, PLR0912, PLR0915
 
 
 def command_docs(root: Path, *, strict: bool) -> int:
+    """Run document lifecycle and link checks and write evidence."""
     findings = docs_findings(root)
     output = write_findings(root, "documentation-audit", findings)
     _show(findings, output, root)
@@ -520,6 +521,7 @@ def command_docs(root: Path, *, strict: bool) -> int:
 
 
 def command_context(root: Path, *, strict: bool) -> int:
+    """Run persistent-context checks and write the loading-source inventory."""
     findings, metrics = context_findings(root)
     output = write_findings(root, "context-audit", findings, metadata=metrics)
     _show(findings, output, root)
@@ -555,6 +557,7 @@ def prune_plan(root: Path) -> str:
 
 
 def command_prune(root: Path, output: Path) -> int:
+    """Write a contained, non-destructive context pruning proposal."""
     target = output if output.is_absolute() else safe_path(root, output)
     try:
         target.resolve().relative_to(root.resolve(strict=True))

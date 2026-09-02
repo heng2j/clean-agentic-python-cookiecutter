@@ -2,7 +2,10 @@
 
 {{ cookiecutter.project_description }}
 
-This is a small Python starter for changes made with people and coding agents. It turns selected rules into executable checks, keeps decisions near the code, and asks every role to return exact evidence and remaining risk.
+This is a small open-source scientific Python starter for changes made with
+people and coding agents. It turns selected rules into executable checks, keeps
+decisions near the code, and asks every role to return exact evidence and
+remaining risk.
 
 > **Independent and unofficial.** The public six-role workflow is described on the jointly credited Justin Martin and Robert C. Martin Clean Coders Episode 6 page. This repository's Python tools, thresholds, prompt contract, architecture example, and evidence format are local synthesis. The project is not authored, sponsored, or endorsed by Robert C. Martin, Justin Martin, Clean Coders, Matt Pocock, OpenAI, Anthropic, or the cited researchers.
 
@@ -31,6 +34,31 @@ uv run --locked --group dev {{ cookiecutter.package_name }} examples/blocked-evi
 
 Start with the [first-run tutorial](docs/getting-started/first-run.md). It includes an intentional failure, the exact diagnostic, recovery, and success path.
 
+## Scientific workspace
+
+| Path | Contract |
+|---|---|
+| `src/{{ cookiecutter.package_name }}/` | installed, reusable product code |
+| `notebooks/` | exploration and demonstrations; never the sole home of reusable logic |
+| `static/` | small redistributable inputs registered by source, license, and SHA-256 |
+| `results/` | generated output ignored by default; curated references require provenance review |
+| `scripts/` | thin, documented entry points around tested package behavior |
+
+`python tools/cleanai.py science-audit --strict` checks the shipped layout,
+dotenv ignore rules, and static-input manifest. It checks internal consistency,
+not scientific truth. Read the [scientific method contract](docs/science/scientific-method.md)
+and [reproducibility guide](docs/science/reproducibility.md) before treating an
+output as evidence.
+
+The workspace and tool candidates were inspired by Jonathon Vandezande's
+[*Setting Up Python Packages*](https://jevandezande.github.io/blog/setting-up-python-packages/),
+his Rowan Scientific article
+[*How to Make a Great Open Source Scientific Project*](https://www.rowansci.com/blog/how-to-make-a-great-open-source-scientific-project),
+and his [`uv-cookiecutter`](https://github.com/jevandezande/uv-cookiecutter).
+They were independently evaluated and adapted; see
+[ADR 0004](docs/adr/0004-scientific-open-source-profile.md) and the
+[source record](docs/research/scientific-source-traceability.md).
+
 ## What the gates mean
 
 | Profile | Offline/deterministic intent | Purpose |
@@ -49,7 +77,13 @@ uv run --locked --group dev python tools/cleanai.py gauntlet full
 uv run --locked --group dev python tools/cleanai.py gauntlet hardening
 uv run --locked --group dev python tools/cleanai.py gauntlet release
 uv run --locked --group dev python tools/cleanai.py gauntlet connected-audit
+uv run --locked --group typing-experimental python tools/cleanai.py gauntlet typing-experimental
 ```
+
+The final line runs pinned beta `ty` as an explicit experiment. Stable Pyrefly
+is the single canonical type gate; running both does not make a correctness
+claim stronger. Codecov publication is a connected, non-authoritative CI job;
+the local branch-coverage floor remains the release oracle.
 
 `make gate-fast` and related targets are optional Linux conveniences. A missing executable, report, target, or required check is never recorded as success.
 

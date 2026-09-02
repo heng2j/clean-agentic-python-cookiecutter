@@ -32,11 +32,15 @@ detect_cycles = true
 commands = [
   "ruff check .",
   "ruff format --check .",
-  "mypy src tools",
+  "rumdl check --disable MD013,MD041,MD071 .",
+  "pyrefly check --min-severity warn --summarize-errors",
+  "prek validate-config prek.toml",
+  "bash -n .envrc scripts/new-role-worktree.sh",
   "pytest -q",
   "python tools/cleanai.py architecture --strict",
   "python tools/cleanai.py context-audit --strict",
   "python tools/cleanai.py docs-audit --strict",
+  "python tools/cleanai.py science-audit --strict",
 ]
 
 [gauntlet.full]
@@ -44,6 +48,7 @@ extends = "fast"
 commands = [
   "coverage run -m pytest -q",
   "coverage json --fail-under=0 -o artifacts/coverage.json",
+  "coverage xml --fail-under=0 -o artifacts/coverage.xml",
   "python tools/cleanai.py coverage-policy --coverage artifacts/coverage.json --strict",
   "python tools/cleanai.py crap --coverage artifacts/coverage.json --strict",
   "bandit -q -c pyproject.toml -r src tools",
@@ -67,3 +72,6 @@ commands = [
 [gauntlet.release]
 extends = "hardening"
 commands = ["twine check dist/*", "python tools/cleanai.py package-smoke --dist-dir dist"]
+
+[gauntlet.typing-experimental]
+commands = ["ty check --extra-search-path tools --error-on-warning"]

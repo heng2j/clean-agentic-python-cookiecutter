@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := help
 
-.PHONY: help bootstrap lock-check test pre-commit gate-fast gate-full gate-hardening gate-release connected-audit context-audit docs-audit prune-plan crap mutate clean
+.PHONY: help bootstrap lock-check test hooks hooks-install gate-fast gate-full gate-hardening gate-release typing-experimental connected-audit context-audit docs-audit science-audit prune-plan crap mutate clean
 
 help: ## Show targets.
 	@awk 'BEGIN {FS = ":.*## "; printf "Targets:\n"} /^[a-zA-Z0-9_-]+:.*## / {printf "  %-18s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -14,8 +14,11 @@ lock-check: ## Verify pyproject.toml agrees with the reviewed lock.
 test: ## Run all core tests.
 	uv run --locked --group dev python -m pytest -q
 
-pre-commit: ## Run non-mutating repository checks.
-	uv run --locked --group dev pre-commit run --all-files
+hooks: ## Run the non-mutating pre-commit stage without installing hooks.
+	uv run --locked --group dev prek run --all-files
+
+hooks-install: ## Install reviewed pre-commit and pre-push Git shims.
+	uv run --locked --group dev prek install
 
 gate-fast: ## High-frequency local gate.
 	uv run --locked --group dev python tools/cleanai.py gauntlet fast
@@ -29,6 +32,9 @@ gate-hardening: ## Full gate plus curated mutations.
 gate-release: ## Hardening plus packaging smoke.
 	uv run --locked --group dev python tools/cleanai.py gauntlet release
 
+typing-experimental: ## Experimental ty comparison; not a release gate.
+	uv run --locked --group typing-experimental python tools/cleanai.py gauntlet typing-experimental
+
 connected-audit: ## Query the live vulnerability database; not an offline gate.
 	uv run --locked --group dev python tools/cleanai.py gauntlet connected-audit
 
@@ -37,6 +43,9 @@ context-audit: ## Audit AGENTS/CLAUDE precision.
 
 docs-audit: ## Audit Markdown lifecycle and links.
 	uv run --locked --group dev python tools/cleanai.py docs-audit --strict
+
+science-audit: ## Audit scientific layout and static-input provenance.
+	uv run --locked --group dev python tools/cleanai.py science-audit --strict
 
 prune-plan: ## Produce a non-destructive cleanup proposal.
 	uv run --locked --group dev python tools/cleanai.py prune-plan --output artifacts/context/prune-plan.md

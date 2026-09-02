@@ -29,6 +29,17 @@ Regenerate branch-aware coverage from this checkout with the command in the tuto
 
 Initialize Git, create an initial commit, and make the tree clean. The script will not do those ownership decisions for you.
 
+## direnv does not load `.env`
+
+That is the safe default. Review `.envrc` and [the data/secret boundary](science/data-and-secrets.md), then deliberately uncomment `dotenv_if_exists .env` only for tasks that need it. All child processes and coding agents inherit exported values. Run deterministic gates from a secret-free shell.
+
+## `science-audit` rejects a static file
+
+Add a complete entry to `static/manifest.toml` with the repository-relative
+path, SHA-256, source or generation method, license, and description. A matching
+hash proves file identity only; it does not validate the source, license, or
+scientific meaning.
+
 ## A connected dependency audit is unavailable
 
 Mark the result **Unverified**, record the network/database error and timestamp, and rerun `uv run --locked --group dev python tools/cleanai.py gauntlet connected-audit` when the required service is reachable. Deterministic local release evidence remains separate.

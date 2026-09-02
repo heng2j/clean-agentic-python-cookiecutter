@@ -3,9 +3,9 @@ requires = ["hatchling>=1.32,<2"]
 build-backend = "hatchling.build"
 
 [project]
-name = "clean-agentic-python-cookiecutter"
+name = "clean-agentic-scientific-python-cookiecutter"
 version = "0.1.0"
-description = "Unofficial Cookiecutter for deterministic, context-disciplined agentic Python development"
+description = "Unofficial scientific Python Cookiecutter with deterministic, context-disciplined agentic development"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
 license = "MIT"

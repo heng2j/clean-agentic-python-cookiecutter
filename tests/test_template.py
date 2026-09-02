@@ -87,6 +87,26 @@ def test_default_template_renders_compiles_and_records_context(tmp_path: Path) -
     assert (project / "CLAUDE.md").read_text(encoding="utf-8").startswith("@AGENTS.md")
     assert (project / "tools" / "cleanai.py").is_file()
     assert (project / "prompts" / "specifier.md").is_file()
+    for relative in (
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        ".github/pull_request_template.md",
+        ".env.example",
+        ".envrc",
+        "prek.toml",
+        "notebooks/README.md",
+        "results/README.md",
+        "results/.gitignore",
+        "results/reference/README.md",
+        "scripts/README.md",
+        "static/README.md",
+        "static/manifest.toml",
+        "docs/science/scientific-method.md",
+        "docs/science/reproducibility.md",
+        "docs/science/data-and-secrets.md",
+    ):
+        assert (project / relative).is_file(), relative
+    assert not (project / ".pre-commit-config.yaml").exists()
     assert compileall.compile_dir(project / "src", quiet=1)
     assert compileall.compile_file(project / "tools" / "cleanai.py", quiet=1)
     with (project / "pyproject.toml").open("rb") as stream:
@@ -94,17 +114,21 @@ def test_default_template_renders_compiles_and_records_context(tmp_path: Path) -
 
     replay = json.loads((project / ".cleanai" / "template-context.json").read_text(encoding="utf-8"))
     assert replay["schema_version"] == 1
-    assert replay["template"] == "clean-agentic-python-cookiecutter-v2"
+    assert replay["template"] == "clean-agentic-scientific-python-cookiecutter-v1"
     assert replay["context"]["copyright_year"] == str(date.today().year)
-    assert replay["context"]["copyright_holder"] == "Clean Agentic Python Project contributors"
-    assert replay["context"]["author_name"] == "Clean Agentic Python Project contributors"
+    assert replay["context"]["copyright_holder"] == (
+        "Clean Agentic Scientific Python Project contributors"
+    )
+    assert replay["context"]["author_name"] == (
+        "Clean Agentic Scientific Python Project contributors"
+    )
     assert replay["context"]["author_email"] == "not-provided"
     assert "_template" not in replay["context"]
     assert not (project / ".cleanai" / "_license_assets").exists()
     with (project / "pyproject.toml").open("rb") as stream:
         metadata = tomllib.load(stream)
     assert metadata["project"]["authors"] == [
-        {"name": "Clean Agentic Python Project contributors"}
+        {"name": "Clean Agentic Scientific Python Project contributors"}
     ]
 
 
@@ -119,8 +143,43 @@ def test_default_copyright_year_is_current_and_replayable() -> None:
 def test_choices_are_fixed() -> None:
     raw = json.loads((ROOT / "cookiecutter.json").read_text(encoding="utf-8"))
     assert raw["python_version"] == ["3.12", "3.13"]
-    assert raw["license"] == ["MIT", "Apache-2.0", "LicenseRef-Proprietary"]
+    assert raw["license"] == ["MIT", "Apache-2.0"]
     assert raw["include_github_actions"] == ["yes", "no"]
+
+
+def test_scientific_profile_has_one_config_authority_per_tool(tmp_path: Path) -> None:
+    project = _render(tmp_path)
+    pyproject = (project / "pyproject.toml").read_text(encoding="utf-8")
+    policy = (project / ".cleanai/policy.toml").read_text(encoding="utf-8")
+    gitignore = (project / ".gitignore").read_text(encoding="utf-8")
+
+    assert "[tool.coverage.run]" in pyproject
+    assert not (project / ".coveragerc").exists()
+    assert (project / "prek.toml").is_file()
+    assert not (project / ".pre-commit-config.yaml").exists()
+    assert "pyrefly check --min-severity warn --summarize-errors" in policy
+    assert "ty check" not in policy.split("[gauntlet.fast]", maxsplit=1)[1].split(
+        "[gauntlet.full]", maxsplit=1
+    )[0]
+    assert "science-audit --strict" in policy
+    assert "rumdl check" in policy
+    assert ".env\n" in gitignore
+    assert "!.env.example" in gitignore
+
+
+def test_scientific_connected_ci_is_bounded_and_pinned(tmp_path: Path) -> None:
+    project = _render(tmp_path)
+    workflow = (project / ".github/workflows/quality.yml").read_text(encoding="utf-8")
+
+    assert "connected / Codecov publication" in workflow
+    assert "github.event_name == 'push'" in workflow
+    assert "continue-on-error: true" in workflow
+    assert "id-token: write" in workflow
+    assert "codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f" in workflow
+    assert 'version: "v11.3.1"' in workflow
+    assert "disable_search: true" in workflow
+    assert "fail_ci_if_error: true" in workflow
+    assert "coverage xml" in workflow
 
 
 @pytest.mark.parametrize(
@@ -128,7 +187,6 @@ def test_choices_are_fixed() -> None:
     [
         ("MIT", "MIT License"),
         ("Apache-2.0", "Apache License"),
-        ("LicenseRef-Proprietary", "LicenseRef-Proprietary"),
     ],
 )
 def test_license_outputs_are_complete(
@@ -172,11 +230,6 @@ def test_license_outputs_are_complete(
     else:
         assert "Copyright (c) 2026 Élan Research Cooperative" in license_text
         assert not (project / "NOTICE").exists()
-
-    if license_id == "LicenseRef-Proprietary":
-        assert "only rights the named holder is authorized to license" in license_text
-        assert "template-originated material identified in" in license_text
-        assert "This software and its associated documentation are proprietary" not in license_text
 
     replay = json.loads((project / ".cleanai" / "template-context.json").read_text(encoding="utf-8"))
     assert replay["context"]["license"] == license_id
@@ -512,7 +565,7 @@ def test_safe_wrapper_rejects_jinja_before_cookiecutter_executes(tmp_path: Path)
         '{"unknown": "value"}',
         '{"minimum_coverage": 90}',
         '["not", "an", "object"]',
-        '{"context": {}, "schema_version": 2, "template": "clean-agentic-python-cookiecutter-v2"}',
+        '{"context": {}, "schema_version": 2, "template": "clean-agentic-scientific-python-cookiecutter-v1"}',
     ],
 )
 def test_safe_wrapper_rejects_malformed_preset_shapes(tmp_path: Path, raw: str) -> None:

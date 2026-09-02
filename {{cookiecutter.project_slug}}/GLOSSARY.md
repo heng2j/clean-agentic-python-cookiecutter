@@ -5,6 +5,8 @@
 - **Architecture fitness function:** a repeatable check for one declared structural rule, such as “domain code must not import adapters.” It cannot prove the whole architecture is good.
 - **Artifact:** generated output such as coverage JSON, a wheel, or a command ledger. Artifacts are evidence, not authority.
 - **CRAP:** an experimental change-risk equation combining complexity and coverage. This project uses a documented local approximation.
+- **Data provenance:** evidence linking an input to its origin, license, transformation, and content identity. A recorded hash alone is not provenance.
+- **direnv:** an optional tool that loads reviewed directory-specific shell configuration. It does not isolate or securely store secrets.
 - **Gate:** a command that exits nonzero when required evidence fails or is unavailable.
 - **Invariant:** a property that must remain true over many inputs, not only a single example.
 - **Mutation test:** a deliberate small defect used to see whether a test or specification detects it. A survivor may expose weak evidence, an equivalent mutant, or a bad oracle.
@@ -12,6 +14,7 @@
 - **Oracle:** the independent condition used to decide success, such as expected CLI output or a package installed outside the checkout.
 - **Residual risk:** what the completed checks still cannot establish.
 - **Source-supported:** a statement bounded by a cited primary source. It is different from a local design choice.
+- **Static-input manifest:** the `static/manifest.toml` inventory checked for contained paths, required metadata, and matching SHA-256 values.
 - **Task packet:** a small change contract containing outcome, allowed paths, non-goals, risks, acceptance evidence, and stop conditions.
 - **Worktree:** a second working directory for one Git repository. It is useful for isolation only when the base revision and write ownership are clear.
 

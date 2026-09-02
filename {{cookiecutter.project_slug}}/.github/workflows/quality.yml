@@ -39,8 +39,8 @@ jobs:
           version: "0.11.33"
       - name: Sync the reviewed dependency population
         run: uv sync --locked --group dev
-      - name: Run immutable non-mutating pre-commit checks
-        run: uv run --locked --group dev pre-commit run --all-files
+      - name: Run immutable non-mutating prek checks
+        run: uv run --locked --group dev prek run --all-files
       - name: Run deterministic merge gate
         run: uv run --locked --group dev python tools/cleanai.py gauntlet full
       - name: Upload deterministic evidence
@@ -116,3 +116,38 @@ jobs:
           path: artifacts/connected/
           if-no-files-found: error
           retention-days: 14
+
+  coverage-publication:
+    name: connected / Codecov publication
+    if: {% raw %}${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}{% endraw %}
+    needs: supported-python
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Check out without retained credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned uv and Python
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          python-version: "3.13"
+          version: "0.11.33"
+      - name: Generate the local branch-coverage report
+        run: |
+          uv sync --locked --group dev
+          uv run --locked --group dev python -c "from pathlib import Path; Path('artifacts').mkdir(exist_ok=True)"
+          uv run --locked --group dev coverage run -m pytest -q
+          uv run --locked --group dev coverage xml -o artifacts/coverage.xml
+      - name: Publish the report to Codecov
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        with:
+          files: ./artifacts/coverage.xml
+          disable_search: true
+          fail_ci_if_error: true
+          use_oidc: true
+          version: "v11.3.1"

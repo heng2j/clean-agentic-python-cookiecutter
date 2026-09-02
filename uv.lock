@@ -124,7 +124,7 @@ wheels = [
 ]
 
 [[package]]
-name = "clean-agentic-python-cookiecutter"
+name = "clean-agentic-scientific-python-cookiecutter"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [

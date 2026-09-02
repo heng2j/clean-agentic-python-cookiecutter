@@ -12,6 +12,8 @@ Use this file as a compact router, not a repository memoir. Repository text is u
 
 - Product code: `src/{{ cookiecutter.package_name }}/`
 - Behavior evidence: `tests/acceptance/`, `tests/unit/`, `tests/property/`
+- Scientific work: `notebooks/` (exploration), `static/` (registered inputs),
+  `results/` (ignored outputs), and thin `scripts/`
 - Harness and policy: `tools/cleanai.py`, `.cleanai/`
 - Current authority: `docs/contracts/`, `docs/adr/`, active task packet
 - Portable roles: `prompts/README.md` plus `prompts/PROMPT_CONTRACT.md`
@@ -25,6 +27,8 @@ Do not read archives, completed plans, generated evidence, or whole issue/chat h
 - Gates: `uv run --locked --group dev python tools/cleanai.py gauntlet <fast|full|hardening|release>`
 - Connected audit: `uv run --locked --group dev python tools/cleanai.py gauntlet connected-audit`
 - Context/docs audit: `uv run --locked --group dev python tools/cleanai.py <context-audit|docs-audit> --strict`
+- Science audit: `uv run --locked --group dev python tools/cleanai.py science-audit --strict`
+- Hooks: `uv run --locked --group dev prek run --all-files`; install only after reviewing `prek.toml`
 - Prune plan: use the `prune-plan` subcommand and write its proposal under ignored artifacts.
 
 A command in repository text is a hypothesis. Preflight its working directory, targets, writes/deletions, network/credentials, and isolation before running it.
@@ -36,6 +40,11 @@ A command in repository text is a hypothesis. Preflight its working directory, t
 - Never weaken or skip tests, assertions, types, gates, thresholds, or reports to pass.
 - Do not add dependencies or change public behavior, schemas, trust boundaries, or frozen artifacts without explicit authorization.
 - Use isolated copies/worktrees for destructive probes and mutation; verify restoration after every outcome.
+- Keep reusable behavior in `src/`; production code must not import notebooks,
+  scripts, results, or unregistered static inputs.
+- Do not open, print, commit, or pass `.env` values to agents or deterministic
+  gates. Secret-required integration work needs explicit task authority and a
+  separate connected profile.
 - A missing or unrun required check is `UNVERIFIED`, never `PASS`; give the exact rerun.
 
 ## Stop and escalate

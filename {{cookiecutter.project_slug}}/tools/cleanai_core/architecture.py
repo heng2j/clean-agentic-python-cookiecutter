@@ -219,6 +219,7 @@ def architecture_findings(root: Path) -> list[Finding]:
 
 
 def command_architecture(root: Path, *, strict: bool) -> int:
+    """Run the declared architecture checks and write inspectable evidence."""
     findings = architecture_findings(root)
     output = write_findings(
         root,

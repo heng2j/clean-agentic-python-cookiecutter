@@ -39,7 +39,7 @@ _EMAIL = re.compile(
 )
 _INTEGER = re.compile(r"(?:0|[1-9][0-9]*)")
 _PYTHON_VERSIONS = frozenset({"3.12", "3.13"})
-_LICENSES = frozenset({"MIT", "Apache-2.0", "LicenseRef-Proprietary"})
+_LICENSES = frozenset({"MIT", "Apache-2.0"})
 _GITHUB_ACTIONS = frozenset({"yes", "no"})
 _EMAIL_NOT_PROVIDED = "not-provided"
 _PLACEHOLDER_AUTHORS = frozenset(

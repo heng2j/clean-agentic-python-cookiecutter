@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-02",
+  "environment": {
+    "architecture": "x86_64",
+    "cookiecutter": "2.7.1",
+    "direnv": null,
+    "git": "2.51.1",
+    "operating_system": "Linux 6.18.35",
+    "python": ["3.12.13", "3.13.14"],
+    "uv": "0.11.33"
+  },
+  "commands": [
+    {"id": "template-lock", "command": "uv lock --check", "exit_code": 0},
+    {"id": "template-tests", "command": "uv run --locked --group test python -m pytest -q", "exit_code": 0},
+    {"id": "template-build", "command": "uv run --locked --group test python -m build --no-isolation", "exit_code": 0},
+    {"id": "template-metadata", "command": "uv run --locked --group test python -m twine check <dist-files>", "exit_code": 0},
+    {"id": "python-312-release", "command": "uv run --locked --group dev python tools/cleanai.py gauntlet release", "exit_code": 0},
+    {"id": "python-313-apache-no-ci-release", "command": "uv run --locked --group dev python tools/cleanai.py gauntlet release", "exit_code": 0},
+    {"id": "prek-install", "command": "uv run --locked --group dev prek install", "exit_code": 0},
+    {"id": "prek-all-files", "command": "uv run --locked --group dev prek run --all-files", "exit_code": 0},
+    {"id": "ty-experimental", "command": "uv run --locked --group typing-experimental python tools/cleanai.py gauntlet typing-experimental", "exit_code": 0}
+  ],
+  "measurements": {
+    "code_mutants_killed": 3,
+    "code_mutants_total": 3,
+    "harness_branch_coverage_percent": 81.61,
+    "product_branch_coverage_percent": 96.75,
+    "specification_mutants_killed": 3,
+    "specification_mutants_total": 3,
+    "worst_local_crap_approximation": 10.10
+  },
+  "seeded_failures": [
+    {"id": "pyrefly-wrong-return", "expected_exit": 1, "observed_exit": 1, "detected": true},
+    {"id": "ty-wrong-return", "expected_exit": 1, "observed_exit": 1, "detected": true},
+    {"id": "unregistered-static-input", "expected_exit": 1, "observed_exit": 1, "detected": true}
+  ],
+  "unverified": [
+    "native macOS",
+    "native Windows",
+    "direnv runtime integration",
+    "Codecov service upload",
+    "notebook execution",
+    "non-PyPI and HPC environments",
+    "scientific validity"
+  ]
+}

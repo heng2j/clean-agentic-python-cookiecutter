@@ -31,7 +31,6 @@ ROOT = Path.cwd().resolve(strict=True)
 ASSET_NAMES = {
     "MIT": "MIT.txt",
     "Apache-2.0": "Apache-2.0.txt",
-    "LicenseRef-Proprietary": "LicenseRef-Proprietary.txt",
 }
 
 
@@ -124,7 +123,7 @@ def _write_replay_context() -> None:
     envelope = {
         "context": context,
         "schema_version": 1,
-        "template": "clean-agentic-python-cookiecutter-v2",
+        "template": "clean-agentic-scientific-python-cookiecutter-v1",
     }
     target = _safe_path(".cleanai", "template-context.json")
     _atomic_write(

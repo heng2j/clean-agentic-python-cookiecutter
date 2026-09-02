@@ -3,7 +3,7 @@ name: template
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, scientific-open-source-variant]
   workflow_dispatch:
 
 permissions:

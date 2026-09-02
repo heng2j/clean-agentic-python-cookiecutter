@@ -1,33 +1,29 @@
-# Clean Agentic Python Cookiecutter
+# Clean Agentic Scientific Python Cookiecutter
 
-> **Move faster with coding agents—without losing context, clarity, control, or the joy of building.**
+> **Move scientific ideas into tested Python—without losing context, provenance, control, or the joy of discovery.**
 
-Clean Agentic Python Cookiecutter is a lightweight starter for building Python
-software with AI coding agents. It provides a practical blueprint for creating 
-a clean agentic coding workspace: combines concise agent instructions, 
-bounded task handoffs, deterministic quality gates, architecture checks, 
-mutation testing, context-hygiene tools, and traceable evidence so that
-AI-generated changes remain understandable, verifiable, and safe to evolve.
-It helps humans and coding agents to sustain true productivity 
-with high-throughput of code and ideas. 
-
+This branch is a lightweight, open-source scientific profile of Clean Agentic
+Python Cookiecutter. It helps people and coding agents turn a research question
+into bounded work and produce installable, reviewable software and traceable
+artifacts backed by evidence.
 
 ## Why this exists
 
-Coding agents have changed the bottleneck in software development. Producing code
-is becoming remarkably fast; directing, reviewing, integrating, and trusting a
-growing volume of changes is now the harder problem. That is not true productivity. 
-It is **software entropy produced at higher throughput**.
+Coding agents can turn a promising idea into working code at remarkable speed.
+They can also multiply ambiguity: unclear requirements, stale context, broad
+changes, weak tests, and confident summaries that are difficult to verify.
 
-I built this project for myself and for other engineers, researchers, and
-independent builders who want the leverage of AI coding agents without
-surrendering the discipline and craftsmanship of software engineering.
+I built this project to give myself—and other research engineers—clearer
+headspace while harnessing that speed. The codebase, the agents, and the people
+guiding them should share enough context to keep innovating on new ideas and
+features without constantly wondering what changed, why it changed, or whether
+the result is trustworthy.
 
-The aspiration is **worry-free momentum, not blind trust**. No template can remove
+The aspiration is worry-free momentum, not blind trust. No template can remove
 software risk. This one aims to reduce avoidable uncertainty by making intent,
-authority, boundaries, checks, evidence, and remaining risk visible—so humans
+authority, boundaries, checks, evidence, and remaining risk visible—so people
 and agents can move quickly while keeping code quality and project clarity in
-view with software engineering best practices.
+view.
 
 ## What you get
 
@@ -47,12 +43,39 @@ view with software engineering best practices.
   unintended changes.
 - **A learning path:** the generated project includes a glossary, quickstart,
   hands-on tutorials, how-to guides, reference material, and troubleshooting.
+- **A scientific workspace:** scoped `notebooks/`, `static/`, `results/`, and
+  `scripts/` directories separate exploration, registered inputs, generated
+  outputs, and thin operational entry points from the installed package.
+- **Modern contributor tools:** uv, Ruff, rumdl, Pyrefly, pytest, `prek`, GitHub
+  Actions, and connected Codecov reporting call one reviewable command surface.
 - **Portable prompts:** reusable role, audit, cleanup, hardening, release-QA,
   context-hygiene, and agent-friction prompts share one concise contract.
 
-You do not need prior experience with [CRAP scores](https://testing.googleblog.com/2011/02/this-code-is-crap.html), [mutation testing](https://testing.googleblog.com/2021/04/mutation-testing.html),
+You do not need prior experience with CRAP scores, mutation testing,
 architecture fitness functions, or agent context files. The generated project
 introduces them progressively and explains what each check can—and cannot—show.
+
+## Scientific variant inspiration
+
+Jonathon Vandezande's ideas directly inspired this variation. In particular:
+
+- [*Setting Up Python Packages*](https://jevandezande.github.io/blog/setting-up-python-packages/)
+  proposed the scientific project directories and several of the tool candidates;
+- [*How to Make a Great Open Source Scientific Project*](https://www.rowansci.com/blog/how-to-make-a-great-open-source-scientific-project)
+  frames focused, packaged, tested, documented, maintained, genuinely open-source
+  scientific software; and
+- Jonathon's [`uv-cookiecutter`](https://github.com/jevandezande/uv-cookiecutter)
+  provides a concrete implementation to inspect and learn from.
+
+Thank you to Jonathon for publishing the ideas, examples, and tradeoffs in the
+open. This project independently evaluated and adapted them; it is not a fork,
+certification, or endorsement. For example, this profile retains `src/`
+isolation, does not auto-install dependencies or create GitHub remotes during
+generation, keeps secrets out of deterministic agent runs by default, and does
+not treat Codecov or two overlapping type checkers as proof. See the concise
+[adopt/adapt/reject decision record](SCIENTIFIC_VARIANT.md).
+For branch review, see the [bounded validation record](SCIENTIFIC_VARIANT_VALIDATION.md)
+and [migration guide](MIGRATION_SCIENTIFIC_VARIANT.md).
 
 ## Quick start
 
@@ -61,8 +84,8 @@ Prerequisites: Linux, CPython 3.12 or 3.13, and
 this release pins for reproducibility.
 
 ```bash
-uvx --from 'cookiecutter==2.7.1' cookiecutter /path/to/clean-agentic-python-cookiecutter-v2
-cd clean-agentic-python-project
+uvx --from 'cookiecutter==2.7.1' cookiecutter /path/to/clean-agentic-python-cookiecutter
+cd clean-agentic-scientific-python-project
 uv lock --check
 uv sync --locked --group dev
 uv run --locked --group dev python tools/cleanai.py gauntlet fast

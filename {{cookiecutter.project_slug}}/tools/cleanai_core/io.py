@@ -86,10 +86,11 @@ def finite_number(
     value: object, name: str, *, minimum: float, maximum: float | None = None
 ) -> float:
     """Return a finite bounded numeric configuration value."""
-    if isinstance(value, bool):
-        raise ConfigurationError(f"{name} must be numeric, not boolean")
+    if isinstance(value, bool) or not isinstance(value, int | float | str):
+        qualifier = ", not boolean" if isinstance(value, bool) else ""
+        raise ConfigurationError(f"{name} must be numeric{qualifier}")
     try:
-        number = float(value)  # type: ignore[arg-type]
+        number = float(value)
     except (TypeError, ValueError) as error:
         raise ConfigurationError(f"{name} must be numeric") from error
     if not math.isfinite(number) or number < minimum or (maximum is not None and number > maximum):

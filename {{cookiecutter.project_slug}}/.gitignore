@@ -4,6 +4,12 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.rumdl_cache/
+.direnv/
+.ipynb_checkpoints/
+.env
+.env.*
+!.env.example
 .coverage
 coverage.json
 coverage.xml
@@ -11,6 +17,11 @@ htmlcov/
 artifacts/
 dist/
 build/
+results/**
+!results/README.md
+!results/.gitignore
+!results/reference/
+!results/reference/**
 *.egg-info/
 .mutmut-cache/
 .cleanai/runs/

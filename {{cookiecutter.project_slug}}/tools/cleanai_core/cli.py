@@ -19,6 +19,7 @@ from .io import atomic_write_text, print_line, repository_root, safe_path
 from .model import CleanAIError, ConfigurationError
 from .mutation import command_mutate
 from .package import command_package_smoke
+from .science import command_science
 
 Handler = Callable[[Path, argparse.Namespace], int]
 MAX_TASK_TITLE = 160
@@ -35,6 +36,10 @@ def _context(root: Path, args: argparse.Namespace) -> int:
 
 def _docs(root: Path, args: argparse.Namespace) -> int:
     return command_docs(root, strict=bool(args.strict))
+
+
+def _science(root: Path, args: argparse.Namespace) -> int:
+    return command_science(root, strict=bool(args.strict))
 
 
 def _crap(root: Path, args: argparse.Namespace) -> int:
@@ -138,6 +143,7 @@ def parser() -> argparse.ArgumentParser:
         ("architecture", _architecture),
         ("context-audit", _context),
         ("docs-audit", _docs),
+        ("science-audit", _science),
     ):
         audit = _command(commands, name, handler, help_text=f"run the {name} control")
         audit.add_argument("--strict", action="store_true")

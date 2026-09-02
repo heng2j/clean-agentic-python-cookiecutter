@@ -33,6 +33,7 @@ def _from_mapping(data: Mapping[str, Any]) -> ReleaseEvidence:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    """Parse release-evidence input and return a stable policy exit code."""
     args = _parser().parse_args(argv)
     try:
         raw = json.loads(args.evidence.read_text(encoding="utf-8"))

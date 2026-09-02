@@ -1,0 +1,23 @@
+minimum_prek_version = "0.5.1"
+default_install_hook_types = ["pre-commit", "pre-push"]
+
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "cleanai-fast"
+name = "Clean Agentic fast gate"
+language = "system"
+entry = "uv run --locked --group dev python tools/cleanai.py gauntlet fast"
+pass_filenames = false
+always_run = true
+stages = ["pre-commit"]
+
+[[repos.hooks]]
+id = "cleanai-full"
+name = "Clean Agentic full gate"
+language = "system"
+entry = "uv run --locked --group dev python tools/cleanai.py gauntlet full"
+pass_filenames = false
+always_run = true
+stages = ["pre-push"]

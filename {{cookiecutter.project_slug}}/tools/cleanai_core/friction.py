@@ -78,6 +78,7 @@ def _string_tuple(raw: dict[str, Any], name: str, task_id: str) -> tuple[str, ..
 
 
 def load_benchmark_tasks(root: Path) -> dict[str, BenchmarkTask]:
+    """Load and validate the repository's agent-friction task definitions."""
     path = safe_path(root, ".cleanai/benchmark-tasks.toml", must_exist=True)
     data = load_toml(path)
     rows = data.get("task")
@@ -196,7 +197,7 @@ def _trace_metrics(root: Path, trace: Path | None, expected: list[str]) -> dict[
     except (OSError, UnicodeError, json.JSONDecodeError) as error:
         raise EvidenceError(f"cannot parse trace {path}: {error}") from error
     opened = [
-        str(row["path"])
+        row["path"]
         for row in rows
         if row.get("event") in {"open", "read", "search-hit"} and isinstance(row.get("path"), str)
     ]
