@@ -130,4 +130,3 @@ security, good domain decisions, or meaningful tests.
 This is an **independent, unofficial** project. It is not authored, sponsored,
 approved, or endorsed by Justin Martin, Robert C. Martin, Clean Coders, Matt
 Pocock, OpenAI, Anthropic, or the cited researchers.
-# clean-agentic-python-cookiecutter
