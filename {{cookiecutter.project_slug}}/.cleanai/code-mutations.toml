@@ -1,0 +1,31 @@
+name = "Curated implementation mutants"
+baseline_command = "pytest -q tests/unit tests/property tests/acceptance"
+minimum_score = {{ cookiecutter.minimum_mutation_score }}
+timeout_seconds = 120
+
+[[mutation]]
+id = "invert-crap-threshold"
+path = "src/{{ cookiecutter.package_name }}/domain/change_risk.py"
+find = "evidence.max_crap_score > policy.max_crap_score"
+replace = "evidence.max_crap_score < policy.max_crap_score"
+test_command = "pytest -q tests/unit tests/property tests/acceptance"
+expected_exit = 1
+expected_output_regex = "(?i)[1-9][0-9]* failed"
+
+[[mutation]]
+id = "allow-failed-tests"
+path = "src/{{ cookiecutter.package_name }}/domain/change_risk.py"
+find = "evidence.failed_tests > 0"
+replace = "evidence.failed_tests < 0"
+test_command = "pytest -q tests/unit tests/property tests/acceptance"
+expected_exit = 1
+expected_output_regex = "(?i)[1-9][0-9]* failed"
+
+[[mutation]]
+id = "invert-mutation-floor"
+path = "src/{{ cookiecutter.package_name }}/domain/change_risk.py"
+find = "evidence.mutation_score < policy.minimum_mutation_score"
+replace = "evidence.mutation_score > policy.minimum_mutation_score"
+test_command = "pytest -q tests/unit tests/property tests/acceptance"
+expected_exit = 1
+expected_output_regex = "(?i)[1-9][0-9]* failed"

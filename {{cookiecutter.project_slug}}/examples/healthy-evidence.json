@@ -1,0 +1,8 @@
+{
+  "failed_tests": 0,
+  "static_analysis_findings": 0,
+  "architecture_violations": 0,
+  "security_findings": 0,
+  "max_crap_score": 11,
+  "mutation_score": 95
+}

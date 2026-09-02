@@ -1,0 +1,10 @@
+{
+  "failed_tests": 1,
+  "static_analysis_findings": 0,
+  "architecture_violations": 0,
+  "security_findings": 0,
+  "max_crap_score": 41,
+  "mutation_score": 45,
+  "touches_trust_boundary": true,
+  "trust_boundary_review_complete": false
+}

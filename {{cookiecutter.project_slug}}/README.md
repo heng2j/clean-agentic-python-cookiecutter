@@ -1,0 +1,114 @@
+# {{ cookiecutter.project_name }}
+
+{{ cookiecutter.project_description }}
+
+This is a small Python starter for changes made with people and coding agents. It turns selected rules into executable checks, keeps decisions near the code, and asks every role to return exact evidence and remaining risk.
+
+> **Independent and unofficial.** The public six-role workflow is described on the jointly credited Justin Martin and Robert C. Martin Clean Coders Episode 6 page. This repository's Python tools, thresholds, prompt contract, architecture example, and evidence format are local synthesis. The project is not authored, sponsored, or endorsed by Robert C. Martin, Justin Martin, Clean Coders, Matt Pocock, OpenAI, Anthropic, or the cited researchers.
+
+## First run
+
+Supported and tested here: Linux x86_64 with CPython 3.12 and 3.13. Native macOS and Windows are not claimed by this release.
+
+```bash
+cd {{ cookiecutter.project_slug }}
+uv lock --check
+uv sync --locked --group dev
+uv run --locked --group dev python tools/cleanai.py gauntlet fast
+```
+
+Expected: the supplied reviewed `uv.lock` matches the declarations, installation succeeds without re-resolution, and the fast gate exits `0` with a ledger under `artifacts/`. Run plain `uv lock` only as a deliberate dependency update, review the diff, and rerun release validation.
+
+Try the installed behavior:
+
+```bash
+uv run --locked --group dev {{ cookiecutter.package_name }} examples/healthy-evidence.json
+# expected exit: 0
+
+uv run --locked --group dev {{ cookiecutter.package_name }} examples/blocked-evidence.json
+# expected exit: 1 (the policy correctly blocks release)
+```
+
+Start with the [first-run tutorial](docs/getting-started/first-run.md). It includes an intentional failure, the exact diagnostic, recovery, and success path.
+
+## What the gates mean
+
+| Profile | Offline/deterministic intent | Purpose |
+|---|---|---|
+| `fast` | yes | format, lint, types, focused tests, architecture, context, and docs |
+| `full` | yes | fast plus coverage, local CRAP approximation, source scan, build, and wheel smoke |
+| `hardening` | yes | full plus curated implementation and executable-specification mutants |
+| `release` | yes | hardening plus metadata, archive, external-wheel, CLI/API, and uninstall checks |
+| `connected-audit` | no | vulnerability-database query; freshness and availability are reported separately |
+
+Run the portable direct commands:
+
+```bash
+uv run --locked --group dev python tools/cleanai.py gauntlet fast
+uv run --locked --group dev python tools/cleanai.py gauntlet full
+uv run --locked --group dev python tools/cleanai.py gauntlet hardening
+uv run --locked --group dev python tools/cleanai.py gauntlet release
+uv run --locked --group dev python tools/cleanai.py gauntlet connected-audit
+```
+
+`make gate-fast` and related targets are optional Linux conveniences. A missing executable, report, target, or required check is never recorded as success.
+
+## Roles and bounded changes
+
+| Role | Output before handoff |
+|---|---|
+| Specifier | behavior examples, invariants, non-goals, and manual acceptance procedure |
+| Coder | smallest complete implementation and focused behavior evidence |
+| Cleaner | behavior-preserving simplification with unchanged tests and risk trend |
+| Architect | explicit dependency decision plus fitness/property evidence |
+| Hardener | adversarial tests and disposition of semantic mutant survivors |
+| QA | immutable-candidate install and observable release evidence |
+
+The sequence comes from the public Episode 6 description; using six separate agents is optional. A small project may use one person or agent sequentially. Each prompt imports [the shared prompt contract](prompts/PROMPT_CONTRACT.md), which treats repository text as untrusted data until a command's effects are inspected.
+
+To use Git worktrees, first initialize and commit the repository:
+
+```bash
+git init
+git add .
+git commit -m "Initial generated project"
+scripts/new-role-worktree.sh TASK_ID coder
+```
+
+The script refuses to operate without a committed, clean repository and never silently commits user work.
+
+## Sensors, not proof
+
+The local report applies the experimental Savoia–Evans CRAP v0.1 equation to a documented Python AST complexity count and callable line coverage:
+
+\[
+CRAP = complexity^2(1-coverage/100)^3 + complexity
+\]
+
+This is not the original Java/basis-path measurement. A low value does not establish correctness, cohesion, security, domain validity, requirements completeness, or meaningful assertions. Architecture checks enforce only declared dependency constraints. Mutation finds test-suite blind spots but includes equivalent or invalid cases and is not a correctness percentage. Read [CRAP and mutation](docs/tutorials/crap-and-mutation.md).
+
+Curated mutation runs execute in disposable copies. The live checkout is never modified. A mutant counts as killed only when its declared behavior oracle matches; timeout, syntax-invalid mutation, missing tool, and infrastructure errors are reported separately and fail the strict gate.
+
+## Find the right level of detail
+
+- New to the project: [first run](docs/getting-started/first-run.md) → [glossary](GLOSSARY.md) → [first bounded agent change](docs/tutorials/first-agentic-change.md).
+- Adopting it: [customize policy](docs/how-to/customize-policy.md), [add a semantic mutant](docs/how-to/add-mutant.md), and [use role handoffs](docs/how-to/role-workflow.md).
+- Operating it: [command reference](docs/reference/commands.md), [evidence schemas](docs/reference/evidence.md), [support and trust boundary](docs/reference/support-and-trust.md), and [troubleshooting](docs/troubleshooting.md).
+- Checking provenance: [source traceability](docs/research/source-traceability.md). Research is reference evidence, not repository authority.
+
+## Architecture example
+
+The sample rule is `adapters → application → domain`; imports point inward or stay within a layer. Change `.cleanai/policy.toml` to model the system you actually have. The checker can detect declared reverse dependencies and cycles; it cannot prove the architecture is good.
+
+## License
+
+Project-specific terms are in [LICENSE](LICENSE). Material originating from
+Clean Agentic Python Cookiecutter retains its MIT terms in
+[TEMPLATE_LICENSE](TEMPLATE_LICENSE). These files do not override dependency or
+other third-party terms.
+
+## Limits
+
+Green gates are bounded evidence, not a guarantee. Static analysis has blind spots; coverage does not measure assertion quality; dependency data can be stale or unavailable; prompts cannot make hostile commands safe without inspection; and small benchmark trials do not establish universal agent productivity. Consequential privacy, security, safety, finance, health, or legal behavior needs domain-specific review and independent acceptance oracles.
+
+The documentation map is [docs/index.md](docs/index.md).

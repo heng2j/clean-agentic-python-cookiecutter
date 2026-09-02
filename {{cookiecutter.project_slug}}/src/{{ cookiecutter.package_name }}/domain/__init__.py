@@ -1,0 +1,1 @@
+"""Stable pure domain policy."""

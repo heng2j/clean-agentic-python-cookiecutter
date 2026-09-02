@@ -1,0 +1,69 @@
+[project]
+package = "{{ cookiecutter.package_name }}"
+source_root = "src/{{ cookiecutter.package_name }}"
+docs_root = "docs"
+
+[quality]
+minimum_coverage = {{ cookiecutter.minimum_coverage }}
+minimum_harness_coverage = 70
+max_crap_score = {{ cookiecutter.max_crap_score }}
+minimum_mutation_score = {{ cookiecutter.minimum_mutation_score }}
+
+[execution]
+command_timeout_seconds = 300
+
+[context]
+root_agents_max_lines = 120
+root_agents_max_words = 700
+root_claude_max_lines = 40
+scoped_max_lines = 80
+warn_doc_age_days = 180
+required_sections = ["Repository map", "Canonical commands", "Non-negotiable invariants", "Definition of done", "Stop and escalate"]
+
+[architecture]
+"{{ cookiecutter.package_name }}.domain" = 0
+"{{ cookiecutter.package_name }}.application" = 1
+"{{ cookiecutter.package_name }}.adapters" = 2
+
+[architecture_options]
+detect_cycles = true
+
+[gauntlet.fast]
+commands = [
+  "ruff check .",
+  "ruff format --check .",
+  "mypy src tools",
+  "pytest -q",
+  "python tools/cleanai.py architecture --strict",
+  "python tools/cleanai.py context-audit --strict",
+  "python tools/cleanai.py docs-audit --strict",
+]
+
+[gauntlet.full]
+extends = "fast"
+commands = [
+  "coverage run -m pytest -q",
+  "coverage json --fail-under=0 -o artifacts/coverage.json",
+  "python tools/cleanai.py coverage-policy --coverage artifacts/coverage.json --strict",
+  "python tools/cleanai.py crap --coverage artifacts/coverage.json --strict",
+  "bandit -q -c pyproject.toml -r src tools",
+  "python -m build --no-isolation",
+]
+
+[gauntlet.connected-audit]
+commands = [
+  "python -c \"from pathlib import Path; Path('artifacts/connected').mkdir(parents=True, exist_ok=True)\"",
+  "uv export --quiet --locked --only-group dev --no-emit-project --format requirements.txt --output-file artifacts/connected/requirements.txt",
+  "python -m pip_audit --requirement artifacts/connected/requirements.txt --progress-spinner=off --format=json --output=artifacts/connected/pip-audit.json",
+]
+
+[gauntlet.hardening]
+extends = "full"
+commands = [
+  "python tools/cleanai.py mutate --config .cleanai/code-mutations.toml --strict",
+  "python tools/cleanai.py mutate --config .cleanai/spec-mutations.toml --strict",
+]
+
+[gauntlet.release]
+extends = "hardening"
+commands = ["twine check dist/*", "python tools/cleanai.py package-smoke --dist-dir dist"]

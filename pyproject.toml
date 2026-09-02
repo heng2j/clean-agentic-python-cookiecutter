@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling>=1.32,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "clean-agentic-python-cookiecutter"
+version = "0.1.0"
+description = "Unofficial Cookiecutter for deterministic, context-disciplined agentic Python development"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = [
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = ["cookiecutter>=2.6,<3"]
+
+[dependency-groups]
+test = [
+  "build>=1.6,<2",
+  "hatchling>=1.32,<2",
+  "pytest>=9.1,<10",
+  "twine>=7,<8",
+]
+
+[tool.uv]
+required-version = "==0.11.33"
+environments = [
+  "sys_platform == 'linux' and platform_python_implementation == 'CPython' and python_version >= '3.12' and python_version < '3.14'",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+include = ["cookiecutter.json", "hooks/**", "{{cookiecutter.project_slug}}/**"]

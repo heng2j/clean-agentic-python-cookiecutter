@@ -1,0 +1,31 @@
+name = "Curated executable-specification mutants"
+baseline_command = "pytest -q tests/acceptance"
+minimum_score = {{ cookiecutter.minimum_mutation_score }}
+timeout_seconds = 120
+
+[[mutation]]
+id = "approved-becomes-blocked"
+path = "tests/acceptance/features/release_decision.feature"
+find = "Then the release is approved"
+replace = "Then the release is blocked"
+test_command = "pytest -q tests/acceptance"
+expected_exit = 1
+expected_output_regex = "(?i)[1-9][0-9]* failed"
+
+[[mutation]]
+id = "healthy-mutation-score-becomes-weak"
+path = "tests/acceptance/features/release_decision.feature"
+find = "And the mutation score is 95"
+replace = "And the mutation score is 45"
+test_command = "pytest -q tests/acceptance"
+expected_exit = 1
+expected_output_regex = "(?i)[1-9][0-9]* failed"
+
+[[mutation]]
+id = "clean-crap-becomes-risky"
+path = "tests/acceptance/features/release_decision.feature"
+find = "And the maximum CRAP score is 11"
+replace = "And the maximum CRAP score is 41"
+test_command = "pytest -q tests/acceptance"
+expected_exit = 1
+expected_output_regex = "(?i)[1-9][0-9]* failed"

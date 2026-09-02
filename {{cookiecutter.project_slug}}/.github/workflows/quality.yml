@@ -1,0 +1,118 @@
+name: quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      connected_audit:
+        description: Query the live vulnerability database instead of deterministic gates
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  supported-python:
+    name: deterministic / Python {% raw %}${{ matrix.python-version }}{% endraw %}
+    if: {% raw %}${{ github.event_name == 'pull_request' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.connected_audit) }}{% endraw %}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [{% if cookiecutter.python_version == "3.12" %}"3.12", {% endif %}"3.13"]
+    steps:
+      - name: Check out untrusted change without retained credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned uv and Python
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+          version: "0.11.33"
+      - name: Sync the reviewed dependency population
+        run: uv sync --locked --group dev
+      - name: Run immutable non-mutating pre-commit checks
+        run: uv run --locked --group dev pre-commit run --all-files
+      - name: Run deterministic merge gate
+        run: uv run --locked --group dev python tools/cleanai.py gauntlet full
+      - name: Upload deterministic evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: deterministic-python-{% raw %}${{ matrix.python-version }}{% endraw %}
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 14
+
+  hardening-release:
+    name: deterministic / hardening and release
+    if: {% raw %}${{ github.event_name == 'pull_request' || github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.connected_audit) }}{% endraw %}
+    needs: supported-python
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out untrusted change without retained credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned uv and Python
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          python-version: "3.13"
+          version: "0.11.33"
+      - name: Sync the reviewed dependency population
+        run: uv sync --locked --group dev
+      - name: Run isolated mutations and release validation
+        run: uv run --locked --group dev python tools/cleanai.py gauntlet release
+      - name: Upload release evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: release-evidence
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload checked distributions
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: checked-distributions
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+
+  connected-audit:
+    name: connected / vulnerability database
+    if: {% raw %}${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.connected_audit) }}{% endraw %}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out without retained credentials
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned uv and Python
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          python-version: "3.13"
+          version: "0.11.33"
+      - name: Sync the reviewed dependency population
+        run: uv sync --locked --group dev
+      - name: Query the current vulnerability database for the reviewed lock
+        run: uv run --locked --group dev python tools/cleanai.py gauntlet connected-audit
+      - name: Upload connected evidence
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: connected-audit
+          path: artifacts/connected/
+          if-no-files-found: error
+          retention-days: 14

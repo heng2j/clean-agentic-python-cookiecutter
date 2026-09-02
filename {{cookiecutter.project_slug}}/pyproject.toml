@@ -1,0 +1,94 @@
+[build-system]
+requires = ["hatchling>=1.32,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "{{ cookiecutter.project_slug }}"
+version = "0.1.0"
+description = {{ cookiecutter.project_description | tojson }}
+readme = "README.md"
+requires-python = ">={{ cookiecutter.python_version }},<3.14"
+license = "{{ cookiecutter.license if cookiecutter.license != 'Proprietary' else 'LicenseRef-Proprietary' }}"
+license-files = ["LICENSE", "TEMPLATE_LICENSE"{% if cookiecutter.license == "Apache-2.0" %}, "NOTICE"{% endif %}]
+authors = [{ name = {{ cookiecutter.author_name | tojson }}{% if cookiecutter.author_email != "not-provided" %}, email = {{ cookiecutter.author_email | tojson }}{% endif %} }]
+classifiers = [
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3 :: Only",
+{% if cookiecutter.python_version == "3.12" %}  "Programming Language :: Python :: 3.12",
+{% endif %}  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = []
+
+[project.scripts]
+{{ cookiecutter.package_name }} = "{{ cookiecutter.package_name }}.adapters.cli:main"
+
+[dependency-groups]
+dev = [
+  "bandit[toml]>=1.9,<2",
+  "build>=1.6,<2",
+  "coverage[toml]>=7.16,<8",
+  "hatchling>=1.32,<2",
+  "mypy>=1.20,<2",
+  "pip-audit>=2.10,<3",
+  "pre-commit>=4.6,<5",
+  "pyyaml>=6.0.3,<7",
+  "pytest>=9.1,<10",
+  "ruff>=0.16,<1",
+  "twine>=7,<8",
+  "types-pyyaml>=6.0.12,<7",
+]
+
+[tool.uv]
+required-version = "==0.11.33"
+default-groups = ["dev"]
+environments = [
+  "sys_platform == 'linux' and platform_python_implementation == 'CPython' and python_version >= '{{ cookiecutter.python_version }}' and python_version < '3.14'",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/{{ cookiecutter.package_name }}"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --strict-config"
+testpaths = ["tests"]
+markers = [
+  "acceptance: executable behavior specifications",
+  "property: invariant tests",
+  "tooling: repository harness tests",
+]
+
+[tool.coverage.run]
+branch = true
+relative_files = true
+source = ["src/{{ cookiecutter.package_name }}", "tools"]
+
+[tool.coverage.report]
+fail_under = {{ cookiecutter.minimum_coverage }}
+show_missing = true
+skip_covered = true
+exclude_also = ["if TYPE_CHECKING:"]
+
+[tool.ruff]
+target-version = "py{{ cookiecutter.python_version.replace('.', '') }}"
+line-length = 100
+src = ["src", "tests", "tools"]
+
+[tool.ruff.lint]
+select = ["A", "ARG", "B", "C4", "C90", "E", "F", "I", "N", "PERF", "PL", "PT", "PTH", "RUF", "S", "SIM", "UP", "W"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["ARG", "PLR2004", "S"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.mypy]
+python_version = "{{ cookiecutter.python_version }}"
+strict = true
+files = ["src", "tools"]
+mypy_path = ["src", "tools"]
+explicit_package_bases = true
+
+[tool.bandit]
+exclude_dirs = [".venv", "artifacts", "build", "dist"]

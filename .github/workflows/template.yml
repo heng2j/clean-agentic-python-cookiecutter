@@ -1,0 +1,37 @@
+name: template
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - name: Check out the template
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned uv and Python
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          python-version: ${{ matrix.python-version }}
+          version: "0.11.33"
+      - name: Sync the reviewed lock
+        run: uv sync --locked --group test
+      - name: Test template rendering and validation
+        run: uv run --locked --group test python -m pytest -q
+      - name: Build the template distribution
+        run: uv run --locked --group test python -m build --no-isolation
+      - name: Validate the template distribution metadata
+        run: uv run --locked --group test python -m twine check dist/*

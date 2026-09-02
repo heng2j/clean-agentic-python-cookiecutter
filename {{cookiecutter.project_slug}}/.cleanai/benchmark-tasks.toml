@@ -1,0 +1,23 @@
+[[task]]
+id = "locate-and-explain"
+title = "Locate and explain a release decision"
+prompt = "benchmarks/locate-and-explain.md"
+expected_globs = ["src/{{ cookiecutter.package_name }}/domain/**", "docs/contracts/**"]
+forbidden_globs = ["docs/archive/**", "artifacts/**", "dist/**"]
+verification = ["pytest -q tests/unit/test_change_risk.py"]
+
+[[task]]
+id = "local-change"
+title = "Add one bounded release-blocking condition"
+prompt = "benchmarks/local-change.md"
+expected_globs = ["src/{{ cookiecutter.package_name }}/domain/**", "tests/**", "docs/contracts/**"]
+forbidden_globs = ["tools/**", "docs/archive/**"]
+verification = ["pytest -q", "python tools/cleanai.py architecture --strict"]
+
+[[task]]
+id = "context-cleanup"
+title = "Remove a seeded low-precision instruction"
+prompt = "benchmarks/context-cleanup.md"
+expected_globs = ["AGENTS.md", "CLAUDE.md", ".claude/rules/**", "docs/**"]
+forbidden_globs = ["src/**"]
+verification = ["python tools/cleanai.py context-audit --strict", "python tools/cleanai.py docs-audit --strict"]
