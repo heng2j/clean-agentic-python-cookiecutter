@@ -47,7 +47,10 @@ view.
   `scripts/` directories separate exploration, registered inputs, generated
   outputs, and thin operational entry points from the installed package.
 - **Modern contributor tools:** uv, Ruff, rumdl, Pyrefly, pytest, `prek`, GitHub
-  Actions, and connected Codecov reporting call one reviewable command surface.
+  Actions, and connected Codecov reporting use one reviewable command surface.
+  Optional `direnv` loads the generated project's reviewed shell settings on
+  entry and unloads them on exit, reducing manual environment activation and
+  accidental cross-project configuration.
 - **Portable prompts:** reusable role, audit, cleanup, hardening, release-QA,
   context-hygiene, and agent-friction prompts share one concise contract.
 
@@ -95,6 +98,35 @@ Expected result: the fast gate exits `0`, every required step runs, and the
 harness prints the path to its evidence. Then open
 `docs/getting-started/first-run.md` for a guided break → failure → fix → success
 exercise.
+
+## Optional project environment with `direnv`
+
+[`direnv`](https://direnv.net/) automatically loads and unloads
+directory-specific environment variables as you enter and leave a project. In
+each generated project, the reviewed `.envrc` detects the uv-created `.venv`
+and puts its executables on `PATH`, so ordinary shell commands use the project
+environment without a manual activation step. The required `direnv allow`
+step makes authorizing that executable configuration an explicit decision.
+
+First [install `direnv`](https://direnv.net/docs/installation.html),
+[hook it into your shell](https://direnv.net/docs/hook.html), and restart the
+shell. Then, from the generated project:
+
+```bash
+# Review .envrc before authorizing it.
+direnv allow
+
+# Optional: create a private, project-local environment file.
+cp .env.example .env
+# Edit .env, then uncomment this line in .envrc: dotenv_if_exists .env
+direnv allow
+```
+
+Loading `.env` remains deliberately disabled until that one line is
+uncommented. Although `.env` is ignored by Git, `direnv` is not a secret
+manager: exported values are inherited by every child process, including
+tests and coding agents. Use least-privilege project credentials and run
+secret-free deterministic gates whenever credentials are unnecessary.
 
 ## Choose the right generation path
 

@@ -34,6 +34,34 @@ uv run --locked --group dev {{ cookiecutter.package_name }} examples/blocked-evi
 
 Start with the [first-run tutorial](docs/getting-started/first-run.md). It includes an intentional failure, the exact diagnostic, recovery, and success path.
 
+## Optional project environment with `direnv`
+
+[`direnv`](https://direnv.net/) loads reviewed, project-specific shell settings
+when you enter this directory and unloads them when you leave. After `uv sync`,
+the supplied `.envrc` puts the existing `.venv` on `PATH`, avoiding repeated
+manual activation and reducing accidental cross-project configuration.
+
+First [install `direnv`](https://direnv.net/docs/installation.html),
+[hook it into your shell](https://direnv.net/docs/hook.html), and restart the
+shell. Then run:
+
+```bash
+# Review .envrc before authorizing it.
+direnv allow
+
+# Optional: create a private, project-local environment file.
+cp .env.example .env
+# Edit .env, then uncomment this line in .envrc: dotenv_if_exists .env
+direnv allow
+```
+
+The `.env` loading line is deliberately commented out by default. `direnv`
+does not encrypt or isolate secrets: values exported from `.env` are inherited
+by tests, scripts, and coding agents launched from this directory. Use
+least-privilege project credentials, keep `.env` untracked, and see the
+[data and secret handling guide](docs/science/data-and-secrets.md) before
+enabling it.
+
 ## Scientific workspace
 
 | Path | Contract |

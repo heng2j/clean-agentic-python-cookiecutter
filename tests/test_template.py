@@ -167,6 +167,30 @@ def test_scientific_profile_has_one_config_authority_per_tool(tmp_path: Path) ->
     assert "!.env.example" in gitignore
 
 
+def test_direnv_is_documented_and_secret_loading_is_opt_in(tmp_path: Path) -> None:
+    project = _render(tmp_path)
+    template_readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    project_readme = (project / "README.md").read_text(encoding="utf-8")
+    envrc = (project / ".envrc").read_text(encoding="utf-8")
+
+    for readme in (template_readme, project_readme):
+        normalized_readme = " ".join(readme.split())
+        assert "`direnv`" in readme
+        assert "direnv allow" in readme
+        assert "dotenv_if_exists .env" in readme
+        assert (
+            "not a secret manager" in normalized_readme
+            or "does not encrypt" in normalized_readme
+        )
+
+    active_lines = {
+        line.strip()
+        for line in envrc.splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    }
+    assert "dotenv_if_exists .env" not in active_lines
+
+
 def test_scientific_connected_ci_is_bounded_and_pinned(tmp_path: Path) -> None:
     project = _render(tmp_path)
     workflow = (project / ".github/workflows/quality.yml").read_text(encoding="utf-8")
