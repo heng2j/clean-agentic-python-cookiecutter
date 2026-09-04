@@ -18,8 +18,9 @@ import shutil
 import subprocess  # nosec B404
 import sys
 import time
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Final, Sequence
+from typing import Final
 
 ROOT: Final = Path(__file__).resolve().parents[1]
 GRAPH_DIR: Final = ROOT / "artifacts" / "graft" / "context"
@@ -34,14 +35,25 @@ BLOCKED: Final = frozenset(
     {
         "--api-key",
         "--base-url",
+        "--concurrency",
         "--deep",
         "--dir",
         "--export-viz",
+        "--extensions",
+        "--follow-nested-repos",
+        "--follow-submodules",
+        "--include-dir",
         "--lsp",
         "--model",
         "--name",
+        "--no-follow-nested-repos",
+        "--no-follow-submodules",
         "--no-refresh",
+        "--no-reuse",
+        "--only-dir",
         "--provider",
+        "-e",
+        "-j",
         "init",
         "telemetry",
         "uninstall",
@@ -164,6 +176,9 @@ def _arguments(values: Sequence[str]) -> list[str]:
             raise AdapterError(f"blocked in structural-only profile: {value}")
         if "\x00" in value:
             raise AdapterError("arguments must not contain NUL")
+        path_value = Path(value)
+        if path_value.is_absolute() or ".." in path_value.parts:
+            raise AdapterError(f"absolute or parent-traversing argument: {value}")
     return arguments
 
 
@@ -189,6 +204,7 @@ def _run(values: Sequence[str]) -> int:
 
 
 def parser() -> argparse.ArgumentParser:
+    """Build the project-owned command-line interface."""
     root = argparse.ArgumentParser(description=__doc__)
     commands = root.add_subparsers(dest="command", required=True)
     doctor = commands.add_parser("doctor", help="check pinned prerequisites")
@@ -199,6 +215,7 @@ def parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
+    """Run one constrained Graft experiment command."""
     try:
         arguments = parser().parse_args(argv)
         if arguments.command == "doctor":
