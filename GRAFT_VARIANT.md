@@ -14,12 +14,23 @@ successful task. Correctness and human acceptance come first; total context must
 include setup, tool schemas, queries, output, fallback source reads, corrections,
 and review.
 
+## Existing projects: adopt, do not overwrite
+
+Do not render this Cookiecutter into a living repository or replace its package,
+lock, CI, context, license, release, or architecture files wholesale. Generate a
+separate sibling reference project, freeze and audit the existing repository,
+then adapt one verified capability at a time.
+
+Use the step-by-step [existing-project adoption tutorial](ADOPT_EXISTING_PROJECT.md)
+for the recommended audit → context → truthful gates → bounded cleanup → optional
+Graft sequence.
+
 ## Generate this branch
 
 ```bash
 uvx --from 'cookiecutter==2.7.1' cookiecutter \
   https://github.com/heng2j/clean-agentic-python-cookiecutter \
-  --checkout audit/experimental-graft-variant-v2
+  --checkout experimental-graft-variant
 
 cd clean-agentic-scientific-python-project
 uv lock --check
