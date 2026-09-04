@@ -131,6 +131,7 @@ def _environment() -> dict[str, str]:
         {
             "DO_NOT_TRACK": "1",
             "DOTENV_CONFIG_PATH": str(empty_env),
+            "GRAFT_DIR": str(GRAPH_DIR),
             "GRAFT_NO_GITIGNORE": "1",
             "GRAFT_NO_IGNORE": "1",
             "GRAFT_REFRESH": "hash",
@@ -189,8 +190,6 @@ def _run(values: Sequence[str]) -> int:
     GRAPH_DIR.parent.mkdir(parents=True, exist_ok=True)
     command = [
         str(report["graft"]["path"]),  # type: ignore[index]
-        "--dir",
-        str(GRAPH_DIR),
         *_arguments(values),
     ]
     completed = subprocess.run(  # noqa: S603  # nosec B603
