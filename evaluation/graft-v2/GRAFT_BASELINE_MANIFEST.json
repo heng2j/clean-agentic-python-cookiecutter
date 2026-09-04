@@ -1,0 +1,968 @@
+{
+  "commit": "ab3e06f6a402a22f51d8447101f245eab258b8e6",
+  "copy_mismatches_after_reproduction": [],
+  "files": [
+    {
+      "copy_sha256": "c4f2bfe0b79b12740d239daf1ced72dae22cedce649aaf0b5c08c5700eb15fbf",
+      "path": ".github/workflows/template.yml",
+      "sha256": "c4f2bfe0b79b12740d239daf1ced72dae22cedce649aaf0b5c08c5700eb15fbf",
+      "size": 1157
+    },
+    {
+      "copy_sha256": "2e6e3ae345df462b8e4db52574fc9c95638beddc98e2d8479838ef01f589938c",
+      "path": ".gitignore",
+      "sha256": "2e6e3ae345df462b8e4db52574fc9c95638beddc98e2d8479838ef01f589938c",
+      "size": 166
+    },
+    {
+      "copy_sha256": "16c5ca1e26eb278a1fd2e8bc20126904590a62a77d922a96fa366412354fcc23",
+      "path": "GRAFT_VARIANT.md",
+      "sha256": "16c5ca1e26eb278a1fd2e8bc20126904590a62a77d922a96fa366412354fcc23",
+      "size": 3766
+    },
+    {
+      "copy_sha256": "5a7ee73bcbe44a23eaad88671ac520cc0719e279a23f3ac7f8398efbefa2e653",
+      "path": "LICENSE",
+      "sha256": "5a7ee73bcbe44a23eaad88671ac520cc0719e279a23f3ac7f8398efbefa2e653",
+      "size": 1090
+    },
+    {
+      "copy_sha256": "e4f15476cbdead0403feb326b5e0ea194b34129fbfd64cfa73a4926c13899dd2",
+      "path": "MIGRATION_SCIENTIFIC_VARIANT.md",
+      "sha256": "e4f15476cbdead0403feb326b5e0ea194b34129fbfd64cfa73a4926c13899dd2",
+      "size": 2738
+    },
+    {
+      "copy_sha256": "978eaa9fedb9f535a6b5b81bc39e137ab00b8491a772d6ddc536c298f9deea1e",
+      "path": "README.md",
+      "sha256": "978eaa9fedb9f535a6b5b81bc39e137ab00b8491a772d6ddc536c298f9deea1e",
+      "size": 9458
+    },
+    {
+      "copy_sha256": "cf60a416b071bce30a5775075e2a52aeac8bb1fb4f5609ab197ee049b83bf677",
+      "path": "SAFE_GENERATION.md",
+      "sha256": "cf60a416b071bce30a5775075e2a52aeac8bb1fb4f5609ab197ee049b83bf677",
+      "size": 5343
+    },
+    {
+      "copy_sha256": "ffc7b97a1af86f50decdb18b4c7dac456fa3d67f100cbf93bbd54b4132a80bd4",
+      "path": "SCIENTIFIC_VARIANT.md",
+      "sha256": "ffc7b97a1af86f50decdb18b4c7dac456fa3d67f100cbf93bbd54b4132a80bd4",
+      "size": 3055
+    },
+    {
+      "copy_sha256": "a43d135eb8591f85429c7f7bad0d822b4563d3cb08ceab4b5f211a62ac9f544b",
+      "path": "SCIENTIFIC_VARIANT_VALIDATION.json",
+      "sha256": "a43d135eb8591f85429c7f7bad0d822b4563d3cb08ceab4b5f211a62ac9f544b",
+      "size": 2193
+    },
+    {
+      "copy_sha256": "6eb2fa00a52924ca85af5edae02b936c5963abdac60967409faa634f91bd1347",
+      "path": "SCIENTIFIC_VARIANT_VALIDATION.md",
+      "sha256": "6eb2fa00a52924ca85af5edae02b936c5963abdac60967409faa634f91bd1347",
+      "size": 4737
+    },
+    {
+      "copy_sha256": "378ce564e9345e1a9202529cd54d87bcbd4b47fa3836a5a7f970e9407ff6697d",
+      "path": "cookiecutter.json",
+      "sha256": "378ce564e9345e1a9202529cd54d87bcbd4b47fa3836a5a7f970e9407ff6697d",
+      "size": 810
+    },
+    {
+      "copy_sha256": "3eef9a7390753c1278524c3b3d343302b14ab74c6c69c6fedc8883bff0efecc1",
+      "path": "hooks/post_gen_project.py",
+      "sha256": "3eef9a7390753c1278524c3b3d343302b14ab74c6c69c6fedc8883bff0efecc1",
+      "size": 6530
+    },
+    {
+      "copy_sha256": "19955aab5abd97b76947d7914087be43f914a72382908fb7972812b1c9637cbd",
+      "path": "hooks/pre_gen_project.py",
+      "sha256": "19955aab5abd97b76947d7914087be43f914a72382908fb7972812b1c9637cbd",
+      "size": 7831
+    },
+    {
+      "copy_sha256": "85f600ffa1df6cd45f7888186ac9696087b74a5e036cfc2ae09e06d47779154c",
+      "path": "pyproject.toml",
+      "sha256": "85f600ffa1df6cd45f7888186ac9696087b74a5e036cfc2ae09e06d47779154c",
+      "size": 1153
+    },
+    {
+      "copy_sha256": "fd56c4db2890b8c90a0759367abeee4c1b3465e750ac08596d5fe1f97c6c98bc",
+      "path": "scripts/generate_safe.py",
+      "sha256": "fd56c4db2890b8c90a0759367abeee4c1b3465e750ac08596d5fe1f97c6c98bc",
+      "size": 13821
+    },
+    {
+      "copy_sha256": "ac8e5d0cb11cd4205b3a700001ba46d1819e490c96bdea43c4ae4cc76d44642c",
+      "path": "tests/test_graft_variant.py",
+      "sha256": "ac8e5d0cb11cd4205b3a700001ba46d1819e490c96bdea43c4ae4cc76d44642c",
+      "size": 1315
+    },
+    {
+      "copy_sha256": "9dbd2191dc0c03bef1b1fb1d9f8f4434a767ce59805cda1c09b3cfe0e25ae5dd",
+      "path": "tests/test_template.py",
+      "sha256": "9dbd2191dc0c03bef1b1fb1d9f8f4434a767ce59805cda1c09b3cfe0e25ae5dd",
+      "size": 25046
+    },
+    {
+      "copy_sha256": "ea16fd2330791d9b5f5d586f42c446cb3f2fd5b193e8ee93282ab3f95c11f366",
+      "path": "uv.lock",
+      "sha256": "ea16fd2330791d9b5f5d586f42c446cb3f2fd5b193e8ee93282ab3f95c11f366",
+      "size": 71559
+    },
+    {
+      "copy_sha256": "110ef82cea690376ea47494889e7be192c1c2d9ee947f12e2901fbe74b30c11a",
+      "path": "{{cookiecutter.project_slug}}/.claude/rules/domain.md",
+      "sha256": "110ef82cea690376ea47494889e7be192c1c2d9ee947f12e2901fbe74b30c11a",
+      "size": 403
+    },
+    {
+      "copy_sha256": "7522f1653a9ac200d6bac6bf0d3d09e498925fcf857e66489f2976bbd96c55d1",
+      "path": "{{cookiecutter.project_slug}}/.claude/rules/tests.md",
+      "sha256": "7522f1653a9ac200d6bac6bf0d3d09e498925fcf857e66489f2976bbd96c55d1",
+      "size": 370
+    },
+    {
+      "copy_sha256": "50e6751797c50dedd75ef1b8a0d9e42f5f8472e9fbce91f34718e9f97b0c780a",
+      "path": "{{cookiecutter.project_slug}}/.cleanai/_license_assets/Apache-2.0.txt",
+      "sha256": "50e6751797c50dedd75ef1b8a0d9e42f5f8472e9fbce91f34718e9f97b0c780a",
+      "size": 11324
+    },
+    {
+      "copy_sha256": "d16e1b8b34edcd69b43f83f565e1b4d6646d793d3278f13b13def4ef98857dc2",
+      "path": "{{cookiecutter.project_slug}}/.cleanai/_license_assets/MIT.txt",
+      "sha256": "d16e1b8b34edcd69b43f83f565e1b4d6646d793d3278f13b13def4ef98857dc2",
+      "size": 1091
+    },
+    {
+      "copy_sha256": "fb4b42093ec4b893727fa11408351c08b73ea106e9afc58b300dfa2915a9d1be",
+      "path": "{{cookiecutter.project_slug}}/.cleanai/benchmark-tasks.toml",
+      "sha256": "fb4b42093ec4b893727fa11408351c08b73ea106e9afc58b300dfa2915a9d1be",
+      "size": 1032
+    },
+    {
+      "copy_sha256": "0dbd1136ea4082aafe7d383705fead62fa311b33547fbbe41fbab888a637d333",
+      "path": "{{cookiecutter.project_slug}}/.cleanai/code-mutations.toml",
+      "sha256": "0dbd1136ea4082aafe7d383705fead62fa311b33547fbbe41fbab888a637d333",
+      "size": 1255
+    },
+    {
+      "copy_sha256": "0c3bf952b508264d3d8e8a0ed38b89920ac5aa05a883d99b81a311e3945497b0",
+      "path": "{{cookiecutter.project_slug}}/.cleanai/graft-experiment.toml",
+      "sha256": "0c3bf952b508264d3d8e8a0ed38b89920ac5aa05a883d99b81a311e3945497b0",
+      "size": 688
+    },
+    {
+      "copy_sha256": "f8f564cd8ac1052063c65d6c428917a5f31f25d5d18205a24b21431cf0da1ef6",
+      "path": "{{cookiecutter.project_slug}}/.cleanai/policy.toml",
+      "sha256": "f8f564cd8ac1052063c65d6c428917a5f31f25d5d18205a24b21431cf0da1ef6",
+      "size": 2699
+    },
+    {
+      "copy_sha256": "3db56448ca2318eb5306a08adf4b2e12fdaa1765fc10ed2622953c47f430270d",
+      "path": "{{cookiecutter.project_slug}}/.cleanai/spec-mutations.toml",
+      "sha256": "3db56448ca2318eb5306a08adf4b2e12fdaa1765fc10ed2622953c47f430270d",
+      "size": 1084
+    },
+    {
+      "copy_sha256": "632148e0b892c285d7f39325b97485cfabb0db3100879238cbceab1e67db8466",
+      "path": "{{cookiecutter.project_slug}}/.editorconfig",
+      "sha256": "632148e0b892c285d7f39325b97485cfabb0db3100879238cbceab1e67db8466",
+      "size": 155
+    },
+    {
+      "copy_sha256": "c2a80a4ef91976814d95392515c12d052b793fa4b386bf62716ae5e3f1b298b7",
+      "path": "{{cookiecutter.project_slug}}/.env.example",
+      "sha256": "c2a80a4ef91976814d95392515c12d052b793fa4b386bf62716ae5e3f1b298b7",
+      "size": 127
+    },
+    {
+      "copy_sha256": "776986d0d67778db5ed51989d80a03ca2f8fbb754e5905dc77cf6c6fa220808b",
+      "path": "{{cookiecutter.project_slug}}/.envrc",
+      "sha256": "776986d0d67778db5ed51989d80a03ca2f8fbb754e5905dc77cf6c6fa220808b",
+      "size": 312
+    },
+    {
+      "copy_sha256": "38e0be4b257aded4ab97439fd03a80708b6e821365db52bfc5ae7bf73906bb05",
+      "path": "{{cookiecutter.project_slug}}/.github/pull_request_template.md",
+      "sha256": "38e0be4b257aded4ab97439fd03a80708b6e821365db52bfc5ae7bf73906bb05",
+      "size": 572
+    },
+    {
+      "copy_sha256": "895a564c7551f62c88085f6bef69ef9eb2a789ec51dc4a1fa3f17e65305f1adf",
+      "path": "{{cookiecutter.project_slug}}/.github/workflows/quality.yml",
+      "sha256": "895a564c7551f62c88085f6bef69ef9eb2a789ec51dc4a1fa3f17e65305f1adf",
+      "size": 6140
+    },
+    {
+      "copy_sha256": "ffd0755b0be4c71a7a94c30c4b24f5a36f53d56264d2b9b4c8ab5b9ee320156a",
+      "path": "{{cookiecutter.project_slug}}/.gitignore",
+      "sha256": "ffd0755b0be4c71a7a94c30c4b24f5a36f53d56264d2b9b4c8ab5b9ee320156a",
+      "size": 354
+    },
+    {
+      "copy_sha256": "b8110901a54167a5cae83182879bb463c786f007010679382bfb25b2da84ab2c",
+      "path": "{{cookiecutter.project_slug}}/.mcp.json.example",
+      "sha256": "b8110901a54167a5cae83182879bb463c786f007010679382bfb25b2da84ab2c",
+      "size": 244
+    },
+    {
+      "copy_sha256": "1e74029e5339741a2cc06f1c5f4a71a54d819992397de6163ffd52f54c66e3b8",
+      "path": "{{cookiecutter.project_slug}}/AGENTS.md",
+      "sha256": "1e74029e5339741a2cc06f1c5f4a71a54d819992397de6163ffd52f54c66e3b8",
+      "size": 3882
+    },
+    {
+      "copy_sha256": "0000491b396d5fe402f491866647d6d2208ee9c2fc6444be7909c3cba505a52d",
+      "path": "{{cookiecutter.project_slug}}/CLAUDE.md",
+      "sha256": "0000491b396d5fe402f491866647d6d2208ee9c2fc6444be7909c3cba505a52d",
+      "size": 644
+    },
+    {
+      "copy_sha256": "c5a7f7035e6a84443d638427e0743a278769fbdc3bef228c769ed593f6d30d44",
+      "path": "{{cookiecutter.project_slug}}/CONTRIBUTING.md",
+      "sha256": "c5a7f7035e6a84443d638427e0743a278769fbdc3bef228c769ed593f6d30d44",
+      "size": 1184
+    },
+    {
+      "copy_sha256": "f61942dc2d53f970b11b1c5222670bf249ebb0ab5662ce57356a3e6e7c075a08",
+      "path": "{{cookiecutter.project_slug}}/GLOSSARY.md",
+      "sha256": "f61942dc2d53f970b11b1c5222670bf249ebb0ab5662ce57356a3e6e7c075a08",
+      "size": 2430
+    },
+    {
+      "copy_sha256": "cf25d9d0e4a1008b747042071cc87ec1caf2c770f2fd896c982300f93be44532",
+      "path": "{{cookiecutter.project_slug}}/GRAFT_EXPERIMENT.md",
+      "sha256": "cf25d9d0e4a1008b747042071cc87ec1caf2c770f2fd896c982300f93be44532",
+      "size": 1277
+    },
+    {
+      "copy_sha256": "9ac03a23b52dacd1213d6d79e44478b49b125ffc51240034e325ec739381a6f3",
+      "path": "{{cookiecutter.project_slug}}/LICENSE",
+      "sha256": "9ac03a23b52dacd1213d6d79e44478b49b125ffc51240034e325ec739381a6f3",
+      "size": 39
+    },
+    {
+      "copy_sha256": "0ef0065ddecd862ceb3d5c283a9b7eddcbb381548416ee93e059e1c842fb98ce",
+      "path": "{{cookiecutter.project_slug}}/Makefile",
+      "sha256": "0ef0065ddecd862ceb3d5c283a9b7eddcbb381548416ee93e059e1c842fb98ce",
+      "size": 3150
+    },
+    {
+      "copy_sha256": "445c833c552b90feb3cc9a8152f3b25f2ba3a41dd3cac49ef8fbedc5066f56c5",
+      "path": "{{cookiecutter.project_slug}}/README.md",
+      "sha256": "445c833c552b90feb3cc9a8152f3b25f2ba3a41dd3cac49ef8fbedc5066f56c5",
+      "size": 9867
+    },
+    {
+      "copy_sha256": "2066b70bc18810a1f1a7d997af90ae20c8ced4f5d038b1fc5a7abe434b696337",
+      "path": "{{cookiecutter.project_slug}}/SECURITY.md",
+      "sha256": "2066b70bc18810a1f1a7d997af90ae20c8ced4f5d038b1fc5a7abe434b696337",
+      "size": 765
+    },
+    {
+      "copy_sha256": "5a7ee73bcbe44a23eaad88671ac520cc0719e279a23f3ac7f8398efbefa2e653",
+      "path": "{{cookiecutter.project_slug}}/TEMPLATE_LICENSE",
+      "sha256": "5a7ee73bcbe44a23eaad88671ac520cc0719e279a23f3ac7f8398efbefa2e653",
+      "size": 1090
+    },
+    {
+      "copy_sha256": "d1d7be5e8b76ee51ba2dfeacbe3e517a91abb1e5352479b31ee5abbe0c28af52",
+      "path": "{{cookiecutter.project_slug}}/VALIDATION.md",
+      "sha256": "d1d7be5e8b76ee51ba2dfeacbe3e517a91abb1e5352479b31ee5abbe0c28af52",
+      "size": 675
+    },
+    {
+      "copy_sha256": "cfe97deb2c7ac29e13c610d1a1363cb518a1279f881889c5ea840311069d1d7f",
+      "path": "{{cookiecutter.project_slug}}/benchmarks/context-cleanup.md",
+      "sha256": "cfe97deb2c7ac29e13c610d1a1363cb518a1279f881889c5ea840311069d1d7f",
+      "size": 255
+    },
+    {
+      "copy_sha256": "66172f82b8d3696c94ef920192bac6accdd263c09676ee60e09b04bc3bc61358",
+      "path": "{{cookiecutter.project_slug}}/benchmarks/local-change.md",
+      "sha256": "66172f82b8d3696c94ef920192bac6accdd263c09676ee60e09b04bc3bc61358",
+      "size": 255
+    },
+    {
+      "copy_sha256": "7283e65a1378283c7dd0372f6a608af07ba3ab2f89ed6551b7d0e443ac206b2f",
+      "path": "{{cookiecutter.project_slug}}/benchmarks/locate-and-explain.md",
+      "sha256": "7283e65a1378283c7dd0372f6a608af07ba3ab2f89ed6551b7d0e443ac206b2f",
+      "size": 325
+    },
+    {
+      "copy_sha256": "436559945824e59f65564562834f43bb5f95e58f1dea892003d587b09229b84c",
+      "path": "{{cookiecutter.project_slug}}/docs/adr/0001-human-source-and-machine-evidence.md",
+      "sha256": "436559945824e59f65564562834f43bb5f95e58f1dea892003d587b09229b84c",
+      "size": 1323
+    },
+    {
+      "copy_sha256": "6a6ec46844127dc1f6572b32d7b5077035778715ba35ba967c8edffbd9110597",
+      "path": "{{cookiecutter.project_slug}}/docs/adr/0002-isolated-mutation-and-fail-closed-evidence.md",
+      "sha256": "6a6ec46844127dc1f6572b32d7b5077035778715ba35ba967c8edffbd9110597",
+      "size": 1524
+    },
+    {
+      "copy_sha256": "2cd86414144598d934c67cb06ec2c746b4ee6e1ee2af4c6137554aba354ea1dd",
+      "path": "{{cookiecutter.project_slug}}/docs/adr/0003-locking-ci-and-support-boundary.md",
+      "sha256": "2cd86414144598d934c67cb06ec2c746b4ee6e1ee2af4c6137554aba354ea1dd",
+      "size": 1812
+    },
+    {
+      "copy_sha256": "0166ae5abc4598f2dd8c7031225fcd12191fe141b4aa4e987772ea83b2a78552",
+      "path": "{{cookiecutter.project_slug}}/docs/adr/0004-scientific-open-source-profile.md",
+      "sha256": "0166ae5abc4598f2dd8c7031225fcd12191fe141b4aa4e987772ea83b2a78552",
+      "size": 3297
+    },
+    {
+      "copy_sha256": "612e25a1fc0fb56a90b9b8a5052f5e49ae380819ed06c5b1e4196e52d59ffc83",
+      "path": "{{cookiecutter.project_slug}}/docs/architecture/layers.md",
+      "sha256": "612e25a1fc0fb56a90b9b8a5052f5e49ae380819ed06c5b1e4196e52d59ffc83",
+      "size": 1358
+    },
+    {
+      "copy_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "path": "{{cookiecutter.project_slug}}/docs/archive/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size": 1
+    },
+    {
+      "copy_sha256": "cfb984ee745d93f6c1415985af7dd817bdda662621088c35750cb9a28346997b",
+      "path": "{{cookiecutter.project_slug}}/docs/contracts/release-decision.md",
+      "sha256": "cfb984ee745d93f6c1415985af7dd817bdda662621088c35750cb9a28346997b",
+      "size": 1043
+    },
+    {
+      "copy_sha256": "da7799bfff6c44177d6580b706031de1f3c660d195b6c8247a7c1259ae8d8272",
+      "path": "{{cookiecutter.project_slug}}/docs/getting-started/first-run.md",
+      "sha256": "da7799bfff6c44177d6580b706031de1f3c660d195b6c8247a7c1259ae8d8272",
+      "size": 2743
+    },
+    {
+      "copy_sha256": "31e1c052d924a368b329a2d928e3490d1b70a137c84c61c670b7c810df0a1c09",
+      "path": "{{cookiecutter.project_slug}}/docs/how-to/add-mutant.md",
+      "sha256": "31e1c052d924a368b329a2d928e3490d1b70a137c84c61c670b7c810df0a1c09",
+      "size": 891
+    },
+    {
+      "copy_sha256": "466c0abcdd6934ff3eb923446c9128829cd714f51c69dd981a97a9641f03dfc4",
+      "path": "{{cookiecutter.project_slug}}/docs/how-to/customize-policy.md",
+      "sha256": "466c0abcdd6934ff3eb923446c9128829cd714f51c69dd981a97a9641f03dfc4",
+      "size": 1052
+    },
+    {
+      "copy_sha256": "98b11ca9e27005c5b9310f2f84863749e752519b680fdc68fea403bdc693e9a6",
+      "path": "{{cookiecutter.project_slug}}/docs/how-to/role-workflow.md",
+      "sha256": "98b11ca9e27005c5b9310f2f84863749e752519b680fdc68fea403bdc693e9a6",
+      "size": 1010
+    },
+    {
+      "copy_sha256": "72b9d0ab51e18b9b7125e016d3f6922eaa721dbdddad2dd25751d5fef44fa2ad",
+      "path": "{{cookiecutter.project_slug}}/docs/index.md",
+      "sha256": "72b9d0ab51e18b9b7125e016d3f6922eaa721dbdddad2dd25751d5fef44fa2ad",
+      "size": 2614
+    },
+    {
+      "copy_sha256": "82a670ab9d1d7b8393602d67be077aab31d4653beb52dbeb2031081991e2ccf8",
+      "path": "{{cookiecutter.project_slug}}/docs/integrations/graft.md",
+      "sha256": "82a670ab9d1d7b8393602d67be077aab31d4653beb52dbeb2031081991e2ccf8",
+      "size": 5000
+    },
+    {
+      "copy_sha256": "60476183e173be4bd28617b872e2554f9bcbf7e6fef94117ae7bfa8d03ce645e",
+      "path": "{{cookiecutter.project_slug}}/docs/philosophy/human-control-loop.md",
+      "sha256": "60476183e173be4bd28617b872e2554f9bcbf7e6fef94117ae7bfa8d03ce645e",
+      "size": 2526
+    },
+    {
+      "copy_sha256": "e6afdf958af67186f3c1d6162579174a73677bf7a9246a7f58efb204bcd35c28",
+      "path": "{{cookiecutter.project_slug}}/docs/philosophy/operating-model.md",
+      "sha256": "e6afdf958af67186f3c1d6162579174a73677bf7a9246a7f58efb204bcd35c28",
+      "size": 4058
+    },
+    {
+      "copy_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "path": "{{cookiecutter.project_slug}}/docs/plans/active/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size": 1
+    },
+    {
+      "copy_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "path": "{{cookiecutter.project_slug}}/docs/plans/completed/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size": 1
+    },
+    {
+      "copy_sha256": "38b4ba36a6163daeed758cc0a3511da2c142ed94cb9b9fbc5a6725aeac4458f7",
+      "path": "{{cookiecutter.project_slug}}/docs/quality/agent-friction.md",
+      "sha256": "38b4ba36a6163daeed758cc0a3511da2c142ed94cb9b9fbc5a6725aeac4458f7",
+      "size": 1596
+    },
+    {
+      "copy_sha256": "8d32549126dfdb10031cd2512226366fc58541488b1fe86c851d12dcd16287c7",
+      "path": "{{cookiecutter.project_slug}}/docs/quality/context-hygiene.md",
+      "sha256": "8d32549126dfdb10031cd2512226366fc58541488b1fe86c851d12dcd16287c7",
+      "size": 1978
+    },
+    {
+      "copy_sha256": "432fd4760dee506b2e693c72f36c82c323323b42bf5ba5271d6d06cc2fd732fc",
+      "path": "{{cookiecutter.project_slug}}/docs/quality/crap-and-mutation.md",
+      "sha256": "432fd4760dee506b2e693c72f36c82c323323b42bf5ba5271d6d06cc2fd732fc",
+      "size": 1600
+    },
+    {
+      "copy_sha256": "ee70a393ce88e3bb4e04ed1688835da2d24f198e931168b8c94f09cf6b0ca26b",
+      "path": "{{cookiecutter.project_slug}}/docs/quality/gauntlet.md",
+      "sha256": "ee70a393ce88e3bb4e04ed1688835da2d24f198e931168b8c94f09cf6b0ca26b",
+      "size": 1244
+    },
+    {
+      "copy_sha256": "e0a3b6ceea558c00d4ac9d6282c5150b5b9b5b15bd50392c44ebb96857aac5ba",
+      "path": "{{cookiecutter.project_slug}}/docs/reference/commands.md",
+      "sha256": "e0a3b6ceea558c00d4ac9d6282c5150b5b9b5b15bd50392c44ebb96857aac5ba",
+      "size": 2416
+    },
+    {
+      "copy_sha256": "4ff67e4f9a9bc03e4a51f5d13861c54706bbc18bd84e6f51716d9a128a6f88a3",
+      "path": "{{cookiecutter.project_slug}}/docs/reference/evidence.md",
+      "sha256": "4ff67e4f9a9bc03e4a51f5d13861c54706bbc18bd84e6f51716d9a128a6f88a3",
+      "size": 1597
+    },
+    {
+      "copy_sha256": "467d0d7071016031a0421172298729550d310a2446d2be2121e6369ef14b006b",
+      "path": "{{cookiecutter.project_slug}}/docs/reference/support-and-trust.md",
+      "sha256": "467d0d7071016031a0421172298729550d310a2446d2be2121e6369ef14b006b",
+      "size": 1951
+    },
+    {
+      "copy_sha256": "bd84349e03ef480222908299fd8b96a753c8519594af1115cafcc8ed5415ee13",
+      "path": "{{cookiecutter.project_slug}}/docs/research/paper-notes.md",
+      "sha256": "bd84349e03ef480222908299fd8b96a753c8519594af1115cafcc8ed5415ee13",
+      "size": 10372
+    },
+    {
+      "copy_sha256": "8ad392280a1bb5b02b0de4e13742a5db850e777022a8b290e8e184de07478265",
+      "path": "{{cookiecutter.project_slug}}/docs/research/scientific-source-traceability.md",
+      "sha256": "8ad392280a1bb5b02b0de4e13742a5db850e777022a8b290e8e184de07478265",
+      "size": 5522
+    },
+    {
+      "copy_sha256": "7a41627c83de98fb9e4c8eaa7d5dc36b70862f82fb3611e9ae7ab6d926a9e2cd",
+      "path": "{{cookiecutter.project_slug}}/docs/research/source-traceability.md",
+      "sha256": "7a41627c83de98fb9e4c8eaa7d5dc36b70862f82fb3611e9ae7ab6d926a9e2cd",
+      "size": 9018
+    },
+    {
+      "copy_sha256": "f9a8673c7e95f99338b25c4e2820d1ddfd4bdd3a22030a2af300bc5e67ec10a3",
+      "path": "{{cookiecutter.project_slug}}/docs/research/thought-leader-lineage.md",
+      "sha256": "f9a8673c7e95f99338b25c4e2820d1ddfd4bdd3a22030a2af300bc5e67ec10a3",
+      "size": 5263
+    },
+    {
+      "copy_sha256": "96a9d39d9f80d2e39a9c6933d9b47d5eba37403a80c6d2e8de31f8ce1f809ffa",
+      "path": "{{cookiecutter.project_slug}}/docs/runbooks/agentic-change.md",
+      "sha256": "96a9d39d9f80d2e39a9c6933d9b47d5eba37403a80c6d2e8de31f8ce1f809ffa",
+      "size": 1876
+    },
+    {
+      "copy_sha256": "94f38a03efbc7f9cf0fbeea7fd413eebdd3d97e92b21bb182953330a5265e15d",
+      "path": "{{cookiecutter.project_slug}}/docs/science/data-and-secrets.md",
+      "sha256": "94f38a03efbc7f9cf0fbeea7fd413eebdd3d97e92b21bb182953330a5265e15d",
+      "size": 1376
+    },
+    {
+      "copy_sha256": "433d75e0db4b6de960969dcf659a1b6ade3dc363976382fb4a881691ff96b361",
+      "path": "{{cookiecutter.project_slug}}/docs/science/reproducibility.md",
+      "sha256": "433d75e0db4b6de960969dcf659a1b6ade3dc363976382fb4a881691ff96b361",
+      "size": 1480
+    },
+    {
+      "copy_sha256": "f545071c67f914172d92a953bd776b315a20e0e98f0596475d59934e5bb64b69",
+      "path": "{{cookiecutter.project_slug}}/docs/science/scientific-method.md",
+      "sha256": "f545071c67f914172d92a953bd776b315a20e0e98f0596475d59934e5bb64b69",
+      "size": 1328
+    },
+    {
+      "copy_sha256": "344f3bca1089091c3f3cb2e781a5a689926421b2067b8ed6cc3fc9c140d2f811",
+      "path": "{{cookiecutter.project_slug}}/docs/templates/issue-distillation.md",
+      "sha256": "344f3bca1089091c3f3cb2e781a5a689926421b2067b8ed6cc3fc9c140d2f811",
+      "size": 633
+    },
+    {
+      "copy_sha256": "ede63118c11d1b42f87349e15e862db96583eccb9e5a6d33c791cdce14020178",
+      "path": "{{cookiecutter.project_slug}}/docs/templates/learning-ledger.md",
+      "sha256": "ede63118c11d1b42f87349e15e862db96583eccb9e5a6d33c791cdce14020178",
+      "size": 389
+    },
+    {
+      "copy_sha256": "b368260769218bfbce1adc1f305081b5f47b609deb0f40e4946019ccd3b4575e",
+      "path": "{{cookiecutter.project_slug}}/docs/templates/task-packet.md",
+      "sha256": "b368260769218bfbce1adc1f305081b5f47b609deb0f40e4946019ccd3b4575e",
+      "size": 590
+    },
+    {
+      "copy_sha256": "ced353225b2ab1fdd9b9a48f4884b1b995788c8a1a52d26c0f323b823633fd7b",
+      "path": "{{cookiecutter.project_slug}}/docs/troubleshooting.md",
+      "sha256": "ced353225b2ab1fdd9b9a48f4884b1b995788c8a1a52d26c0f323b823633fd7b",
+      "size": 2180
+    },
+    {
+      "copy_sha256": "19421b65b6528144238907b0d050bd2457e128fd22dd3557d6e22cdd8be0aac6",
+      "path": "{{cookiecutter.project_slug}}/docs/tutorials/context-pruning.md",
+      "sha256": "19421b65b6528144238907b0d050bd2457e128fd22dd3557d6e22cdd8be0aac6",
+      "size": 1411
+    },
+    {
+      "copy_sha256": "336f1d16d7c2f79fb4c0a54c93b1d6097b2a4114372d4832f9762b1ec4ad12b9",
+      "path": "{{cookiecutter.project_slug}}/docs/tutorials/crap-and-mutation.md",
+      "sha256": "336f1d16d7c2f79fb4c0a54c93b1d6097b2a4114372d4832f9762b1ec4ad12b9",
+      "size": 2364
+    },
+    {
+      "copy_sha256": "5b7f52d7da86287d8bf112f66b6872e8aa3cd8406efe0d709ce46edc11d8a9d1",
+      "path": "{{cookiecutter.project_slug}}/docs/tutorials/evaluate-graft.md",
+      "sha256": "5b7f52d7da86287d8bf112f66b6872e8aa3cd8406efe0d709ce46edc11d8a9d1",
+      "size": 4199
+    },
+    {
+      "copy_sha256": "104687ea90c62cd5a8383fbf2a4fbaa5e7614edd97c5c6e0f680c390a8241bcd",
+      "path": "{{cookiecutter.project_slug}}/docs/tutorials/first-agentic-change.md",
+      "sha256": "104687ea90c62cd5a8383fbf2a4fbaa5e7614edd97c5c6e0f680c390a8241bcd",
+      "size": 1488
+    },
+    {
+      "copy_sha256": "b9aed4323584ec55d61ef09e5fff45e29c80f69b567616888e98af8f3b7dcc18",
+      "path": "{{cookiecutter.project_slug}}/examples/blocked-evidence.json",
+      "sha256": "b9aed4323584ec55d61ef09e5fff45e29c80f69b567616888e98af8f3b7dcc18",
+      "size": 240
+    },
+    {
+      "copy_sha256": "074b341a6551f7bae05937930a44cd0d2247f5cbbad92cd52734e71d75ecde31",
+      "path": "{{cookiecutter.project_slug}}/examples/healthy-evidence.json",
+      "sha256": "074b341a6551f7bae05937930a44cd0d2247f5cbbad92cd52734e71d75ecde31",
+      "size": 163
+    },
+    {
+      "copy_sha256": "592957aef224330a8754e23402975255ec262c85fd24e72f8186989ee9168f49",
+      "path": "{{cookiecutter.project_slug}}/notebooks/README.md",
+      "sha256": "592957aef224330a8754e23402975255ec262c85fd24e72f8186989ee9168f49",
+      "size": 561
+    },
+    {
+      "copy_sha256": "69e3370b60d2bb236fa29436c4d0fde7c0b90011d4ff5f56baaa388d33d1d91c",
+      "path": "{{cookiecutter.project_slug}}/prek.toml",
+      "sha256": "69e3370b60d2bb236fa29436c4d0fde7c0b90011d4ff5f56baaa388d33d1d91c",
+      "size": 573
+    },
+    {
+      "copy_sha256": "9127028f9598c5ebf1c7e6a25cabc656fb8beb7b1ab428a52d02f47aa9ab9628",
+      "path": "{{cookiecutter.project_slug}}/prompts/GLOSSARY.md",
+      "sha256": "9127028f9598c5ebf1c7e6a25cabc656fb8beb7b1ab428a52d02f47aa9ab9628",
+      "size": 1666
+    },
+    {
+      "copy_sha256": "c44ae04c4749037b61442ed7afccb1e2845e6be1b49ae0eac75b762fe53766fe",
+      "path": "{{cookiecutter.project_slug}}/prompts/PROMPT_CONTRACT.md",
+      "sha256": "c44ae04c4749037b61442ed7afccb1e2845e6be1b49ae0eac75b762fe53766fe",
+      "size": 6515
+    },
+    {
+      "copy_sha256": "4ff71186f7476915eea01363a7eec31c7f36c1c5d4ced08e24c19e5f89e97ae1",
+      "path": "{{cookiecutter.project_slug}}/prompts/README.md",
+      "sha256": "4ff71186f7476915eea01363a7eec31c7f36c1c5d4ced08e24c19e5f89e97ae1",
+      "size": 2206
+    },
+    {
+      "copy_sha256": "ada5c956a40a2f1bcc4cf0f5fbe1e60731e506335bf393e03171ac7c49e8443a",
+      "path": "{{cookiecutter.project_slug}}/prompts/agent-friction-evaluation.md",
+      "sha256": "ada5c956a40a2f1bcc4cf0f5fbe1e60731e506335bf393e03171ac7c49e8443a",
+      "size": 1566
+    },
+    {
+      "copy_sha256": "8545166564db482b51fcdcae478dd949da1a384dcd2752fb31b8a9b55776b2ea",
+      "path": "{{cookiecutter.project_slug}}/prompts/architect.md",
+      "sha256": "8545166564db482b51fcdcae478dd949da1a384dcd2752fb31b8a9b55776b2ea",
+      "size": 1358
+    },
+    {
+      "copy_sha256": "7f7e6ebd1eb0dc17ec439fcdf83d22182f4a7c78204d3d29a19d721442bbc7a0",
+      "path": "{{cookiecutter.project_slug}}/prompts/audit-existing-repo.md",
+      "sha256": "7f7e6ebd1eb0dc17ec439fcdf83d22182f4a7c78204d3d29a19d721442bbc7a0",
+      "size": 1518
+    },
+    {
+      "copy_sha256": "edde1f039626a8d7c546aa63b1662fabe2aeee98100c64373151fd43974d5f6c",
+      "path": "{{cookiecutter.project_slug}}/prompts/clean-existing-repo.md",
+      "sha256": "edde1f039626a8d7c546aa63b1662fabe2aeee98100c64373151fd43974d5f6c",
+      "size": 1418
+    },
+    {
+      "copy_sha256": "e5f232c0481f1c1cd928c1e0491fdfff45f54ec85d4b9ae4dc4c38f97ecd698c",
+      "path": "{{cookiecutter.project_slug}}/prompts/cleaner.md",
+      "sha256": "e5f232c0481f1c1cd928c1e0491fdfff45f54ec85d4b9ae4dc4c38f97ecd698c",
+      "size": 1263
+    },
+    {
+      "copy_sha256": "a66a829b249d2d1337bd21870b160665ba3bb575486fc3c41476cbe1a3b274cd",
+      "path": "{{cookiecutter.project_slug}}/prompts/coder.md",
+      "sha256": "a66a829b249d2d1337bd21870b160665ba3bb575486fc3c41476cbe1a3b274cd",
+      "size": 1401
+    },
+    {
+      "copy_sha256": "3eb2ab27f718e633f73b11dc76107baad2ae7a04b1a210ef5fc2063214a8cc6e",
+      "path": "{{cookiecutter.project_slug}}/prompts/context-hygiene.md",
+      "sha256": "3eb2ab27f718e633f73b11dc76107baad2ae7a04b1a210ef5fc2063214a8cc6e",
+      "size": 2042
+    },
+    {
+      "copy_sha256": "9f583696357d212f518e502e12a59186c1a986b47fa7da2fe4fcc6d44facfac6",
+      "path": "{{cookiecutter.project_slug}}/prompts/evaluate-graft.md",
+      "sha256": "9f583696357d212f518e502e12a59186c1a986b47fa7da2fe4fcc6d44facfac6",
+      "size": 2734
+    },
+    {
+      "copy_sha256": "d1f6021a0882a2df76fbc0825abda54f09d7d736e934aae39ba20410db6257bc",
+      "path": "{{cookiecutter.project_slug}}/prompts/harden-existing-repo.md",
+      "sha256": "d1f6021a0882a2df76fbc0825abda54f09d7d736e934aae39ba20410db6257bc",
+      "size": 1532
+    },
+    {
+      "copy_sha256": "c0ebc8acb34fc6ad185ebc186859a8eff7cf591c31e3898b8a3d70d2d5ed7bf4",
+      "path": "{{cookiecutter.project_slug}}/prompts/hardener.md",
+      "sha256": "c0ebc8acb34fc6ad185ebc186859a8eff7cf591c31e3898b8a3d70d2d5ed7bf4",
+      "size": 1418
+    },
+    {
+      "copy_sha256": "68b0ab51eff309d98cf52d1746a6964d1903231a63383d1dd6ee15b880302289",
+      "path": "{{cookiecutter.project_slug}}/prompts/orchestrator.md",
+      "sha256": "68b0ab51eff309d98cf52d1746a6964d1903231a63383d1dd6ee15b880302289",
+      "size": 1627
+    },
+    {
+      "copy_sha256": "307f9ea83f4b28dc854e7338bba20901f6d29e98226e466e51415572150f431b",
+      "path": "{{cookiecutter.project_slug}}/prompts/qa-existing-repo.md",
+      "sha256": "307f9ea83f4b28dc854e7338bba20901f6d29e98226e466e51415572150f431b",
+      "size": 1382
+    },
+    {
+      "copy_sha256": "80c3638a9add04bf4bc52b9fc929acb468896d13d393ba4f66019b27784003b9",
+      "path": "{{cookiecutter.project_slug}}/prompts/qa.md",
+      "sha256": "80c3638a9add04bf4bc52b9fc929acb468896d13d393ba4f66019b27784003b9",
+      "size": 1538
+    },
+    {
+      "copy_sha256": "2e9d220db47136894dfe38d9fe00a9d3c35471c3b773f12e7fb877d04127baee",
+      "path": "{{cookiecutter.project_slug}}/prompts/specifier.md",
+      "sha256": "2e9d220db47136894dfe38d9fe00a9d3c35471c3b773f12e7fb877d04127baee",
+      "size": 1441
+    },
+    {
+      "copy_sha256": "0cf8f4083c330c7dcc1005a04b5174bebd7551550eb5005372e8e73bf16ce39c",
+      "path": "{{cookiecutter.project_slug}}/pyproject.toml",
+      "sha256": "0cf8f4083c330c7dcc1005a04b5174bebd7551550eb5005372e8e73bf16ce39c",
+      "size": 3089
+    },
+    {
+      "copy_sha256": "867dba91c309b167f4c8bf30199465b59d6dd6abb9c407b3274d78438f834df3",
+      "path": "{{cookiecutter.project_slug}}/results/.gitignore",
+      "sha256": "867dba91c309b167f4c8bf30199465b59d6dd6abb9c407b3274d78438f834df3",
+      "size": 51
+    },
+    {
+      "copy_sha256": "8c770f41a47cd5aa816466318bd736c73581e3cd95ac7094ecbdc3f74a1678f1",
+      "path": "{{cookiecutter.project_slug}}/results/README.md",
+      "sha256": "8c770f41a47cd5aa816466318bd736c73581e3cd95ac7094ecbdc3f74a1678f1",
+      "size": 626
+    },
+    {
+      "copy_sha256": "ce0bc478c24bb8ecf16a69b1ae2571bde12ac9df7d2d5abb63e3ccabb3a0fa41",
+      "path": "{{cookiecutter.project_slug}}/results/reference/README.md",
+      "sha256": "ce0bc478c24bb8ecf16a69b1ae2571bde12ac9df7d2d5abb63e3ccabb3a0fa41",
+      "size": 534
+    },
+    {
+      "copy_sha256": "d46906170aa7dc8d9bdcdfda3f2820859364f9041135cb4e23f3615ea1f888b9",
+      "path": "{{cookiecutter.project_slug}}/scripts/README.md",
+      "sha256": "d46906170aa7dc8d9bdcdfda3f2820859364f9041135cb4e23f3615ea1f888b9",
+      "size": 339
+    },
+    {
+      "copy_sha256": "beddf480f221bcb3447dab355f1d38d7f8979caa195224aba85084c423c726cd",
+      "path": "{{cookiecutter.project_slug}}/scripts/new-role-worktree.sh",
+      "sha256": "beddf480f221bcb3447dab355f1d38d7f8979caa195224aba85084c423c726cd",
+      "size": 1441
+    },
+    {
+      "copy_sha256": "0921caa117c8dccfac1344098686e66f354b6fb437772196f6281e9977c2cd93",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/__init__.py",
+      "sha256": "0921caa117c8dccfac1344098686e66f354b6fb437772196f6281e9977c2cd93",
+      "size": 341
+    },
+    {
+      "copy_sha256": "81f8238bf1d82d618c1b67459b5453ed53b4d93bf24a94be59bc923c86e52263",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/adapters/__init__.py",
+      "sha256": "81f8238bf1d82d618c1b67459b5453ed53b4d93bf24a94be59bc923c86e52263",
+      "size": 25
+    },
+    {
+      "copy_sha256": "cce222eac7c484e697ac79b1f9c0a18200fb6f55fcd3b06b9d14bd9c23199429",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/adapters/cli.py",
+      "sha256": "cce222eac7c484e697ac79b1f9c0a18200fb6f55fcd3b06b9d14bd9c23199429",
+      "size": 1935
+    },
+    {
+      "copy_sha256": "1e5dd1421477f093d8463885f0d69577644c6f9960ff6dc1e21347964848e69c",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/application/__init__.py",
+      "sha256": "1e5dd1421477f093d8463885f0d69577644c6f9960ff6dc1e21347964848e69c",
+      "size": 29
+    },
+    {
+      "copy_sha256": "88219b874762aae810648962c1dc5f767f8adf619daad75fca301762f940cf75",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/application/assess_release.py",
+      "sha256": "88219b874762aae810648962c1dc5f767f8adf619daad75fca301762f940cf75",
+      "size": 404
+    },
+    {
+      "copy_sha256": "ac55d8185efb02632c2ce7cbe3e9899ae089cba1ab65bb65817be1ed47927942",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/domain/AGENTS.md",
+      "sha256": "ac55d8185efb02632c2ce7cbe3e9899ae089cba1ab65bb65817be1ed47927942",
+      "size": 509
+    },
+    {
+      "copy_sha256": "f60125f45edf1ca73445029557073dc420b1289982d02b8a28f1c13e6170cf70",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/domain/__init__.py",
+      "sha256": "f60125f45edf1ca73445029557073dc420b1289982d02b8a28f1c13e6170cf70",
+      "size": 33
+    },
+    {
+      "copy_sha256": "1fef514d9ff8ec222d94873cb554a64cd14061783658a3963bd8405e7d9470f5",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/domain/change_risk.py",
+      "sha256": "1fef514d9ff8ec222d94873cb554a64cd14061783658a3963bd8405e7d9470f5",
+      "size": 3585
+    },
+    {
+      "copy_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "path": "{{cookiecutter.project_slug}}/src/{{ cookiecutter.package_name }}/py.typed",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size": 1
+    },
+    {
+      "copy_sha256": "8d960735521fe85d6a0ef3a115d072406fa9be93e306c3009ffd2e1d538c7b4d",
+      "path": "{{cookiecutter.project_slug}}/static/README.md",
+      "sha256": "8d960735521fe85d6a0ef3a115d072406fa9be93e306c3009ffd2e1d538c7b4d",
+      "size": 702
+    },
+    {
+      "copy_sha256": "a77e9e0e2306d68bf5c6ff39757f4ca037bbbeb376ba0067d7c1e08a8b09e987",
+      "path": "{{cookiecutter.project_slug}}/static/manifest.toml",
+      "sha256": "a77e9e0e2306d68bf5c6ff39757f4ca037bbbeb376ba0067d7c1e08a8b09e987",
+      "size": 30
+    },
+    {
+      "copy_sha256": "81f2ac1268c28eb8a22dce8c1accf50cebb0ada69cab0608368d661711fabc06",
+      "path": "{{cookiecutter.project_slug}}/tests/AGENTS.md",
+      "sha256": "81f2ac1268c28eb8a22dce8c1accf50cebb0ada69cab0608368d661711fabc06",
+      "size": 456
+    },
+    {
+      "copy_sha256": "9bbcd09e40c28c96721d02d74354c126e898ec3fa47197f17e4d846659884aec",
+      "path": "{{cookiecutter.project_slug}}/tests/acceptance/features/release_decision.feature",
+      "sha256": "9bbcd09e40c28c96721d02d74354c126e898ec3fa47197f17e4d846659884aec",
+      "size": 560
+    },
+    {
+      "copy_sha256": "8a300e042d684a8f64fdf3d2643de16e77f3dd4ce443b72516d83148869cb8fc",
+      "path": "{{cookiecutter.project_slug}}/tests/acceptance/test_feature.py",
+      "sha256": "8a300e042d684a8f64fdf3d2643de16e77f3dd4ce443b72516d83148869cb8fc",
+      "size": 2010
+    },
+    {
+      "copy_sha256": "7282f1aa26bf29793aa75c931d986c4c532711e897826abbdcf382126e9e5482",
+      "path": "{{cookiecutter.project_slug}}/tests/property/test_release_invariants.py",
+      "sha256": "7282f1aa26bf29793aa75c931d986c4c532711e897826abbdcf382126e9e5482",
+      "size": 817
+    },
+    {
+      "copy_sha256": "9a33c03064e411dccf91ec710bc03e37b2c5df3d9ad1df451568996e84c1de38",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/conftest.py",
+      "sha256": "9a33c03064e411dccf91ec710bc03e37b2c5df3d9ad1df451568996e84c1de38",
+      "size": 283
+    },
+    {
+      "copy_sha256": "1aa5a5612788877b7e2b03d8c8d56acc77da24ba6a4c29a1396c39fd00411237",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_architecture_docs_gauntlet_v2.py",
+      "sha256": "1aa5a5612788877b7e2b03d8c8d56acc77da24ba6a4c29a1396c39fd00411237",
+      "size": 3868
+    },
+    {
+      "copy_sha256": "d6aff78175f53cfc1aef14359e2b253efcfaf15a26d2b32a6ca891f25d11847c",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_cleanai_helpers_v2.py",
+      "sha256": "d6aff78175f53cfc1aef14359e2b253efcfaf15a26d2b32a6ca891f25d11847c",
+      "size": 6279
+    },
+    {
+      "copy_sha256": "7006801268bf6acc3fc88a384f70c4ba78313458f08767980626ec2fafe1dda2",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_cli_v2.py",
+      "sha256": "7006801268bf6acc3fc88a384f70c4ba78313458f08767980626ec2fafe1dda2",
+      "size": 3623
+    },
+    {
+      "copy_sha256": "9cc1ceb4656fcf92353da08131eb8a6a81f424aee51bb822e9d726f38aef7ab7",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_coverage_policy_v2.py",
+      "sha256": "9cc1ceb4656fcf92353da08131eb8a6a81f424aee51bb822e9d726f38aef7ab7",
+      "size": 3189
+    },
+    {
+      "copy_sha256": "66a852d9078cbb0939634093d562521aead8964f669768cd469ad65fde930b42",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_docs_context_paths_v2.py",
+      "sha256": "66a852d9078cbb0939634093d562521aead8964f669768cd469ad65fde930b42",
+      "size": 5615
+    },
+    {
+      "copy_sha256": "369273417965ca501d8a068e13c0109669832ee596aa7ed77c2f1b20103825bd",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_friction_v2.py",
+      "sha256": "369273417965ca501d8a068e13c0109669832ee596aa7ed77c2f1b20103825bd",
+      "size": 7689
+    },
+    {
+      "copy_sha256": "4f9495070e1998aec4dd0678ca8f9336ae1ebcd4d490403266aaefa4495056d1",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_graft_adapter.py",
+      "sha256": "4f9495070e1998aec4dd0678ca8f9336ae1ebcd4d490403266aaefa4495056d1",
+      "size": 3655
+    },
+    {
+      "copy_sha256": "8c59d44c7fee7908ff8a631b7cb80495f57fdfa922f69738c7592559c000e7eb",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_mutation_v2.py",
+      "sha256": "8c59d44c7fee7908ff8a631b7cb80495f57fdfa922f69738c7592559c000e7eb",
+      "size": 3085
+    },
+    {
+      "copy_sha256": "baec2246652ecb934486eaef8c0889164e28d69ec529a024b4740fa21d5aabbe",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_package_v2.py",
+      "sha256": "baec2246652ecb934486eaef8c0889164e28d69ec529a024b4740fa21d5aabbe",
+      "size": 9344
+    },
+    {
+      "copy_sha256": "14a3991d4494507e6bf125811575e3e74b5051e3f2336a5ecc0194e06c7f158f",
+      "path": "{{cookiecutter.project_slug}}/tests/tooling/test_science_profile.py",
+      "sha256": "14a3991d4494507e6bf125811575e3e74b5051e3f2336a5ecc0194e06c7f158f",
+      "size": 4744
+    },
+    {
+      "copy_sha256": "fa99e002902cdf2c7e25b19ab543c1b86a4570d0197f76f7ee116ffc73f89047",
+      "path": "{{cookiecutter.project_slug}}/tests/unit/test_application_and_cli.py",
+      "sha256": "fa99e002902cdf2c7e25b19ab543c1b86a4570d0197f76f7ee116ffc73f89047",
+      "size": 2052
+    },
+    {
+      "copy_sha256": "9ea4a8b55ec1a28c138f21b6349375109b0e01c4d9641dc4dc6df29a3641b260",
+      "path": "{{cookiecutter.project_slug}}/tests/unit/test_change_risk.py",
+      "sha256": "9ea4a8b55ec1a28c138f21b6349375109b0e01c4d9641dc4dc6df29a3641b260",
+      "size": 2603
+    },
+    {
+      "copy_sha256": "0549dc49c84cdda83e7e8935793f9c918db28351bc90f3a352608b55a81f5eb9",
+      "path": "{{cookiecutter.project_slug}}/tools/__init__.py",
+      "sha256": "0549dc49c84cdda83e7e8935793f9c918db28351bc90f3a352608b55a81f5eb9",
+      "size": 50
+    },
+    {
+      "copy_sha256": "07329981887aaf2d5f67254efa8b9d5a677e6eda897f2b10916dde945fa91ec4",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai.py",
+      "sha256": "07329981887aaf2d5f67254efa8b9d5a677e6eda897f2b10916dde945fa91ec4",
+      "size": 542
+    },
+    {
+      "copy_sha256": "8b1bc1174b5431be4684fe16b0e62ae6fc866e21b31af88fa489cf66ae86468f",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/__init__.py",
+      "sha256": "8b1bc1174b5431be4684fe16b0e62ae6fc866e21b31af88fa489cf66ae86468f",
+      "size": 232
+    },
+    {
+      "copy_sha256": "f17f800a82a705f65eb8446258fe22602fa9f8120e412b64c0426fca1771d510",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/architecture.py",
+      "sha256": "f17f800a82a705f65eb8446258fe22602fa9f8120e412b64c0426fca1771d510",
+      "size": 9517
+    },
+    {
+      "copy_sha256": "c93e87ad8a78edff9d04191afa840857acf4364b899c6169ffbe285e6315ebdb",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/cli.py",
+      "sha256": "c93e87ad8a78edff9d04191afa840857acf4364b899c6169ffbe285e6315ebdb",
+      "size": 8150
+    },
+    {
+      "copy_sha256": "e73bfb50439022aecc181b3fffd29a34069f81553c6a4722b239c08ceb697896",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/coverage_policy.py",
+      "sha256": "e73bfb50439022aecc181b3fffd29a34069f81553c6a4722b239c08ceb697896",
+      "size": 6830
+    },
+    {
+      "copy_sha256": "eec3ec8cf21d353b35797df632b8ff8904b463646654eefbb3710714ac6779eb",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/crap.py",
+      "sha256": "eec3ec8cf21d353b35797df632b8ff8904b463646654eefbb3710714ac6779eb",
+      "size": 13493
+    },
+    {
+      "copy_sha256": "9c06080eda3ea744b22f67a58cc388ec6171ac8f378ffa4fee83f76984a847b1",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/docs.py",
+      "sha256": "9c06080eda3ea744b22f67a58cc388ec6171ac8f378ffa4fee83f76984a847b1",
+      "size": 21919
+    },
+    {
+      "copy_sha256": "1c6537dbb8caf8b936c6ea55baf2931d6800dae764001c82bd5c2d4480ffcca3",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/friction.py",
+      "sha256": "1c6537dbb8caf8b936c6ea55baf2931d6800dae764001c82bd5c2d4480ffcca3",
+      "size": 14569
+    },
+    {
+      "copy_sha256": "409f11592ee98f2a3e085612134ab416924f424769348eda30f61f0ea055815f",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/gauntlet.py",
+      "sha256": "409f11592ee98f2a3e085612134ab416924f424769348eda30f61f0ea055815f",
+      "size": 5406
+    },
+    {
+      "copy_sha256": "d473eee997e64426c8d297942639a4f1ca768e305182357cb6349b6313ffa65b",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/io.py",
+      "sha256": "d473eee997e64426c8d297942639a4f1ca768e305182357cb6349b6313ffa65b",
+      "size": 11724
+    },
+    {
+      "copy_sha256": "7d4dc6423032ba052aa4f5ecdf87520568c8297fd09351b7a376d50b6971c541",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/model.py",
+      "sha256": "7d4dc6423032ba052aa4f5ecdf87520568c8297fd09351b7a376d50b6971c541",
+      "size": 2180
+    },
+    {
+      "copy_sha256": "f17c5a23117fb06016378948e8b2bd0d14ef1d57599ad9ef7f59280f44648cda",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/mutation.py",
+      "sha256": "f17c5a23117fb06016378948e8b2bd0d14ef1d57599ad9ef7f59280f44648cda",
+      "size": 9567
+    },
+    {
+      "copy_sha256": "c3e33beebb64ab51242c0414ba02f7ab6239d1be78cc0e79748a980f6f41b2c2",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/package.py",
+      "sha256": "c3e33beebb64ab51242c0414ba02f7ab6239d1be78cc0e79748a980f6f41b2c2",
+      "size": 14878
+    },
+    {
+      "copy_sha256": "4f870cce31c5dc07b802f31e27dd1540592d58b55387cdc02f1f0a14ccf0a02b",
+      "path": "{{cookiecutter.project_slug}}/tools/cleanai_core/science.py",
+      "sha256": "4f870cce31c5dc07b802f31e27dd1540592d58b55387cdc02f1f0a14ccf0a02b",
+      "size": 11264
+    },
+    {
+      "copy_sha256": "92c6532161e0891e1ca9f82e7233e01c95a447cfa4139d460be9cc98c9c3eb0a",
+      "path": "{{cookiecutter.project_slug}}/tools/graft_adapter.py",
+      "sha256": "92c6532161e0891e1ca9f82e7233e01c95a447cfa4139d460be9cc98c9c3eb0a",
+      "size": 7555
+    },
+    {
+      "copy_sha256": "d426aaf2939efd6c7d2a80a9c584633edc9ad3f4a9596ce8ae51e214222364c0",
+      "path": "{{cookiecutter.project_slug}}/uv.lock",
+      "sha256": "d426aaf2939efd6c7d2a80a9c584633edc9ad3f4a9596ce8ae51e214222364c0",
+      "size": 102944
+    }
+  ],
+  "schema_version": 1,
+  "tracked_file_count": 160
+}

@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "status": "final-source-validated-first-hosted-ci-pass-report-publication-pending",
+  "candidate_source_commit": "b719459a051a60d4af1e4fa30b3c32277fa97b8c",
+  "candidate_source_tree": "35819081108685c24f47ba5251ec7e18004b0016",
+  "validated_implementation_commit": "b719459a051a60d4af1e4fa30b3c32277fa97b8c",
+  "validated_implementation_tree": "35819081108685c24f47ba5251ec7e18004b0016",
+  "classifications": {
+    "benchmark": "Observed deterministic byte proxy, not model token or billing truth",
+    "agent_trials": "Observed parity for F0 versus a broader research C1 wrapper on one bounded task; final narrowed F1 had an observed build-applicability failure and no task outcome",
+    "final_v2_validation": "OBSERVED: exact b719459 source rendered officially; template tests and generated Python 3.12/3.13 release profiles passed, including final late-red-team regressions, packaging, six mutants, and README/docs gates. A seeded byte-identical real Graft 0.16 tree passed doctor/build/check/ask/removal. Remote review commit 4dc3603 has the identical source tree and GitHub Actions run 33873556873 passed both Python jobs. Two fresh connected npm installs failed without promotion; install/provenance remain UNVERIFIED"
+  },
+  "decision": {
+    "F0": "keep-default",
+    "F1": "keep-narrow-structural-cli-experimental",
+    "F2": "reject-disable",
+    "F3": "reject-in-profile",
+    "F4": "reject-disable-capability-unverified",
+    "F5": "reject-by-default",
+    "F6": "reject"
+  },
+  "candidate_falsification_findings": {
+    "total": 23,
+    "P0": 2,
+    "P1": 20,
+    "P2": 1,
+    "final_resolution_status": "NO_UNRESOLVED_P0_OR_P1_AT_FINAL_LOCAL_OR_FIRST_HOSTED_TEST_BOUNDARY; CONNECTED_INSTALL_PLATFORM_AND_HUMAN_STUDY_BOUNDARIES_UNVERIFIED"
+  },
+  "final_local_validation": {
+    "classification": "Observed exact final-source local validation",
+    "source_commit": "b719459a051a60d4af1e4fa30b3c32277fa97b8c",
+    "source_tree": "35819081108685c24f47ba5251ec7e18004b0016",
+    "render_method": "cookiecutter 2.7.1 --no-input",
+    "environment": {
+      "os": "Linux 6.18.35 x86_64",
+      "python": ["CPython 3.12.13", "CPython 3.13.14"],
+      "uv": "0.11.33",
+      "node_for_real_control": "22.12.0",
+      "npm_for_install_and_real_control": "10.9.0",
+      "graft": "@nanonets/graft@0.16.0"
+    },
+    "tests": {
+      "template_passed": 99,
+      "generated_passed_per_python_release": 243,
+      "focused_adapter_passed": 122
+    },
+    "release_profiles": {
+      "python_3_12": "PASS",
+      "python_3_13": "PASS"
+    },
+    "quality": {
+      "product_branch_coverage_percent": 94.97,
+      "harness_branch_coverage_percent": 83.25,
+      "worst_crap": 10.1,
+      "code_mutants_killed": 3,
+      "specification_mutants_killed": 3,
+      "ruff": "PASS",
+      "pyrefly": "PASS",
+      "canonical_markdown_gate": "PASS"
+    },
+    "packaging": {
+      "template_wheel_and_sdist_built": true,
+      "template_twine_passed": true,
+      "wheel_and_sdist_built": true,
+      "twine_passed": true,
+      "external_wheel_smoke_passed": true
+    },
+    "connected_install": {
+      "attempts": 2,
+      "adapter_status": "FAIL",
+      "runtime_promoted": false,
+      "observed_failure": "npm 10.9.0 emitted Exit handler never called",
+      "capability_status": "UNVERIFIED",
+      "package_build_provenance": "UNVERIFIED"
+    },
+    "seeded_real_package_control": {
+      "seeded_tree_is_install_pass": false,
+      "doctor": "PASS",
+      "build": "PASS",
+      "check": "PASS",
+      "documented_ask": "PASS",
+      "graph": {"nodes": 569, "edges": 1783, "files": 43, "bytes": 2595814},
+      "remove_owned_paths": 7522,
+      "remove_unknown_paths": 0,
+      "remove_apply": "PASS-complete-true",
+      "remove_check_after": "PASS-complete-true",
+      "tracked_worktree_after": "clean",
+      "classification": "seeded real-package compatibility and removal control; not install/provenance",
+      "all_expected_exits": true,
+      "evidence_directory": "evidence/v2/final-b719459/seeded-real-control-final/",
+      "results_sha256": "f9656d29c2fbf3a771d5e772fe4479e7868efd51545499ae76ab525eca0afae6",
+      "checksum_ledger_sha256": "e27d8a78cf6857fd75a534293e9d958f20f0df205fe99b68d6b00e54b4aa5761"
+    },
+    "late_findings": {
+      "count": 7,
+      "P0": 2,
+      "P1": 5,
+      "regression_status": "PASS",
+      "residual": "Stop unrelated writers before cleanup; same-user mutation after the final preflight is not eliminated without OS confinement"
+    },
+    "readme": {
+      "template_sha256": "6bed52806381a37059149e06c64dc2ecf366ffc91e88587bfe70bf295cfe0039",
+      "generated_template_sha256": "16a5973f34c94b25d41bdabfbe36bed0ddbf707d67995eea29dc85684793a529",
+      "documents_no_graft_default": true,
+      "documents_short_opt_in_and_removal": true,
+      "documents_hidden_directory_limit": true
+    },
+    "unverified": [
+      "fresh connected installation success and source-to-package build provenance",
+      "native macOS, Windows, and ARM64",
+      "exact model token and billing cost",
+      "independent newcomer comprehension",
+      "packet-level network silence and hostile detached-process containment"
+    ]
+  },
+  "first_hosted_validation": {
+    "classification": "Observed hosted GitHub Actions on remote tree identical to validated local source",
+    "remote_commit": "4dc3603a6360111a1f9619c3e409d67755cff710",
+    "source_tree": "35819081108685c24f47ba5251ec7e18004b0016",
+    "workflow": "template",
+    "run_id": 33873556873,
+    "run_number": 9,
+    "conclusion": "success",
+    "jobs": {
+      "render (3.12)": "success",
+      "render (3.13)": "success"
+    },
+    "url": "https://github.com/heng2j/clean-agentic-python-cookiecutter/actions/runs/33873556873"
+  },
+  "python312_no_graft_validation": {
+    "classification": "Observed exact implementation commit",
+    "status": "PASS",
+    "source_commit": "6966b5500eaa22d17f0526dbd051437aadb43255",
+    "source_tree": "1203a71bd165251b2618fc669c4f027bd86e0cf1",
+    "snapshot_method": "git archive",
+    "started_utc": "2026-09-04T05:23:14Z",
+    "finished_utc": "2026-09-04T05:26:58Z",
+    "environment": {
+      "os": "Linux 6.18.35 x86_64",
+      "python": "CPython 3.12.13",
+      "uv": "0.11.33",
+      "git": "2.51.1"
+    },
+    "commands": {"recorded": 42, "matched_expected_exit": 42},
+    "tests": {"template_passed": 99, "generated_passed": 230},
+    "gauntlets": {
+      "fast": "PASS",
+      "full": "PASS",
+      "hardening": "PASS",
+      "release": "PASS"
+    },
+    "quality": {
+      "product_branch_coverage_percent": 94.97,
+      "harness_branch_coverage_percent": 82.78,
+      "worst_crap": 10.1,
+      "code_mutants_killed": 3,
+      "specification_mutants_killed": 3
+    },
+    "packaging": {
+      "template_build_and_twine_passed": true,
+      "generated_wheel_and_sdist_passed": true,
+      "external_install_import_cli_dependency_uninstall_passed": true,
+      "alternate_apache_actions_off_python313_option_build_twine_passed": true
+    },
+    "public_output": {
+      "focused_envelope_tests_passed": 3,
+      "absolute_host_path_present": false
+    },
+    "no_graft": {
+      "doctor_exit": 2,
+      "doctor_status": "UNVERIFIED",
+      "managed_writes": false
+    },
+    "evidence": {
+      "directory": "evidence/v2/python312/final-6966b55/",
+      "template_copy_hash_list_sha256": "39bd52c077bab56916ed2d2b658a0ce197d49e4fc81a73f934ec316853f295ee",
+      "summary_sha256": "afb6ff8eb969244fdba769c59c52807edfc2ff6cb508dcec97f445262c876107",
+      "environment_sha256": "203f2b77ebda37dd0c01b7f023f8e12c8dd204eb88acfd73992c85a6a0306a80"
+    },
+    "boundary": "Implementation behavior at 6966b55 only; installed Graft is reported separately. OS packet monitoring, hosted Actions, native macOS/Windows, and eventual report bytes remain UNVERIFIED; per-command start/end timestamps and ignored-file deltas were not recorded, with the latter covered only by aggregate state checks"
+  },
+  "python313_no_graft_validation": {
+    "classification": "Observed exact implementation commit",
+    "status": "PASS",
+    "source_commit": "6966b5500eaa22d17f0526dbd051437aadb43255",
+    "source_tree": "1203a71bd165251b2618fc669c4f027bd86e0cf1",
+    "snapshot_method": "git archive",
+    "started_utc": "2026-09-04T05:23:46Z",
+    "finished_utc": "2026-09-04T05:27:49Z",
+    "environment": {
+      "os": "Linux 6.18.35 x86_64",
+      "python": "CPython 3.13.14",
+      "uv": "0.11.33",
+      "cookiecutter": "2.7.1",
+      "git": "2.51.1",
+      "node_on_gate_path": false
+    },
+    "commands": {"recorded": 30, "unexpected_exits": 0},
+    "tests": {
+      "template_passed": 99,
+      "generated_fast_passed": 230,
+      "generated_full_passed": 230,
+      "generated_hardening_passed": 230,
+      "generated_release_passed": 230
+    },
+    "quality": {
+      "product_branch_coverage_percent": 94.97,
+      "harness_branch_coverage_percent": 82.78,
+      "worst_crap": 10.1,
+      "code_mutants_killed": 3,
+      "specification_mutants_killed": 3
+    },
+    "packaging": {
+      "wheel_and_sdist_built": true,
+      "twine_passed": true,
+      "external_install_import_cli_uninstall_passed": true
+    },
+    "public_graft_json": {
+      "host_project_path_present": false,
+      "maximum_bytes_exclusive": 4096,
+      "doctor": {"bytes": 423, "exit": 2, "status": "UNVERIFIED"},
+      "check": {"bytes": 206, "exit": 2, "status": "UNVERIFIED"},
+      "remove_check": {"bytes": 975, "exit": 0, "status": "PASS"}
+    },
+    "evidence": {
+      "directory": "evidence/v2/python313/final-6966b55/",
+      "authored_manifest_sha256": "3f1eba7c792cfc561ed18538cf199ff7f3bc0c831da86e41775b890682f3c132",
+      "command_ledger_sha256": "bbe6052636859edc96fb376bde9a744ee9b427b3fa68308615cae0072e2d9551",
+      "runner_sha256": "501d0c24799c9b8f00438c0b2200b9f6ea5a7852b05e810739b9bc63c640b1e2",
+      "report_sha256": "e84b2a99a8cdb89d775f830ba7dc4e4709e760dad6b8a27a987a896f01f6b396",
+      "result_sha256": "aa4f78055d1c1cad4b050c4013305faa27c3babd2fc9232dece9fab48c0aa0a3"
+    },
+    "boundary": "Implementation behavior at 6966b55 only; installed Graft is reported separately. npm network, hosted Actions, native macOS/Windows, eventual report bytes, and charter-complete per-command field repetition remain UNVERIFIED"
+  },
+  "real_graft_lifecycle": {
+    "classification": "Observed seeded-lifecycle compatibility; connected install UNVERIFIED",
+    "source_commit": "6966b5500eaa22d17f0526dbd051437aadb43255",
+    "source_tree": "1203a71bd165251b2618fc669c4f027bd86e0cf1",
+    "candidate_adapter_runtime_relation": "Historical exact 6966b55 adapter/runtime checkpoint; superseded by the final b719459 control recorded under final_local_validation",
+    "project_path_characters": 305,
+    "adapter_sha256": "8b8ce3c39a8f6994b20dcf9b9148718f87a261195cb5dce5c46c0e9792eb7b94",
+    "environment": {
+      "node": "22.12.0",
+      "npm": "10.9.0",
+      "graft": "@nanonets/graft@0.16.0"
+    },
+    "connected_install": {
+      "capability_status": "UNVERIFIED",
+      "adapter_status": "FAIL",
+      "exit_code": 2,
+      "duration_seconds": 70.588,
+      "adapter_observed_failure": "npm emitted the generic Exit handler never called error",
+      "supporting_diagnostic": "a separate prior direct diagnostic under the same Node/npm/minimal configuration recorded three registry EAI_AGAIN attempts",
+      "causal_classification": "INFERRED likely contributor; not proven for the exact adapter attempt",
+      "seeded_tree_is_install_pass": false,
+      "package_build_provenance": "UNVERIFIED"
+    },
+    "seeded_exact_tree": {
+      "doctor": "PASS",
+      "build": "PASS",
+      "check": "PASS",
+      "ask_modes_passed": 6,
+      "graph": {"nodes": 540, "edges": 1689, "files": 43, "bytes": 2443178},
+      "changed_source_check_and_ask": "PASS-fail-closed",
+      "graph_tamper_check_and_ask": "PASS-fail-closed",
+      "remove_apply": "PASS-complete-true",
+      "remove_check_after": "PASS-complete-true",
+      "post_remove_no_graft_fast_tests_passed": 230
+    },
+    "public_output": {
+      "successful_absolute_strings_seen": false,
+      "real_check_bytes": 3644,
+      "maximum_bytes_exclusive": 4096,
+      "durable_build_and_check_evidence_retains_full_local_identity": true
+    },
+    "sampling": {
+      "process_samples": 867,
+      "visible_node_records": 42,
+      "synthetic_secret_sentinel_seen": false,
+      "proxy_keys_seen": false,
+      "socket_rows_seen": 0,
+      "post_remove_absence_samples": 101,
+      "exhaustive_network_and_detached_containment": "UNVERIFIED"
+    },
+    "project_state": {
+      "root_ignore_created": false,
+      "root_graft_created": false,
+      "tracked_tree_restored": true,
+      "retained_declared_lock": "artifacts/.graft-adapter.lock"
+    },
+    "evidence": {
+      "directory": "evidence/v2/real-graft/final-6966b55/",
+      "summary_sha256": "f63c0d37ba9778ca03c0fc20db03eefe42766e82e3eae01ad9418359c5b158a3",
+      "results_sha256": "95820c841b72589b8e96646e3e60d0c76b8187f06392b3b1d869ee2950572248",
+      "evidence_manifest_sha256": "5009ea3b91ca61ca8f5bbbeffb59fa965d7b8bcae5896768485d7e5249847fc0",
+      "command_record_sha256": "9f1d89c86ded4c39fd7a3348ee709b0bb1964f615224bb90d8411daad38cf0bc"
+    }
+  },
+  "deterministic_context_benchmark": {
+    "surface_note": "C1/C2 exercised broader upstream structural capabilities; results are evaluation evidence, not final-adapter command coverage",
+    "repositories": 4,
+    "queries_per_repeat": 16,
+    "repeats": 3,
+    "records": 144,
+    "cohorts": {
+      "C0": {"mean_precision": 0.728, "mean_recall": 0.969, "median_net_proxy_bytes": 960},
+      "C1": {"mean_precision": 0.479, "mean_recall": 0.748, "median_net_proxy_bytes": 3363},
+      "C2": {"mean_precision": 0.479, "mean_recall": 0.748, "median_net_proxy_bytes": 6762}
+    },
+    "relative_to_C0": {
+      "C1_median_proxy_increase_percent": 250,
+      "C2_median_proxy_increase_percent": 605,
+      "C1_sensitivity_increase_percent": 61,
+      "C2_sensitivity_increase_percent": 188
+    },
+    "exact_model_tokens": null,
+    "billing_cost": null
+  },
+  "explainability_fixture": {
+    "ask_micro_precision": 0.3,
+    "ask_micro_recall": 0.8,
+    "ask_macro_precision": 0.396,
+    "ask_macro_recall": 0.833,
+    "duplicate_callers": {"true_positive": 0, "false_positive": 1, "false_negative": 2, "precision": 0.0, "recall": 0.0},
+    "duplicate_blast": {"true_positive": 0, "false_positive": 0, "false_negative": 4, "recall": 0.0},
+    "unique_blast": {"true_positive": 3, "false_positive": 0, "false_negative": 0, "recall": 1.0},
+    "skeleton_signatures": {"found": 31, "expected": 31},
+    "indexed_python_literal_hits": {"found": 10, "expected": 10},
+    "freshness_mutations_detected": {"found": 4, "expected": 4}
+  },
+  "held_out_agent_trials": {
+    "task": "collapse Unicode whitespace in every normalization implementation while preserving case policy",
+    "C0": {"accepted": 3, "runs": 3, "agent_unrelated_edits": 0},
+    "C1": {
+      "accepted": 3,
+      "runs": 3,
+      "agent_unrelated_edits": 0,
+      "condition_setup_outside_scope_file": ".gitignore in every C1 clone",
+      "literal_final_worktree_scope_acceptance": {"accepted": 0, "runs": 3},
+      "runs_using_source_or_rg_fallback": 3,
+      "surface": "broader research wrapper exposing upstream grep, callers, and ask; not final F1"
+    },
+    "final_narrow_f1": {
+      "classification": "Observed applicability failure; accepted-task outcome UNVERIFIED",
+      "source_commit": "6966b5500eaa22d17f0526dbd051437aadb43255",
+      "source_tree": "1203a71bd165251b2618fc669c4f027bd86e0cf1",
+      "graft_version": "0.16.0",
+      "node_version": "22.12.0",
+      "npm_version": "10.9.0",
+      "planned_repetitions": 3,
+      "task_agents_started": 0,
+      "first_build": {
+        "exit_code": 2,
+        "status": "FAIL",
+        "elapsed_seconds": 2.672028,
+        "missing_tracked_source": ".hidden/visible.py",
+        "graph_published": false,
+        "check_run": false,
+        "ask_run": false,
+        "stdout_bytes": 254,
+        "stderr_bytes": 0,
+        "absolute_path_hits": 0
+      },
+      "remaining_repetitions": "NOT_RUN under preregistered stop rule",
+      "accepted_task_correctness": "UNVERIFIED",
+      "task_scope_and_cost_metrics": "UNVERIFIED",
+      "evidence_directory": "evidence/v2/final-adapter-trials/final-6966b55/",
+      "results_sha256": "b77ad0c44b4b162528751154ce30295dd6625a8fc466d7c9b29b00e96d9d6ce6",
+      "report_sha256": "015b80b3ed40fe4778b2a477bfd5ec486ca1efacce28f26f6da6407478858d1b",
+      "exact_candidate_submanifest_sha256": "0678c519dba85d7111404b4b991a72bb5e8b0103775c40a59f081ab296ddfe73",
+      "top_level_ledger_sha256": "abf5206a7452b4cb0ac889517d9abceb97cdafea9aa500359ccd8f1bef8d2fb9"
+    },
+    "final_narrow_f1_accepted_task_status": "UNVERIFIED",
+    "correctness_advantage_observed": false,
+    "exact_tokens": null,
+    "complete_review_and_rework_metrics": null
+  },
+  "documentation_followup": {
+    "classification": "Observed documentation-only delta",
+    "status": "PASS",
+    "source_commit": "4bba7c09d234772b7c312d409ff93bf09e863134",
+    "source_tree": "8aaa45d47c09dcd60fb417acbec3bac74799a4fb",
+    "validated_implementation_parent": "6966b5500eaa22d17f0526dbd051437aadb43255",
+    "expectations": {"passed": 14, "total": 14},
+    "tests": {"root_passed": 99},
+    "checks": {
+      "root_lock_and_offline_sync": "PASS",
+      "official_render_and_generated_offline_sync": "PASS",
+      "canonical_markdown_files_checked": 76,
+      "strict_docs_audit": "PASS",
+      "strict_context_audit": "PASS",
+      "wording_assertion": "PASS",
+      "final_diff_and_clean_state": "PASS"
+    },
+    "evidence": {
+      "directory": "evidence/v2/documentation-followup/final-4bba7c0/",
+      "summary_sha256": "cf7085eaa0451300d07d22626f3d6cd0b4f1915bedea0bebfc10adb37c4daf70",
+      "artifact_checksum_ledger_sha256": "f5e5d1362d94a5d6af166cfdb144772f22fa6e968589d8b165423392c26413ed"
+    },
+    "boundary": "Validates only the documentation delta. Raw records retain absolute local paths; uv ran offline, but network access was not observed at the operating-system boundary."
+  }
+}
