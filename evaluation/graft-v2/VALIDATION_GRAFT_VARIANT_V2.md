@@ -1,13 +1,12 @@
 # Validation of the enhanced Graft variant
 
-> Status: **FINAL LOCAL SOURCE AND FIRST HOSTED CI VALIDATED; REPORT PUBLICATION
-> RUN PENDING**. Exact source
+> Status: **FINAL LOCAL SOURCE AND HOSTED PUBLICATION VALIDATED**. Exact source
 > `b719459` passed template and generated-project release validation on Python
 > 3.12 and 3.13, focused late-red-team regressions, and a seeded real-Graft
 > lifecycle/removal control. Two fresh connected installs failed inside npm and
 > promoted no runtime; connected installation and provenance remain
 > `UNVERIFIED`. Remote review commit `4dc3603` has the identical source tree and
-> its first hosted 3.12/3.13 matrix passed. The final narrowed-F1 task outcome
+> its implementation and report-publication 3.12/3.13 matrices passed. The final narrowed-F1 task outcome
 > also remains `UNVERIFIED`.
 > No pending or unverified row is a pass.
 
@@ -18,6 +17,7 @@
 | Candidate branch | `audit/experimental-graft-variant-v2` | **Observed locally** |
 | Final local candidate | `b719459a051a60d4af1e4fa30b3c32277fa97b8c` (tree `35819081108685c24f47ba5251ec7e18004b0016`) | **Observed:** exact local template/render/release/late-red-team/seeded-real boundary |
 | First remote review commit | `4dc3603a6360111a1f9619c3e409d67755cff710` (same tree `35819081108685c24f47ba5251ec7e18004b0016`) | **Observed hosted:** Actions run `33873556873` passed both jobs |
+| Report-publication commit | `f0b13fc622e5b8546929d5227e282532b288f07e` | **Observed hosted:** Actions run `33874894406` passed both jobs |
 | Predecessor implementation checkpoint | `6966b5500eaa22d17f0526dbd051437aadb43255` (tree `1203a71bd165251b2618fc669c4f027bd86e0cf1`) | **Historical observed checkpoint; superseded by later findings** |
 | Audited base | `ab3e06f6a402a22f51d8447101f245eab258b8e6` | **Observed** |
 | Graft | `@nanonets/graft@0.16.0` | **Observed selected and seeded-tree exercised**; public connected install/provenance **Unverified** |
@@ -45,7 +45,7 @@ is the controlling local result.
 | Fresh connected install | Two npm 10.9.0 attempts returned adapter `FAIL`; no runtime promoted | **UNVERIFIED** capability/provenance |
 | Seeded real 0.16 runtime | Doctor/build/check/documented ask; 569 nodes/1,783 edges | **PASS** compatibility control; not install/provenance |
 | Real cleanup | 7,522 owned, 0 unknown; apply and second check `complete: true`; Git clean | **PASS** |
-| Hosted Actions | Run `33873556873`; `render (3.12)` and `render (3.13)` | **PASS** for the exact implementation tree; report-only follow-up pending |
+| Hosted Actions | Runs `33873556873` and `33874894406`; `render (3.12)` and `render (3.13)` | **PASS** for the exact implementation tree and report-publication wrapper |
 
 The generated release ledgers are under the final evidence bundle. The exact
 source hashes are recorded in `EVALUATION_RESULTS_SUMMARY.json`. The first
@@ -100,7 +100,7 @@ installation or source-to-package provenance pass.
 | Evaluation | Same explainability fixture/task bank; no changed oracle | Exact `6966b55` replay retained the frozen fixture/task/oracle and hit the same hidden-source stop condition before a task agent | **Observed applicability replay**; accepted-task outcome Unverified |
 | Final F1 accepted-task trial | Repeat the frozen Unicode-whitespace task through current `build`/`check`/`ask`; do not use removed `grep`/`callers` adapter commands | Exact `6966b55` prerequisite build exited 2/FAIL after 2.672028 s because real 0.16 omitted tracked `.hidden/visible.py`; no graph, query, agent, or task change; repetitions 2–3 not run under the preregistered stop rule | **Observed applicability failure; accepted-task outcome Unverified** |
 | Workflow triggers | Push filter includes durable experimental and review branches | Source inspection and hosted PR run `33873556873` | **Observed execution** |
-| Hosted Actions | Review-branch run on 3.12/3.13 | Both jobs in run `33873556873` passed every step | **Observed first publication pass**; report-only follow-up pending |
+| Hosted Actions | Review-branch run on 3.12/3.13 | Both jobs in runs `33873556873` and `33874894406` passed every step | **Observed implementation and report-publication pass** |
 
 **Observed:** the canonical Markdown command is
 `rumdl check --disable MD013,MD041,MD071 .`; it passed 76 files at `b719459`.

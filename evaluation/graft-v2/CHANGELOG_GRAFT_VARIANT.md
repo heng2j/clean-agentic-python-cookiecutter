@@ -14,6 +14,9 @@ seeded real-package boundaries. Remote review commit `4dc3603` has the identical
 tree, and hosted Actions run `33873556873` passed Python 3.12 and 3.13. Fresh
 connected installation success remains **Unverified**.
 
+Stable-report publication commit `f0b13fc` passed the same hosted matrix in run
+`33874894406`; it changed no generated-project implementation path.
+
 ### Final red-team closure
 
 - Minimized successful public graph language metadata to count/hash evidence;

@@ -1,9 +1,10 @@
 # Audit of the enhanced experimental Graft variant
 
 > Status: final local source `b719459` is validated and remote review commit
-> `4dc3603` has the identical tree. First hosted GitHub Actions run `33873556873`
-> passed Python 3.12 and 3.13. The final report-only publication run remains
-> pending. This report does not supersede the immutable original checkpoint.
+> `4dc3603` has the identical tree. Hosted implementation run `33873556873` and
+> report-publication run `33874894406` both passed Python 3.12 and 3.13. This
+> evidence-status update changes no implementation claim and does not supersede
+> the immutable original checkpoint.
 
 ## Superseding final local checkpoint
 
@@ -26,6 +27,9 @@ validated the expanded template and generated-project Graft README sections.
 [Hosted run 33873556873](https://github.com/heng2j/clean-agentic-python-cookiecutter/actions/runs/33873556873)
 completed successfully for both `render (3.12)` and `render (3.13)`, including
 template tests, official generation, generated fast gate, build, and Twine.
+Report-publication commit `f0b13fc622e5b8546929d5227e282532b288f07e`
+then passed the same two-job matrix in
+[run 33874894406](https://github.com/heng2j/clean-agentic-python-cookiecutter/actions/runs/33874894406).
 
 **Observed:** the final focused adapter suite passed 122 tests. Seven late
 findings—two P0 and five P1—now have regressions for public metadata/path

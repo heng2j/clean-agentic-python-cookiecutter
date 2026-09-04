@@ -43,3 +43,6 @@ The final local implementation source is `b719459` (tree `3581908`); GitHub
 publishes the identical tree as remote review commit `4dc3603`. Stable reports
 are a publication wrapper around that validated implementation tree and are not
 part of generated projects.
+
+Hosted runs `33873556873` (implementation) and `33874894406` (stable-report
+publication) passed both supported Python jobs.

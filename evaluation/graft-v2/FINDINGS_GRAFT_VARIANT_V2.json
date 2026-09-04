@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "report_status": "final-source-validated-first-hosted-ci-pass-report-publication-pending",
+  "report_status": "final-source-and-hosted-report-publication-validated",
   "original_audited_commit": "ab3e06f6a402a22f51d8447101f245eab258b8e6",
   "intended_parent_commit": "72a7e52eb0e2ac35ef4ca36f716dc2e183afc6c4",
   "candidate_branch": "audit/experimental-graft-variant-v2",
@@ -753,7 +753,7 @@
       "mapped_findings": ["GRAFT-O-008", "GRAFT-O-016"],
       "regression_evidence": "Generated release-CLI malformed, coercion, missing, extra, non-finite, and unknown-field tests",
       "status": "OBSERVED_IN_BOTH_RENDERED_RELEASE_MATRICES",
-      "residual": "The first hosted implementation-tree matrix passed; the report-only follow-up run remains pending. Hosted CI does not verify native non-Linux platforms or connected Graft installation."
+      "residual": "Hosted implementation and report-publication matrices passed. Hosted CI does not verify native non-Linux platforms or connected Graft installation."
     },
     {
       "observed_issue": "Check response unknown-field and imperative-text injection",

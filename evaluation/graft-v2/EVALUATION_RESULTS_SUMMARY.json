@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "final-source-validated-first-hosted-ci-pass-report-publication-pending",
+  "status": "final-source-and-hosted-report-publication-validated",
   "candidate_source_commit": "b719459a051a60d4af1e4fa30b3c32277fa97b8c",
   "candidate_source_tree": "35819081108685c24f47ba5251ec7e18004b0016",
   "validated_implementation_commit": "b719459a051a60d4af1e4fa30b3c32277fa97b8c",
@@ -126,6 +126,19 @@
       "render (3.13)": "success"
     },
     "url": "https://github.com/heng2j/clean-agentic-python-cookiecutter/actions/runs/33873556873"
+  },
+  "hosted_report_publication_validation": {
+    "classification": "Observed hosted GitHub Actions after stable reports were published",
+    "remote_commit": "f0b13fc622e5b8546929d5227e282532b288f07e",
+    "workflow": "template",
+    "run_id": 33874894406,
+    "run_number": 11,
+    "conclusion": "success",
+    "jobs": {
+      "render (3.12)": "success",
+      "render (3.13)": "success"
+    },
+    "url": "https://github.com/heng2j/clean-agentic-python-cookiecutter/actions/runs/33874894406"
   },
   "python312_no_graft_validation": {
     "classification": "Observed exact implementation commit",
