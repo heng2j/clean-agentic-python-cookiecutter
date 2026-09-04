@@ -82,7 +82,8 @@ def _version(text: str, label: str) -> tuple[int, int, int]:
     match = VERSION_RE.search(text)
     if match is None:
         raise AdapterError(f"cannot parse {label} version from {text.strip()!r}")
-    return tuple(int(value) for value in match.groups())  # type: ignore[return-value]
+    major, minor, patch = match.groups()
+    return int(major), int(minor), int(patch)
 
 
 def _executable(name: str) -> str:
@@ -184,14 +185,12 @@ def _arguments(values: Sequence[str]) -> list[str]:
 
 
 def _run(values: Sequence[str]) -> int:
-    report = _doctor()
-    if not report["ready"]:
-        raise AdapterError(json.dumps(report, sort_keys=True))
+    _node_path, node_version = _probe("node")
+    graft_path, graft_version = _probe("graft")
+    if node_version < MINIMUM_NODE or graft_version != EXPECTED_GRAFT:
+        raise AdapterError(json.dumps(_doctor(), sort_keys=True))
     GRAPH_DIR.parent.mkdir(parents=True, exist_ok=True)
-    command = [
-        str(report["graft"]["path"]),  # type: ignore[index]
-        *_arguments(values),
-    ]
+    command = [graft_path, *_arguments(values)]
     completed = subprocess.run(  # noqa: S603  # nosec B603
         command,
         cwd=ROOT,
