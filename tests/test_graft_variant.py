@@ -100,3 +100,21 @@ def test_graft_hidden_source_limit_is_disclosed_with_safe_recovery(tmp_path: Pat
     assert "publishes no graph" in integration
     assert ".hidden/visible.py" in troubleshooting
     assert "removes the staged graph" in troubleshooting
+
+
+def test_existing_project_adoption_route_is_current_and_safety_first() -> None:
+    guide_path = ROOT / "ADOPT_EXISTING_PROJECT.md"
+    assert guide_path.is_file()
+
+    guide = guide_path.read_text(encoding="utf-8")
+    variant = (ROOT / "GRAFT_VARIANT.md").read_text(encoding="utf-8")
+
+    assert "Never generate this Cookiecutter directly into an existing repository" in guide
+    assert "generate the template into a separate sibling directory" in guide
+    assert "Audit before implementation" in guide
+    assert "Add Graft only after the repository is ready" in guide
+    assert "baseline-no-graft" in guide
+    assert "graft-structural-cli" in guide
+    assert "ADOPT_EXISTING_PROJECT.md" in variant
+    assert "--checkout experimental-graft-variant" in variant
+    assert "--checkout audit/experimental-graft-variant-v2" not in variant
