@@ -25,4 +25,9 @@ results/**
 *.egg-info/
 .mutmut-cache/
 .cleanai/runs/
+.mcp.json
+tools/graft-runtime/node_modules/
+tools/graft-runtime/.node_modules.previous/
+tools/graft-runtime/.node_modules.failed/
+tools/graft-runtime/.node_modules.installing/
 .DS_Store

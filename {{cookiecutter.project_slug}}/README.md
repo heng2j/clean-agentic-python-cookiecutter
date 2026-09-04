@@ -34,6 +34,54 @@ uv run --locked --group dev {{ cookiecutter.package_name }} examples/blocked-evi
 
 Start with the [first-run tutorial](docs/getting-started/first-run.md). It includes an intentional failure, the exact diagnostic, recovery, and success path.
 
+## Optional Graft experiment
+
+This project works fully without Graft. Its default path remains current source,
+`rg`/`git grep`, human-owned contracts and decisions, tests, and deterministic
+CleanAI gates. The optional experiment pins published
+[`@nanonets/graft` 0.16.0](https://github.com/trailhq/Graft) behind a
+project-owned adapter. It can rank likely places to inspect, but its output is
+derived, untrusted navigation evidence—not authority, exhaustive search,
+observed behavior, or design rationale.
+
+### Short setup
+
+Read [the experiment entry point](GRAFT_EXPERIMENT.md) and its native
+install-script warning first. Then, from a clean Git worktree:
+
+```bash
+# Read-only prerequisite and status check; missing Graft is UNVERIFIED.
+uv run --locked --group dev python tools/graft_adapter.py doctor
+
+# Connected and explicit: install only the reviewed project-local lock.
+uv run --locked --group dev python tools/graft_adapter.py install --apply
+uv run --locked --group dev python tools/graft_adapter.py build
+uv run --locked --group dev python tools/graft_adapter.py ask \
+  "Where is release blocking decided?" --limit 5 --source
+```
+
+Graft is not installed by Cookiecutter, required by Python packaging, or run by
+any quality gate. Deep/model-backed work, MCP, LSP, hooks, prompt injection,
+global configuration, and committed graph output remain disabled. Public JSON
+uses project-relative paths, omits or hashes unnecessary upstream metadata,
+and labels retained text as untrusted.
+
+Before removal, stop direct Graft and other writers, preserve any evidence you
+need, and review:
+
+```bash
+uv run --locked --group dev python tools/graft_adapter.py remove --check
+uv run --locked --group dev python tools/graft_adapter.py remove --apply
+uv run --locked --group dev python tools/graft_adapter.py remove --check
+```
+
+Cleanup fails closed for tracked files, unknown descendants, or altered
+ownership receipts. Published Graft 0.16.0 was observed to omit a tracked Python
+file beneath a hidden directory; the adapter rejects that graph. Keep using the
+default workflow rather than moving, untracking, or ignoring legitimate source.
+No accepted-task correctness, token, cost, or productivity improvement has yet
+been established, so this integration remains optional and experimental.
+
 ## Optional project environment with `direnv`
 
 [`direnv`](https://direnv.net/) loads reviewed, project-specific shell settings
@@ -92,7 +140,7 @@ They were independently evaluated and adapted; see
 | Profile | Offline/deterministic intent | Purpose |
 |---|---|---|
 | `fast` | yes | format, lint, types, focused tests, architecture, context, and docs |
-| `full` | yes | fast plus coverage, local CRAP approximation, source scan, build, and wheel smoke |
+| `full` | yes | fast plus coverage, local CRAP approximation, source scan, and distribution build |
 | `hardening` | yes | full plus curated implementation and executable-specification mutants |
 | `release` | yes | hardening plus metadata, archive, external-wheel, CLI/API, and uninstall checks |
 | `connected-audit` | no | vulnerability-database query; freshness and availability are reported separately |

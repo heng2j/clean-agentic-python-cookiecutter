@@ -9,11 +9,27 @@ applies_to:
 ---
 # Evidence and status schema
 
-Every command ledger records a schema version, command argv as a list, working root, base revision/dirty state when Git exists, start/end UTC timestamps, exit code, status, deterministic/connected classification, tool versions, raw-output paths, and limitations.
+Evidence schemas are command-specific. A gauntlet JSON ledger records its
+schema version, profile, overall result, planned commands, and repository
+metadata (Python, platform, machine, Git revision, and dirty-state entries when
+available). Each step records configured text, expanded argv, one of `passed`,
+`failed`, `error`, `timeout`, or `skipped`, the child return code, duration,
+local/connected classification, error detail when applicable, and separate
+stdout/stderr filenames and SHA-256 hashes. A skipped required step cannot make
+the gauntlet pass.
 
-Allowed result states are `passed`, `failed`, `invalid`, `infrastructure_error`, `blocked`, and `unverified`. Only `passed` can satisfy a required gate. Missing or skipped required records are errors.
+The unique run-directory name contains a UTC creation timestamp. The gauntlet
+payload does **not** claim per-step wall-clock timestamps, arbitrary tool
+versions, or a universal limitations field; preserve those separately when a
+review or release needs them. The child return code in a failed step is not the
+same thing as the outer gauntlet exit code.
 
-Mutation adds target hash, isolated-copy path identity, baseline result, mutant result, declared kill oracle, classification, score numerator/denominator, and live-source after-hash. CRAP adds coverage.py version/schema, exact source file identities, callable spans/complexity/covered and measurable lines, equation label, sort rule, and threshold.
+Mutation evidence records the configuration, isolation claim, complete
+baseline result, per-mutant status/result, and score/floor. CRAP evidence
+records its local equation and algorithm labels, coverage schema/path,
+threshold semantics, and each callable's span, complexity, line-coverage
+percentage, and estimate. These are distinct schemas, not interchangeable
+universal result states.
 
 The science audit records findings for required workspace paths, dotenv/result
 ignore rules, tracked dotenv filenames, and static-input manifest containment,

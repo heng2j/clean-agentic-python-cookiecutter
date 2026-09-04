@@ -1,0 +1,12 @@
+{
+  "name": "clean-agentic-graft-runtime",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Reviewed, project-local lock for the optional Graft experiment",
+  "engines": {
+    "node": ">=22.12.0 <23"
+  },
+  "dependencies": {
+    "@nanonets/graft": "0.16.0"
+  }
+}

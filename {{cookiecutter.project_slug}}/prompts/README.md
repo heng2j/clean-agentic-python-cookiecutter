@@ -28,6 +28,7 @@ Standalone interventions:
 | Verify a release artifact | [qa-existing-repo.md](qa-existing-repo.md) | Audit-only |
 | Audit persistent agent context | [context-hygiene.md](context-hygiene.md) | Audit-only; optional separately authorized remediation |
 | Evaluate agent friction | [agent-friction-evaluation.md](agent-friction-evaluation.md) | Isolated experiment |
+| Evaluate optional Graft navigation | [evaluate-graft.md](evaluate-graft.md) | Isolated experiment; pair with this contract |
 | Coordinate role handoffs | [orchestrator.md](orchestrator.md) | Coordination; one writer at a time |
 
 These prompts are an unofficial local synthesis inspired by the public Agentic Discipline 6 role spine. The exact contract, ordering, controls, metrics, and one-writer policy are local design choices—not attributed recommendations or endorsement.

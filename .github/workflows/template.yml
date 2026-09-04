@@ -3,7 +3,11 @@ name: template
 on:
   pull_request:
   push:
-    branches: [main, scientific-open-source-variant]
+    branches:
+      - main
+      - scientific-open-source-variant
+      - experimental-graft-variant
+      - audit/experimental-graft-variant-v2
   workflow_dispatch:
 
 permissions:
@@ -31,6 +35,19 @@ jobs:
         run: uv sync --locked --group test
       - name: Test template rendering and validation
         run: uv run --locked --group test python -m pytest -q
+      - name: Render and run the generated fast gate
+        env:
+          TARGET_PYTHON: ${{ matrix.python-version }}
+        run: |
+          uv run --locked --group test cookiecutter . \
+            --no-input \
+            --output-dir "$RUNNER_TEMP/rendered" \
+            python_version="$TARGET_PYTHON"
+          cd "$RUNNER_TEMP/rendered/clean-agentic-scientific-python-project"
+          uv lock --check
+          uv sync --python "$TARGET_PYTHON" --locked --group dev
+          uv run --python "$TARGET_PYTHON" --locked --group dev \
+            python tools/cleanai.py gauntlet fast
       - name: Build the template distribution
         run: uv run --locked --group test python -m build --no-isolation
       - name: Validate the template distribution metadata
