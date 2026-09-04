@@ -1,0 +1,26 @@
+schema_version = 1
+package = "@nanonets/graft"
+version = "0.17.0"
+upstream_commit = "05760b07abc0e427f5af8ad378889ee402c5afc6"
+mode = "structural-pull"
+authority = "derived-advisory-evidence"
+node_minimum = "22.12.0"
+graph_dir = "artifacts/graft/context"
+telemetry = "forced-off-by-project-adapter"
+deep_mode = false
+upstream_init = false
+upstream_hooks = false
+global_configuration = false
+
+[cohorts]
+baseline = "baseline-no-graft"
+cli = "graft-structural-cli"
+mcp = "graft-mcp-pull"
+
+[comparison]
+require_same_commit = true
+require_same_task = true
+require_same_agent_and_model = true
+require_same_permissions = true
+minimum_repetitions = 3
+protect_correctness_before_efficiency = true
