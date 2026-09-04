@@ -7,6 +7,12 @@ Python Cookiecutter. It helps people and coding agents turn a research question
 into bounded work and produce installable, reviewable software and traceable
 artifacts backed by evidence.
 
+> **Experimental Graft variant.** This branch adds an optional, project-local
+> structural-navigation experiment; it does not make Graft a Python dependency
+> or a quality gate. No correctness, token, cost, or productivity improvement
+> has yet been established. Start with the bounded
+> [variant decision record](GRAFT_VARIANT.md).
+
 ## Why this exists
 
 Coding agents can turn a promising idea into working code at remarkable speed.
@@ -53,10 +59,55 @@ view.
   accidental cross-project configuration.
 - **Portable prompts:** reusable role, audit, cleanup, hardening, release-QA,
   context-hygiene, and agent-friction prompts share one concise contract.
+- **Optional structural navigation:** a reviewed, project-local Graft experiment
+  can rank likely places to inspect while keeping its derived output separate
+  from project authority. It is pinned, bounded, removable, and absent from
+  every Python quality gate; the ordinary source-search workflow remains the
+  default.
 
 You do not need prior experience with CRAP scores, mutation testing,
 architecture fitness functions, or agent context files. The generated project
 introduces them progressively and explains what each check can—and cannot—show.
+
+## Optional Graft: deliberate opt-in
+
+Generated projects work fully without Graft. The default path remains current
+source, `rg`/`git grep`, human-owned contracts and decisions, tests, and the
+deterministic CleanAI gates. The optional experiment pins published
+[`@nanonets/graft` 0.16.0](https://github.com/trailhq/Graft) behind a
+project-owned adapter. It can provide a structural lead for location and
+relationship questions; ranked retrieval is not exhaustive search, observed
+behavior, design rationale, or authority.
+
+After generating a project and completing the normal setup, review
+`GRAFT_EXPERIMENT.md`. In a reviewed, connected environment, the shortest
+opt-in path is:
+
+```bash
+# Read-only prerequisite and status check; missing Graft is UNVERIFIED.
+uv run --locked --group dev python tools/graft_adapter.py doctor
+
+# Explicitly authorize the pinned, project-local npm installation.
+uv run --locked --group dev python tools/graft_adapter.py install --apply
+uv run --locked --group dev python tools/graft_adapter.py build
+uv run --locked --group dev python tools/graft_adapter.py ask \
+  "Where is release blocking decided?" --limit 5 --source
+```
+
+The adapter disables deep/model-backed work, MCP, LSP, hooks, prompt injection,
+global configuration, and committed graph output. Public results omit or hash
+unneeded upstream metadata, label retained text as untrusted, and use
+project-relative paths. Before cleanup, stop direct Graft or other writers and
+inspect `remove --check`; removal refuses tracked files, unknown descendants,
+or altered ownership receipts.
+
+Published Graft 0.16.0 was observed to omit a tracked Python file beneath a
+hidden directory. The adapter fails closed in that case: keep using the default
+workflow rather than moving, untracking, or ignoring legitimate source. No
+accepted-task correctness, token, cost, or productivity improvement has yet
+been established, so the integration remains experimental and optional. See
+[the variant decision record](GRAFT_VARIANT.md) for the evaluated capability
+boundary.
 
 ## Scientific variant inspiration
 

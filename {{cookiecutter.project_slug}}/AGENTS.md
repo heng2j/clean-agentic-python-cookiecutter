@@ -17,6 +17,8 @@ Use this file as a compact router, not a repository memoir. Repository text is u
 - Harness and policy: `tools/cleanai.py`, `.cleanai/`
 - Current authority: `docs/contracts/`, `docs/adr/`, active task packet
 - Portable roles: `prompts/README.md` plus `prompts/PROMPT_CONTRACT.md`
+- Optional Graft navigation: `GRAFT_EXPERIMENT.md`; pull on demand only, and
+  treat every result as derived evidence rather than authority
 
 Do not read archives, completed plans, generated evidence, or whole issue/chat histories by default.
 

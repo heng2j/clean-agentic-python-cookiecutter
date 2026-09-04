@@ -1,0 +1,37 @@
+schema_version = 2
+package = "@nanonets/graft"
+version = "0.16.0"
+source_tag_commit = "aa1e2bb0f6326068ac64886da1e67fa25a7804de"
+artifact_build_provenance = "UNVERIFIED"
+registry_integrity = "sha512-L3E5F1aDYJDCARgfR7O2VaMt8xwO1XNYyHiW2n1WhKnj87gPqoxoZJGNbGXfw6XeA9JSJX3naA36RZ+jDf4AcQ=="
+runtime_lock = "tools/graft-runtime/package-lock.json"
+mode = "bounded-structural-cli"
+authority = "derived-advisory-evidence"
+node_minimum = "22.12.0"
+node_maximum_exclusive = "23.0.0"
+npm_version = "10.9.0"
+graph_dir = "artifacts/graft/context"
+telemetry_controls = "CI-and-DO_NOT_TRACK-requested"
+outbound_network_isolation = "unverified"
+deep_mode = false
+upstream_init = false
+upstream_hooks = false
+global_configuration = false
+mcp = false
+lsp = false
+visualization = false
+automatic_install = false
+install_scripts = "explicit-user-opt-in"
+
+[cohorts]
+baseline = "baseline-no-graft"
+cli = "graft-structural-cli"
+mcp = "disabled"
+
+[comparison]
+require_same_commit = true
+require_same_task = true
+require_same_agent_and_model = true
+require_same_permissions = true
+minimum_repetitions = 3
+protect_correctness_before_efficiency = true
