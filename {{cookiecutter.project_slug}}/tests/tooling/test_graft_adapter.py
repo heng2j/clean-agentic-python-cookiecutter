@@ -39,6 +39,7 @@ json.dump({
   "dotenv": os.environ.get("DOTENV_CONFIG_PATH"),
   "home": os.environ.get("HOME"),
   "refresh": os.environ.get("GRAFT_REFRESH"),
+  "graph_dir": os.environ.get("GRAFT_DIR"),
 }, open(sys.argv[1], "w", encoding="utf-8"))
 INNER
 exit "${FAKE_GRAFT_EXIT:-0}"
@@ -86,11 +87,8 @@ def test_run_is_project_scoped_and_strips_provider_keys(tmp_path: Path) -> None:
 
     assert completed.returncode == 0, completed.stderr
     record = json.loads(log.read_text(encoding="utf-8"))
-    assert record["args"][:3] == [
-        "--dir",
-        str(ROOT / "artifacts" / "graft" / "context"),
-        "build",
-    ]
+    assert record["args"] == ["build"]
+    assert record["graph_dir"] == str(ROOT / "artifacts" / "graft" / "context")
     assert record["do_not_track"] == "1"
     assert record["graft_key"] is False
     assert record["openai_key"] is False
