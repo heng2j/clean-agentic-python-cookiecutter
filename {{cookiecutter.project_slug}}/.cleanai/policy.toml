@@ -58,7 +58,7 @@ commands = [
 [gauntlet.connected-audit]
 commands = [
   "python -c \"from pathlib import Path; Path('artifacts/connected').mkdir(parents=True, exist_ok=True)\"",
-  "uv export --quiet --locked --only-group dev --no-emit-project --format requirements.txt --output-file artifacts/connected/requirements.txt",
+  "uv export --quiet --locked --group dev --no-emit-project --format requirements.txt --output-file artifacts/connected/requirements.txt",
   "python -m pip_audit --requirement artifacts/connected/requirements.txt --progress-spinner=off --format=json --output=artifacts/connected/pip-audit.json",
 ]
 

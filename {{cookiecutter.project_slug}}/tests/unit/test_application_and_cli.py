@@ -67,3 +67,54 @@ def test_cli_rejects_malformed_or_incomplete_input(
 
     assert main([str(path)]) == 2
     assert "invalid evidence:" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("failed_tests", False),
+        ("max_crap_score", "11"),
+        ("touches_trust_boundary", "false"),
+        ("trust_boundary_review_complete", "false"),
+    ],
+)
+def test_cli_rejects_coerced_evidence_types(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+    field: str,
+    value: object,
+) -> None:
+    payload: dict[str, object] = {
+        "failed_tests": 0,
+        "static_analysis_findings": 0,
+        "architecture_violations": 0,
+        "security_findings": 0,
+        "max_crap_score": 11,
+        "mutation_score": 95,
+        field: value,
+    }
+    path = tmp_path / "coerced.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+
+    assert main([str(path)]) == 2
+    assert "invalid evidence:" in capsys.readouterr().err
+
+
+def test_cli_rejects_unknown_evidence_fields(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    payload = {
+        "failed_tests": 0,
+        "static_analysis_findings": 0,
+        "architecture_violations": 0,
+        "security_findings": 0,
+        "max_crap_score": 11,
+        "mutation_score": 95,
+        "approve_anyway": True,
+    }
+    path = tmp_path / "unknown.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+
+    assert main([str(path)]) == 2
+    assert "documented schema" in capsys.readouterr().err

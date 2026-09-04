@@ -1,0 +1,815 @@
+{
+  "schema_version": 1,
+  "report_status": "final-source-and-hosted-report-publication-validated",
+  "original_audited_commit": "ab3e06f6a402a22f51d8447101f245eab258b8e6",
+  "intended_parent_commit": "72a7e52eb0e2ac35ef4ca36f716dc2e183afc6c4",
+  "candidate_branch": "audit/experimental-graft-variant-v2",
+  "candidate_source_commit": "b719459a051a60d4af1e4fa30b3c32277fa97b8c",
+  "candidate_source_tree": "35819081108685c24f47ba5251ec7e18004b0016",
+  "validated_implementation_commit": "b719459a051a60d4af1e4fa30b3c32277fa97b8c",
+  "validated_implementation_tree": "35819081108685c24f47ba5251ec7e18004b0016",
+  "decision": "keep-f0-default-retain-bounded-f1-experimental-disable-f2-through-f6",
+  "validation_boundary": "Stable original, benchmark, explainability, held-out research-wrapper trials, exact Python 3.12/3.13 final-source validation, focused late-red-team regressions, seeded real-package lifecycle, final-F1 applicability, and the first hosted review-branch matrix are recorded. Accepted-task correctness and token/cost improvement for final F1, a connected install/provenance pass, packet-level isolation, independent newcomer comprehension, and native non-Linux platforms remain UNVERIFIED. Two exact final-source adapter install attempts ended with npm's generic internal error and did not promote a runtime; the seeded real-package tree is not an install or provenance pass.",
+  "finding_counts": {
+    "original": {"total": 18, "P0": 2, "P1": 13, "P2": 3},
+    "candidate_falsification": {"total": 23, "P0": 2, "P1": 20, "P2": 1},
+    "candidate_final_resolution": "NO_UNRESOLVED_P0_OR_P1_AT_FINAL_LOCAL_OR_FIRST_HOSTED_TEST_BOUNDARY; CONNECTED_INSTALL_PLATFORM_AND_HUMAN_STUDY_BOUNDARIES_UNVERIFIED"
+  },
+  "findings": [
+    {
+      "id": "GRAFT-O-001",
+      "original_severity": "P0",
+      "category": "filesystem-confinement",
+      "original_problem": "Adapter-owned writes followed symlinks and could overwrite files outside the project.",
+      "implementation_status": "resolved-at-validated-implementation-boundary",
+      "remediation": "Validate every owned path component, reject symlinks, create project-owned state, write evidence atomically, revalidate around child execution, and remove only validated local paths.",
+      "observed_evidence": [
+        "Focused symlink and outside-sentinel component tests exercised the replacement boundary.",
+        "The adapter uses path-chain and regular-file checks plus atomic evidence replacement."
+      ],
+      "residual_risk": "Third-party code still executes with host filesystem permissions during explicit install/runtime; the adapter is not an OS sandbox, and a deliberately detached new-session process can escape portable process-group cleanup.",
+      "required_final_validation": "Cross-version symlink/fault/concurrency/removal seeds passed; a real connected-install interruption and hostile detached child remain UNVERIFIED.",
+      "release_status": "RESOLVED_WITH_EXPLICIT_OS_CONFINEMENT_RESIDUAL"
+    },
+    {
+      "id": "GRAFT-O-002",
+      "original_severity": "P0",
+      "category": "credential-privacy",
+      "original_problem": "The external CLI and MCP inherited arbitrary direnv/shell secrets.",
+      "implementation_status": "resolved-at-validated-implementation-boundary",
+      "remediation": "Construct a minimal child environment; set CI and DO_NOT_TRACK; isolate home/cache/temp; omit provider, proxy, npm, Git, SSH, and arbitrary project variables; remove MCP.",
+      "observed_evidence": [
+        "Focused synthetic-secret environment tests pass.",
+        "The exact seeded real structural lifecycle ran through the minimized environment; 42 visible Node records across 867 samples contained neither the synthetic sentinel nor proxy keys."
+      ],
+      "residual_risk": "Environment minimization is not network isolation and cannot constrain direct Graft or npm invocations outside the adapter.",
+      "required_final_validation": "Synthetic secret-name tests and seeded process sampling passed; packet-level network and exhaustive credential non-access remain UNVERIFIED.",
+      "release_status": "RESOLVED_WITH_NETWORK_ISOLATION_RESIDUAL"
+    },
+    {
+      "id": "GRAFT-O-003",
+      "original_severity": "P1",
+      "category": "dependency-reproducibility",
+      "original_problem": "The required @nanonets/graft 0.17.0 npm artifact was unpublished.",
+      "implementation_status": "resolved-at-local-identity-boundary",
+      "remediation": "Pin published 0.16.0 in a project-local private npm package, commit the lock, record registry integrity and upstream gitHead/tag mapping, and forbid fallback to latest/source/global Graft.",
+      "observed_evidence": [
+        "npm 0.16.0 tarball integrity matches the registry record.",
+        "The exact seeded 0.16.0 tree passed adapter identity and structural operation checks, but was explicitly not an install/provenance pass.",
+        "The public npm 10.9 install attempt remained UNVERIFIED after a generic npm error; a separate same-config diagnostic observed EAI_AGAIN, but causality is UNVERIFIED."
+      ],
+      "residual_risk": "The upstream tag is unsigned and published dist build provenance/attestation remains UNVERIFIED.",
+      "required_final_validation": "Repeat a connected install from the committed lock when the registry resolves; verify provenance, entry point, writes, and removal without treating the seeded tree as an install pass.",
+      "release_status": "RESOLVED_WITH_CONNECTED_INSTALL_AND_PROVENANCE_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-004",
+      "original_severity": "P1",
+      "category": "argument-boundary",
+      "original_problem": "A generic REMAINDER surface allowed no-op success, flag smuggling, and unbounded output/cost.",
+      "implementation_status": "resolved-at-narrowed-real-command-boundary",
+      "remediation": "Replace generic forwarding with explicit build, check, and bounded ask schemas; cap text, result counts, duration, and output; reject unknown options before execution; leave map, skeleton, callers, indexed grep, and blast outside the project-owned surface.",
+      "observed_evidence": [
+        "Focused malformed/alias/boundary tests pass.",
+        "The seeded real-package lifecycle passed build, check, and six bounded ask modes; the public install path remains UNVERIFIED after a generic npm error. A separate same-config diagnostic observed EAI_AGAIN, but did not prove the cause of that exact failure."
+      ],
+      "residual_risk": "Upstream command semantics remain version-specific and must be re-reviewed at every upgrade.",
+      "required_final_validation": "The cross-version seed matrices passed; repeat them unchanged for every Graft/adapter upgrade.",
+      "release_status": "RESOLVED_WITH_VERSION_SPECIFIC_SEMANTICS_RESIDUAL"
+    },
+    {
+      "id": "GRAFT-O-005",
+      "original_severity": "P1",
+      "category": "executable-provenance",
+      "original_problem": "A PATH-first executable was trusted from a spoofable version string.",
+      "implementation_status": "resolved-at-cross-version-identity-boundary",
+      "remediation": "Execute only the fixed local CLI module under an allowed Node, validate full lock SHA and package integrity/name/version/entry point, and anchor the version result.",
+      "observed_evidence": [
+        "PATH spoof and manifest/lock tamper cases are covered by focused tests.",
+        "Real 0.16.0 package identity passed the local smoke."
+      ],
+      "residual_risk": "Registry integrity identifies bytes but does not prove reproducible source-to-dist build provenance.",
+      "required_final_validation": "Cross-version spoof/tamper/substitution matrices passed; reproducible source-to-distribution provenance remains UNVERIFIED.",
+      "release_status": "RESOLVED_WITH_SOURCE_TO_DIST_PROVENANCE_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-006",
+      "original_severity": "P1",
+      "category": "source-scope",
+      "original_problem": "Repo-relative symlinks and positional directories could escape or silently narrow indexed source.",
+      "implementation_status": "resolved-by-project-scope-and-fail-closed-coverage",
+      "remediation": "Fix the repository root internally, reject user repository positionals, require tracked source for file-specific operations, reject escaping source symlinks, and report indexed coverage.",
+      "observed_evidence": [
+        "Focused traversal/symlink/source-scope tests pass.",
+        "The adapter's graph validation checks expected supported tracked-source coverage and rejected the final-F1 graph when real Graft omitted tracked .hidden/visible.py."
+      ],
+      "residual_risk": "Unsupported extensions, hidden directories, ignored/generated inputs, and dynamic references remain outside Graft's graph.",
+      "required_final_validation": "Linux cross-version traversal, Unicode, symlink, untracked, and dirty-worktree matrices passed; native Windows/UNC behavior remains UNVERIFIED.",
+      "release_status": "RESOLVED_WITH_STATIC_ANALYSIS_LIMITATIONS"
+    },
+    {
+      "id": "GRAFT-O-007",
+      "original_severity": "P1",
+      "category": "graph-wiring",
+      "original_problem": "Six of nine advertised operations did not consume the adapter's graph reliably.",
+      "implementation_status": "resolved-at-exact-real-package-boundary",
+      "remediation": "Pass the graph directory and project root explicitly for every exposed command, validate graph wiring/schema/file coverage, and reject missing, corrupt, or stale state.",
+      "observed_evidence": [
+        "The adapter now wires only build, check, and bounded ask to one explicit project graph; broader upstream command results remain research-only evidence."
+      ],
+      "residual_risk": "A command working does not establish graph completeness or semantic correctness.",
+      "required_final_validation": "Seeded real doctor/build/check/six ask modes/removal passed; a clean connected install and source-to-package provenance remain UNVERIFIED.",
+      "release_status": "RESOLVED_WITH_SEMANTIC_COMPLETENESS_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-008",
+      "original_severity": "P1",
+      "category": "ordinary-gates",
+      "original_problem": "All generated-project gauntlets were red while root template tests passed.",
+      "implementation_status": "resolved-at-cross-version-local-release-boundary",
+      "remediation": "Format the generated adapter test and add an official rendered-project fast gate to the template workflow for the Python matrix.",
+      "observed_evidence": [
+        "The original generated formatter defect was repaired and the workflow now renders and tests a generated project.",
+        "A later candidate rerun found and repaired an additional Ruff import-order and formatting mismatch; exact 6966b55 Python 3.12/3.13 matrices passed 99 template and 230 generated tests."
+      ],
+      "residual_risk": "Fast does not substitute for full, hardening, release, packaging, or hosted Actions.",
+      "required_final_validation": "Exact local 3.12/3.13 release and wheel matrices passed; hosted 3.12/3.13 branch CI remains UNVERIFIED.",
+      "release_status": "RESOLVED_LOCALLY; HOSTED_ACTIONS_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-009",
+      "original_severity": "P1",
+      "category": "evaluation-integrity",
+      "original_problem": "The in-project friction ledger exposed its oracle and omitted declared experimental controls while being framed as controlled evidence.",
+      "implementation_status": "resolved-by-scope-correction-and-external-evaluation",
+      "remediation": "Label the bundled ledger/tasks as visible smoke instrumentation, require held-out external oracles and preregistered controls for causal claims, and run the comparative benchmark outside agent-readable repositories.",
+      "observed_evidence": [
+        "The deterministic benchmark used external held-out truth sets, frozen controls, counterbalanced ordering, and three repeats.",
+        "The v2 tutorial warns that repository-readable answer keys make a run task-leaked.",
+        "Six fresh-clone held-out agent trials passed 3/3 in C0 and 3/3 in a broader research C1 wrapper; every C1 agent used source or rg fallback, and exact tokens/cost remain UNVERIFIED."
+      ],
+      "residual_risk": "The bundled ledger remains unsuitable as a blinded oracle and does not capture exact model billing tokens or all reviewer rework; the C1 wrapper exposed grep/callers absent from final F1.",
+      "required_final_validation": "The exact final-F1 replay stopped at its fail-closed hidden-source prerequisite; preserve the external oracle and rerun only if a future reviewed version can build the unchanged fixture without weakening coverage.",
+      "release_status": "RESOLVED_WITH_FINAL_F1_TASK_OUTCOME_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-010",
+      "original_severity": "P1",
+      "category": "mcp-boundary",
+      "original_problem": "Upstream MCP bypassed adapter bounds, injected competing instructions, performed upkeep, and lacked a controlled lifecycle.",
+      "implementation_status": "resolved-by-removal-from-profile",
+      "remediation": "Remove MCP activation/configuration and expose no MCP adapter command; classify MCP as disabled, not implied by F1.",
+      "observed_evidence": [
+        "No MCP command or active example remains in the generated v2 profile.",
+        "The capability table marks F2 disabled."
+      ],
+      "residual_risk": "Users can bypass the project and run upstream MCP directly; that is outside the evaluated profile.",
+      "required_final_validation": "Exact rendered route/content matrices passed; preserve the no-MCP assertion in every future release.",
+      "release_status": "RESOLVED_BY_REMOVAL_FROM_PROFILE"
+    },
+    {
+      "id": "GRAFT-O-011",
+      "original_severity": "P1",
+      "category": "mcp-activation",
+      "original_problem": "The suggested .mcp.json was commit-prone and invisible to context audit.",
+      "implementation_status": "resolved-by-removal-and-ignore",
+      "remediation": "Delete the .mcp.json example, ignore private .mcp.json, and avoid claiming the repository audit measures external client schemas.",
+      "observed_evidence": [
+        "Focused template tests require the example to be absent and .mcp.json to be ignored.",
+        "Docs/context validation passes with no MCP route."
+      ],
+      "residual_risk": "External client configuration outside the repository remains outside repository audit scope.",
+      "required_final_validation": "Exact official-render ignore and route/content assertions passed; external client configuration remains outside repository scope.",
+      "release_status": "RESOLVED_BY_REMOVAL_AND_IGNORE"
+    },
+    {
+      "id": "GRAFT-O-012",
+      "original_severity": "P1",
+      "category": "onboarding-discoverability",
+      "original_problem": "The experiment was orphaned and its tutorial assumed Git/origin/main state absent from a fresh render.",
+      "implementation_status": "implemented-doc-validation-passed",
+      "remediation": "Add concise canonical routes, explicit Git initialization/first commit, command expectations, source/exhaustive/test follow-up, and recovery/removal paths; explain that the unproven broader structural commands were removed.",
+      "observed_evidence": [
+        "Root/template route tests, docs audit, context audit, Markdown lint, and link-oriented assertions pass.",
+        "The current template AGENTS.md is 58 lines, 535 words, and 4022 bytes.",
+        "The exact 6966b55 final-F1 replay reproduced the hidden-directory omission and failed closed; rendered regressions passed, and final b719459 README/docs gates passed."
+      ],
+      "residual_risk": "No independent human newcomer comprehension study has been run.",
+      "required_final_validation": "Execute the complete fresh-render newcomer journey and answer the documented comprehension questions against unambiguous source text.",
+      "release_status": "RESOLVED_WITH_INDEPENDENT_NEWCOMER_COMPREHENSION_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-013",
+      "original_severity": "P1",
+      "category": "supply-chain-telemetry",
+      "original_problem": "The documented install set telemetry opt-out after postinstall could queue and flush an event.",
+      "implementation_status": "resolved-at-minimized-environment-boundary",
+      "remediation": "Make install explicit and project-local; set CI=1 and DO_NOT_TRACK=1 before npm ci; isolate home/cache/temp; use the same minimized environment at runtime.",
+      "observed_evidence": [
+        "Source/tarball audit established the original ordering flaw.",
+        "The exact npm 10.9 probe passed under corrected config; the public install attempt then failed with a generic npm error. A separate same-config diagnostic observed EAI_AGAIN; contribution to the exact failure is inferred, not proven.",
+        "Across 867 exact-6966b55 seeded-lifecycle samples, 42 visible Node records contained neither the synthetic sentinel nor proxy keys; this is sampling, not a network sandbox."
+      ],
+      "residual_risk": "Cooperative variables are not a network sandbox, and direct npm/Graft use bypasses them.",
+      "required_final_validation": "Inspect project-owned telemetry/update state and detached processes after a clean final install and operation sequence; packet-level silence remains separately UNVERIFIED unless instrumented.",
+      "release_status": "RESOLVED_WITH_PACKET_LEVEL_NETWORK_SILENCE_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-014",
+      "original_severity": "P1",
+      "category": "supply-chain-install",
+      "original_problem": "Global installation had a large, mutable native/scripted dependency surface with no reviewed local lock.",
+      "implementation_status": "implemented-with-explicit-residual-risk",
+      "remediation": "Use an exact private project-local lock, verify its full SHA and package integrity, require explicit --apply authorization, and keep installation outside Python generation/gates.",
+      "observed_evidence": [
+        "The reviewed 0.16.0 tree contains 45 packages beyond the root and 12 lifecycle-script packages.",
+        "Scripts-disabled install is nonfunctional; the explicit Linux runtime is approximately 375 MiB.",
+        "The pinned tree-sitter-cli 0.23.2 install script downloads a platform release asset outside npm tarball integrity; the source index pins the script and installed-copy hash."
+      ],
+      "residual_risk": "Native lifecycle scripts, possible external binary/header downloads, build provenance, vulnerability freshness, and non-Linux compatibility remain material.",
+      "required_final_validation": "Record exact final lock audit, clean install writes/network intent, disk footprint, package signature status, and supported platform matrix.",
+      "release_status": "RESOLVED_WITH_CONNECTED_INSTALL_PROVENANCE_AND_NATIVE_PLATFORM_RESIDUALS"
+    },
+    {
+      "id": "GRAFT-O-015",
+      "original_severity": "P1",
+      "category": "structural-correctness",
+      "original_problem": "Static retrieval missed duplicate-symbol, dynamic/configuration, hidden, and source-versus-wheel relationships.",
+      "implementation_status": "mitigated-not-fixed-upstream",
+      "remediation": "Label every result derived/advisory; expose graph/freshness/indexed-coverage limitations; default to structured bounded output; require exact source, exhaustive rg/git grep, tests, and package/runtime verification for consequential claims.",
+      "observed_evidence": [
+        "Ask micro precision/recall was 0.30/0.80 on the adversarial fixture.",
+        "Duplicate callers were 0/0 and duplicate blast missed 4/4 downstream files.",
+        "The frozen final-F1 trial reproduced a tracked-hidden-file omission: real Graft 0.16 omitted .hidden/visible.py, and the adapter returned FAIL without publishing a graph or starting a task agent.",
+        "V2 documentation contains a worked Graft to exact-source to rg to test sequence."
+      ],
+      "residual_risk": "The upstream structural false negatives remain. Exact tracked-source coverage converts a detectable omission into a visible applicability failure, but cannot make Graft usable on that repository or detect every semantic omission inside an indexed file.",
+      "required_final_validation": "The unchanged final-F1 fixture stopped honestly at its failed build prerequisite. Accepted-task correctness remains UNVERIFIED; retain the external oracle for a future versioned rerun only if the same fixture can build without weakening coverage.",
+      "release_status": "MITIGATED_FAIL_CLOSED; RETAIN_EXPERIMENTAL_ONLY"
+    },
+    {
+      "id": "GRAFT-O-016",
+      "original_severity": "P2",
+      "category": "evidence-schema",
+      "original_problem": "Doctor mutated state, errors were not consistently JSON, probes could contradict, and commands lacked stable evidence.",
+      "implementation_status": "resolved-at-structured-command-boundary",
+      "remediation": "Make doctor a pure single JSON inspection, return structured failures, and write atomic versioned last-run evidence for install/structural operations while keeping doctor/removal inspection pure.",
+      "observed_evidence": [
+        "Focused pure-doctor, exact schema, finite-number, source-span, and source-code binding tests exercise the JSON boundary.",
+        "The seeded real lifecycle returned structured doctor/build/check/ask/removal evidence, and missing doctor remained pure with exit 2/UNVERIFIED."
+      ],
+      "residual_risk": "A run envelope proves only the named operation and still needs independent source/test interpretation.",
+      "required_final_validation": "Cross-version and seeded-real status/purity matrices passed; charter-complete per-command metadata remains UNVERIFIED.",
+      "release_status": "RESOLVED_WITH_CHARTER_COMPLETE_PER_COMMAND_RECORDS_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-017",
+      "original_severity": "P2",
+      "category": "context-authority",
+      "original_problem": "Zero persistent-context delta came from orphaning the feature; authority ordering conflicted and MCP context was unmeasured.",
+      "implementation_status": "implemented-doc-validation-passed",
+      "remediation": "Add one concise on-demand AGENTS route, keep detail in integration/tutorial documents, align the authority hierarchy, and remove MCP rather than claiming its schema is measured.",
+      "observed_evidence": [
+        "AGENTS.md is 58 lines, 535 words, and 4022 bytes; CLAUDE.md is 9 lines, 98 words, and 644 bytes.",
+        "Rendered context audit passes and no automatic Graft instruction block is committed."
+      ],
+      "residual_risk": "Character/token proxies are not observed client billing context; external client behavior remains UNVERIFIED.",
+      "required_final_validation": "Current inventory and exact proxy delta are recorded; hosted/client runtime loading and tokenizer counts remain UNVERIFIED.",
+      "release_status": "RESOLVED_WITH_CLIENT_CONTEXT_ACCOUNTING_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-O-018",
+      "original_severity": "P2",
+      "category": "portability",
+      "original_problem": "Node engine claims conflicted and macOS, Windows, ARM64, and original Python 3.13 were untested.",
+      "implementation_status": "partially-resolved-by-support-narrowing",
+      "remediation": "Require Node >=22.12,<23 and npm 10.9.0 exactly for F1; label native platforms and other Node/npm combinations outside the executed Linux profile as UNVERIFIED; keep Graft outside Python support claims.",
+      "observed_evidence": [
+        "The real Graft structural command smoke passed under Node 22.12 on Linux x86_64.",
+        "Exact-source no-Graft generation and release passed under CPython 3.12.13 and 3.13.14."
+      ],
+      "residual_risk": "Native macOS, Windows, ARM64, other Node/npm combinations, and connected npm installation remain UNVERIFIED.",
+      "required_final_validation": "Add native OS/architecture/Node/npm matrices before broadening F1 support.",
+      "release_status": "RESOLVED_BY_NARROWING; NATIVE_AND_OTHER_TOOLCHAINS_UNVERIFIED"
+    }
+  ],
+  "candidate_falsification_findings": [
+    {
+      "id": "GRAFT-V2-001",
+      "severity": "P1",
+      "category": "ordinary-gates",
+      "observed": "The first generated v2 rerun failed Ruff import ordering and formatting.",
+      "minimal_reproduction": "Render the candidate and run the configured Ruff check and format-check against the generated adapter and tests.",
+      "expected": "The exact generated artifact passes the documented formatting/lint path.",
+      "actual": "The rerun exposed an I001 diagnostic and format mismatch.",
+      "human_impact": "A documented gate is red on first use.",
+      "agent_impact": "Template-source inspection can falsely suggest the generated artifact is releasable.",
+      "root_cause": "The changed adapter/test source had not been validated through the exact final rendered formatter configuration.",
+      "proposed_fix": "Correct import order and apply the configured formatter.",
+      "regression_test": "Run Ruff check and format-check on the exact final render in both Python validation pipelines.",
+      "tradeoff": "End-to-end rendering adds CI time but tests the artifact users actually receive.",
+      "status": "RESOLVED_AT_VALIDATED_IMPLEMENTATION_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-002",
+      "severity": "P1",
+      "category": "static-typing",
+      "observed": "Pyrefly reported eight diagnostics in the candidate adapter.",
+      "minimal_reproduction": "Render the candidate and run the unchanged generated Pyrefly command against tools/graft_adapter.py.",
+      "expected": "The production trust-boundary adapter satisfies the generated project's required type gate.",
+      "actual": "Handler, stream, path, and list types were insufficiently explicit.",
+      "human_impact": "The full/release path cannot be trusted or completed as documented.",
+      "agent_impact": "An agent may weaken the type gate instead of correcting the boundary types.",
+      "root_cause": "Dynamic standard-library interfaces and inferred containers were not narrowed for the configured checker.",
+      "proposed_fix": "Add explicit handler, stream, path, and list typing without weakening the type gate.",
+      "regression_test": "Run the unchanged Pyrefly command on the exact final rendered adapter.",
+      "tradeoff": "Explicit typing adds some adapter code but keeps the existing quality threshold intact.",
+      "status": "RESOLVED_AT_VALIDATED_IMPLEMENTATION_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-003",
+      "severity": "P1",
+      "category": "npm-runtime-compatibility",
+      "observed": "npm 10.9 rejected a version probe when user and global configuration both pointed at /dev/null.",
+      "minimal_reproduction": "Run the candidate doctor/install version probe with npm 10.9 and both npm config environment variables set to /dev/null.",
+      "expected": "The reviewed npm probe uses distinct, private, non-secret configuration and works in the narrowed supported environment.",
+      "actual": "The probe failed before Graft execution.",
+      "human_impact": "The explicit install path is unusable on an otherwise supported setup.",
+      "agent_impact": "A dependency failure can be misreported as a project-quality failure.",
+      "root_cause": "The minimal environment reused one special file for two npm configuration roles that npm 10.9 requires to differ.",
+      "proposed_fix": "Use /dev/null for user config plus a distinct empty adapter-owned global npm config file; assert path identity and containment.",
+      "regression_test": "Exercise the exact Node/npm version and clean real-package install with the distinct reviewed config paths.",
+      "tradeoff": "One tiny project-owned global config file adds state but makes the environment explicit and inspectable.",
+      "status": "RESOLVED_BY_REAL_NPM_CONFIG_PROBE; CONNECTED_INSTALL_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-V2-004",
+      "severity": "P1",
+      "category": "unexpected-project-write",
+      "observed": "Real Graft 0.16 can create a root .ignore file unless ignore-file mutation is explicitly disabled.",
+      "minimal_reproduction": "Run real Graft 0.16 build through the candidate without GRAFT_NO_IGNORE or --no-ignore and inspect the project root.",
+      "expected": "Structural operations write only adapter-owned ignored state and leave tracked/project-root files unchanged.",
+      "actual": "The external tool could add an unexpected root file.",
+      "human_impact": "Optional navigation dirties the project and may compete with a user-owned ignore policy.",
+      "agent_impact": "An agent can silently broaden change scope or commit derived tool configuration.",
+      "root_cause": "The candidate did not set both the reviewed environment and command-level no-ignore controls.",
+      "proposed_fix": "Set GRAFT_NO_IGNORE and pass --no-ignore; bind the choice into receipts and add regression coverage.",
+      "regression_test": "Run final real build/check/ask and assert no root .ignore or other out-of-state file is created.",
+      "tradeoff": "The adapter must retain version-specific suppression and re-review it on every Graft upgrade.",
+      "status": "RESOLVED_AT_EXACT_REAL_PACKAGE_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-005",
+      "severity": "P1",
+      "category": "context-output-boundary",
+      "observed": "Real Graft 0.16 check output was 34206 bytes and 539 lines, including 517 graph.pendingIds; the useful projected result was approximately 310 bytes.",
+      "minimal_reproduction": "Build the generated-project graph with real 0.16 and run check --json before applying a command-specific public projection.",
+      "expected": "A diagnostic status command returns bounded decision-relevant evidence without injecting hundreds of internal identifiers.",
+      "actual": "The generic payload forwarded the entire valid upstream check object.",
+      "human_impact": "A small freshness check becomes difficult to inspect and obscures the material result.",
+      "agent_impact": "Derived internal identifiers consume context without improving the decision and may be overread as exhaustive evidence.",
+      "root_cause": "The generic payload layer bounded bytes but did not project check output to a command-specific public schema.",
+      "proposed_fix": "Omit graph.pendingIds from the public result; retain its path, item count, and SHA-256 plus the raw stdout byte count/hash in evidence.",
+      "regression_test": "Feed a 517-item real-shaped fake response, require an output below 4096 bytes, and verify omission count/hash evidence.",
+      "tradeoff": "Individual pending identifiers are no longer in the ordinary response; raw output identity remains auditable without routine context injection.",
+      "status": "RESOLVED_AT_EXACT_REAL_PACKAGE_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-006",
+      "severity": "P1",
+      "category": "project-scope-removability",
+      "observed": "Failed or crashed real installs left three .clean-agentic-graft-install-* sibling directories outside projects, including one full node_modules tree; remove could not inventory them.",
+      "minimal_reproduction": "Interrupt or fail the former mkdtemp(dir=ROOT.parent) install path, then run remove --check from the project.",
+      "expected": "Every optional runtime artifact remains project-scoped, discoverable, reviewable, and removable.",
+      "actual": "Best-effort cleanup could leave large sibling state outside the adapter's removal inventory.",
+      "human_impact": "Failed experiments consume disk and leave third-party code outside the documented cleanup boundary.",
+      "agent_impact": "An agent can report removal complete while material install residue remains.",
+      "root_cause": "Installation used random ROOT.parent staging and removal knew only the final runtime and artifacts tree.",
+      "proposed_fix": "Use fixed ignored tools/graft-runtime/.node_modules.installing, fail closed on stale transaction state, include staging/backup/quarantine in the five-root inventory, and compute complete from the post-removal inventory.",
+      "regression_test": "Inject cleanup failure, verify remove --check reports staging, apply removes it, and the second postcondition is complete; cover backup and quarantine too.",
+      "tradeoff": "SIGKILL can still leave visible in-project state that requires explicit review/removal before another install.",
+      "status": "RESOLVED_AT_FOCUSED_AND_SEEDED_REMOVAL_BOUNDARY; CONNECTED_CRASH_RESIDUE_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-V2-007",
+      "severity": "P1",
+      "category": "reproducible-newcomer-command",
+      "observed": "Public bare-python examples could run host Python 3.11 after uv provisioned 3.12/3.13; the adapter then failed importing typing.override before emitting JSON.",
+      "minimal_reproduction": "Follow the former bare python tools/graft_adapter.py command in a shell without an activated venv or allowed direnv, using a host Python 3.11.",
+      "expected": "Copy-paste commands use the project's locked supported Python and preserve the JSON failure contract.",
+      "actual": "Documentation assumed implicit interpreter activation and could fail before the adapter boundary initialized.",
+      "human_impact": "A newcomer receives an import traceback instead of the promised structured diagnostic despite completing uv sync.",
+      "agent_impact": "Runs are non-reproducible across shells and may be misclassified as Graft or project failures.",
+      "root_cause": "Public documentation used a bare interpreter rather than the canonical locked uv execution path.",
+      "proposed_fix": "Use uv run --locked --group dev python for every public adapter example and reject uncovered bare occurrences in rendered-document tests.",
+      "regression_test": "Render the project, scan public docs for bare adapter commands, and execute the locked form without venv or direnv activation.",
+      "tradeoff": "uv remains an explicit prerequisite and command examples are longer.",
+      "status": "RESOLVED_AT_CROSS_VERSION_RENDERED_COMMAND_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-008",
+      "severity": "P1",
+      "category": "dependency-reproducibility",
+      "observed": "A fake npm 99.0.0 produced a lock-shaped installed tree and the candidate returned PASS because any syntactically valid semver was accepted.",
+      "minimal_reproduction": "Place a controlled npm probe reporting 99.0.0 in the installer path, make it produce the expected package tree, and run install --apply.",
+      "expected": "The reviewed install is bound to the exact npm behavior used to interpret the lock, run lifecycle scripts, and lay out the tree.",
+      "actual": "The probe validated only semver syntax and accepted an unreviewed major version before replacing the runtime.",
+      "human_impact": "A nominally locked installation can vary with npm behavior and still report PASS.",
+      "agent_impact": "Tool-version drift can be hidden behind matching package bytes and misleading green evidence.",
+      "root_cause": "The installer recorded npm identity/version but imposed no exact reviewed npm version contract.",
+      "proposed_fix": "Require EXPECTED_NPM 10.9.0 exactly, fail before runtime replacement, and document the npm/Node combination as part of the experimental contract.",
+      "regression_test": "Reject an npm 99.0.0 fake before replacement and run the clean real install with npm 10.9.0 when registry access is available.",
+      "tradeoff": "Other npm versions and Node/npm combinations remain UNVERIFIED and require deliberate requalification.",
+      "status": "RESOLVED_AT_EXACT_VERSION_PROBE_BOUNDARY; CONNECTED_INSTALL_UNVERIFIED"
+    },
+    {
+      "id": "GRAFT-V2-009",
+      "severity": "P1",
+      "category": "real-package-schema-compatibility",
+      "observed": "Published Graft 0.16 file nodes use an end line equal to raw newline count plus one; the candidate rejected all 38 file spans and therefore rejected an otherwise valid real build.",
+      "minimal_reproduction": "Install published 0.16.0, build the generated project, and validate its 38 file nodes with the former rule that bounded every end line by the final physical source line.",
+      "expected": "The validator accepts the exact reviewed file-node convention while retaining strict symbol span and source-code binding checks.",
+      "actual": "Every file node using the upstream L1-to-L(raw-newline-count+1) convention failed validation, so F1 could not build against the real package.",
+      "human_impact": "A supported-looking installation cannot produce a usable graph even though the external package completed its build.",
+      "agent_impact": "Fixture-only schema confidence can hide incompatibility with the real selected artifact.",
+      "root_cause": "The fake fixture and validator modeled file-node spans as symbol spans instead of preserving the reviewed package's distinct file convention.",
+      "proposed_fix": "Accept exactly the 0.16 file-kind L1-to-L(raw-newline-count+1) convention; continue requiring symbol spans to end within real source lines and keep code-slice binding for returned source.",
+      "regression_test": "Use a real-shaped 38-file graph plus strict invalid file/symbol span cases, then repeat real build and bounded ask against the final adapter.",
+      "tradeoff": "The exception is package-version-specific and must be re-reviewed on upgrade; it does not relax symbol spans or establish graph completeness.",
+      "status": "RESOLVED_AT_EXACT_REAL_PACKAGE_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-010",
+      "severity": "P1",
+      "category": "evidence-status-taxonomy",
+      "observed": "Blanket precondition handling mislabeled some invalid or unsafe requests as UNVERIFIED and some missing or unrun prerequisites as FAIL.",
+      "minimal_reproduction": "Run missing-runtime, missing-graph, stale-ask, unsafe-input, and child-failure cases through the former shared exception path and compare emitted status with the evidence contract.",
+      "expected": "Invalid or unsafe requests and observed command failures are FAIL; unavailable or unrun capability prerequisites are UNVERIFIED; neither is reported as PASS.",
+      "actual": "One broad precondition category erased the distinction and could tell a reviewer the wrong epistemic state.",
+      "human_impact": "Reviewers cannot reliably distinguish a rejected operation from a capability that was not available to test.",
+      "agent_impact": "Agents may treat missing evidence as a product failure or treat a bad request as merely unverified, weakening escalation decisions.",
+      "root_cause": "The adapter lacked an explicit exception/status taxonomy at the JSON publication boundary.",
+      "proposed_fix": "Introduce a dedicated UnverifiedError route and map unsafe/invalid inputs and observed child failures to FAIL while mapping genuinely missing/unrun prerequisites to UNVERIFIED.",
+      "regression_test": "Assert exact status/reason fields for missing runtime, missing graph, stale ask, unsafe request, child nonzero/timeout, and malformed output cases.",
+      "tradeoff": "The adapter carries more explicit error classes, but the status semantics become reviewable and fail closed.",
+      "status": "RESOLVED_AT_CROSS_VERSION_AND_REAL_PACKAGE_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-011",
+      "severity": "P1",
+      "category": "evidence-truthfulness",
+      "observed": "A failed npm ci record asserted install_scripts_executed=true even though failure occurred before script execution was observable.",
+      "minimal_reproduction": "Force npm ci to fail before any lifecycle-script observation and inspect the former installation evidence payload.",
+      "expected": "Evidence distinguishes authorization and attempt from directly observed execution and never upgrades an unobserved event to fact.",
+      "actual": "The receipt represented permission to execute install scripts as proof that they had executed.",
+      "human_impact": "Supply-chain and incident review can draw a false conclusion about which third-party code ran.",
+      "agent_impact": "An agent can produce a confident but unsupported execution claim from a failed install.",
+      "root_cause": "The evidence schema conflated policy authorization, npm invocation, and lifecycle-script observation.",
+      "proposed_fix": "Record install_scripts_authorized=true and npm_ci_attempted=true only; make no install_scripts_executed claim without independent observation.",
+      "regression_test": "Inject pre-script npm failure and assert that attempt/authorization are present while execution is absent or explicitly UNVERIFIED.",
+      "tradeoff": "Receipts are less superficially definitive, but accurately preserve the boundary of observation.",
+      "status": "RESOLVED_AT_FAILING_INSTALL_REGRESSION_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-012",
+      "severity": "P2",
+      "category": "ci-trigger-coverage",
+      "observed": "The candidate workflow push filter covered the review branch but omitted the intended experimental-graft-variant integration branch.",
+      "minimal_reproduction": "Inspect .github/workflows/template.yml push.branches before the correction and compare it with the draft pull request target.",
+      "expected": "The template workflow runs for both the intended experimental branch and the temporary review branch when either receives a direct push.",
+      "actual": "A direct push to experimental-graft-variant was outside the explicit push filter.",
+      "human_impact": "Maintainers could update the experimental branch without its expected push-triggered validation.",
+      "agent_impact": "An agent could report CI coverage based on a filter that did not include the durable target branch.",
+      "root_cause": "The workflow update focused on the temporary audit branch and did not preserve the experiment branch lifecycle.",
+      "proposed_fix": "Include both experimental-graft-variant and audit/experimental-graft-variant-v2 in the push filter while retaining pull_request coverage.",
+      "regression_test": "Parse the workflow and assert both branch names are present; verify hosted runs when write access is available.",
+      "tradeoff": "Direct pushes to both branches consume additional CI minutes; the review-branch path is now observed, while no direct push to the protected experimental branch was performed.",
+      "status": "RESOLVED_AT_SOURCE_AND_REVIEW_BRANCH_HOSTED_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-013",
+      "severity": "P1",
+      "category": "context-output-schema",
+      "observed": "The candidate check validator accepted arbitrary top-level, context, and graph fields and the generic projection could echo an injected instruction string in a PASS response.",
+      "minimal_reproduction": "Return a zero-exit check JSON object with otherwise valid context/graph fields plus a top-level or nested instruction field and inspect the former public payload.",
+      "expected": "Successful check accepts only the reviewed 0.16 schema and returns a compact projection with no upstream-provided prose or identifier strings; projected strings are fixed project-owned status/reason values.",
+      "actual": "Unknown fields were accepted and forwarded even though the reports described a strict command-specific boundary.",
+      "human_impact": "A diagnostic response can present third-party imperative text as if it were trusted project evidence.",
+      "agent_impact": "An agent may follow injected output or spend context on unreviewed fields while a green status implies validation.",
+      "root_cause": "Check validation tested selected field types but did not require exact key sets, and the generic payload copied surviving upstream fields.",
+      "proposed_fix": "Require exact reviewed 0.16 top-level/context/graph schemas; emit fixed project-owned status/reason plus booleans/counts/hashes; omit upstream prose and identifier strings with count/hash evidence and omit successful build/install prose.",
+      "regression_test": "Reject injected top-level/context/graph keys, validate exact real-shaped output, require check projection below 4096 bytes with no upstream-provided prose or identifier strings, and verify fixed project vocabulary plus omitted-field/raw-output hashes.",
+      "tradeoff": "Schema evolution now fails closed and requires deliberate adapter review; validated ask text and failure diagnostics remain bounded but explicitly UNTRUSTED.",
+      "status": "RESOLVED_AT_CROSS_VERSION_AND_REAL_PACKAGE_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-014",
+      "severity": "P1",
+      "category": "doctor-evidence-status",
+      "observed": "Doctor caught all AdapterError and OSError cases into its default UNVERIFIED response, including unsafe managed-state symlinks and tampered runtime receipt/tool/version state.",
+      "minimal_reproduction": "Create an unsafe managed-state symlink or alter the installed runtime receipt/tool/version identity, then run doctor and inspect the former status.",
+      "expected": "Missing or unsupported prerequisites are UNVERIFIED; observed unsafe, rejected, or tampered state is FAIL.",
+      "actual": "Doctor labeled both categories UNVERIFIED because one broad catch preserved the default status.",
+      "human_impact": "A reviewer cannot distinguish an unavailable optional tool from concrete evidence that local state is unsafe or tampered.",
+      "agent_impact": "An agent may defer or retry an integrity failure instead of stopping and escalating it.",
+      "root_cause": "Doctor did not catch UnverifiedError separately from AdapterError/OSError at its command-specific publication boundary.",
+      "proposed_fix": "Catch UnverifiedError as UNVERIFIED; classify rejected/tampered AdapterError and OSError as FAIL with bounded structured reasons.",
+      "regression_test": "Use an expected-status version matrix, require receipt/tool/version changes to FAIL, require an unsafe managed-state symlink to FAIL, and retain missing/unsupported prerequisite cases as UNVERIFIED.",
+      "tradeoff": "Doctor consumers must handle FAIL separately from not-ready UNVERIFIED; this is required for truthful evidence.",
+      "status": "RESOLVED_AT_CROSS_VERSION_AND_REAL_PACKAGE_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-015",
+      "severity": "P1",
+      "category": "public-doc-applicability",
+      "observed": "The final held-out adapter trial showed that real Graft 0.16 omitted tracked .hidden/visible.py, so the hardened adapter correctly rejected the incomplete graph, but generated public integration docs did not disclose that tracked Python files under hidden directories can make F1 build unavailable or state the safe recovery.",
+      "minimal_reproduction": "Run the frozen final-F1 build against the unchanged fixture containing tracked .hidden/visible.py, then search generated GRAFT_EXPERIMENT.md, docs/integrations/graft.md, and docs/tutorials/evaluate-graft.md for the hidden-path limitation and recovery.",
+      "expected": "Public experiment guidance names the observed Graft 0.16 hidden-directory omission, explains that the adapter will FAIL rather than publish an incomplete graph, and tells users to stay with F0/source authority without moving or untracking files to appease the tool.",
+      "actual": "The adapter failed safely, but the public newcomer route described tracked coverage generically and omitted this concrete availability boundary and recovery behavior.",
+      "human_impact": "A newcomer can spend time diagnosing an unexplained build refusal or weaken repository structure to make an optional tool run.",
+      "agent_impact": "An agent may move, rename, or untrack authoritative source instead of treating F1 as inapplicable and falling back to F0.",
+      "root_cause": "The documentation regression contract covered abstract static-analysis limitations before the final real-package applicability trial exposed the stronger hidden-directory build boundary.",
+      "proposed_fix": "Add concise public guidance and a rendered-document regression: Graft 0.16 may omit tracked Python under hidden directories; hardened build FAIL is intentional; keep source authoritative, use F0, and do not alter tracked layout to satisfy Graft.",
+      "regression_test": "Render the final template and assert the public integration route contains the hidden-directory limitation, fail-closed result, F0 fallback, and do-not-move/untrack recovery; rerun documentation gates.",
+      "tradeoff": "Adds a small version-specific warning to public docs; it must be rechecked and possibly retired after a deliberate Graft upgrade evaluation.",
+      "status": "RESOLVED_AT_RENDERED_AND_CURRENT_DOCUMENTATION_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-016",
+      "severity": "P1",
+      "category": "path-dependent-public-output",
+      "observed": "A real-shaped check projection emitted 4243 bytes, exceeding the 4096-byte public limit solely because absolute validation, graph, executable, and evidence paths grew with a long parent directory.",
+      "minimal_reproduction": "Run the exact check-projection regression from a sufficiently long parent path and measure the public JSON stdout before path-independent projection.",
+      "expected": "Public envelopes remain below the fixed context bound independent of workstation path length and do not disclose host-specific absolute paths; durable local evidence retains full identities for audit.",
+      "actual": "The projection's semantic item count was unchanged, but absolute path strings pushed stdout to 4243 bytes and leaked workstation structure.",
+      "human_impact": "The same valid project can pass or fail its output contract based only on where it is checked out, and shared output can disclose local paths.",
+      "agent_impact": "Path noise consumes context, destabilizes deterministic limits, and can reveal irrelevant host structure to an agent or evidence recipient.",
+      "root_cause": "The public envelope reused durable-evidence identity fields instead of separating portable project-relative presentation from full local audit records.",
+      "proposed_fix": "Use project-relative managed paths and omit host executable paths from every successful public envelope while retaining full identities for install and structural commands in durable ignored evidence.",
+      "regression_test": "Run doctor, real-shaped check, and removal under a long parent path; assert project-relative managed paths, no host executable paths, and check stdout below 4096 bytes without weakening the threshold.",
+      "tradeoff": "Ordinary stdout no longer contains full executable locations; reviewers needing them must inspect the explicitly referenced durable local evidence.",
+      "status": "RESOLVED_AT_CROSS_VERSION_REAL_AND_HELD_OUT_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-017",
+      "severity": "P1",
+      "category": "untrusted-public-metadata",
+      "observed": "A successful build copied arbitrary graph meta.languages strings into the public PASS envelope.",
+      "minimal_reproduction": "Return a valid fake graph whose languages list contains imperative text, run build, and inspect stdout.",
+      "expected": "Successful public output must not republish unneeded third-party prose; it may expose a count and deterministic content hash while exact validated metadata stays explicitly untrusted in ignored durable evidence.",
+      "actual": "The imperative string appeared verbatim in public PASS JSON without a field-level trust label.",
+      "human_impact": "A reviewer could mistake upstream-controlled text in a green envelope for project-owned evidence.",
+      "agent_impact": "An agent could ingest or follow imperative text carried by a successful tool result.",
+      "root_cause": "The public graph projection reused validated graph metadata instead of minimizing the presentation surface.",
+      "proposed_fix": "Replace public languages with count, hash, and an untrusted-metadata classification; retain exact values only in ignored durable evidence.",
+      "regression_test": "Inject imperative language metadata and assert it is absent from stdout, count/hash are correct, and durable evidence labels the exact list untrusted.",
+      "tradeoff": "Reviewers must inspect local durable evidence to see exact language labels.",
+      "status": "RESOLVED_AT_8AE0EB5_AND_FINAL_243_TEST_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-018",
+      "severity": "P1",
+      "category": "public-path-disclosure",
+      "observed": "A successful install envelope exposed absolute Node and npm paths even after structural public output had been path-minimized.",
+      "minimal_reproduction": "Run a successful fake install from a long or sensitive host path and inspect public tools fields.",
+      "expected": "Successful public JSON is checkout-independent and omits host executable locations while durable local evidence retains exact tool identities.",
+      "actual": "Absolute Node/npm locations appeared in a PASS response.",
+      "human_impact": "Sharing routine output could disclose workstation layout and make size depend on checkout location.",
+      "agent_impact": "Host-specific noise consumes context and exposes irrelevant filesystem details.",
+      "root_cause": "Install used the durable tool-identity object directly in its public projection.",
+      "proposed_fix": "Publish only tool version, digest, and provenance; keep exact paths in ignored last-run evidence.",
+      "regression_test": "Assert successful install stdout contains no absolute project, Node, or npm path and durable evidence retains full identities.",
+      "tradeoff": "Full executable paths require local evidence inspection.",
+      "status": "RESOLVED_AT_8AE0EB5_AND_FINAL_243_TEST_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-019",
+      "severity": "P1",
+      "category": "unbounded-error-context",
+      "observed": "A one-megabyte malicious graph node identifier produced a public and durable failure above one megabyte; escaped malformed Unicode could also exceed the intended public error budget.",
+      "minimal_reproduction": "Insert a 1 MiB node id, then separately pass repeated lone-surrogate/control/emoji text into the error boundary and measure serialized JSON.",
+      "expected": "Invalid upstream values are omitted with count/hash evidence and every structured error remains below the public bound without a serialization crash.",
+      "actual": "The invalid value was interpolated into an exception; a character-only cap still allowed large JSON escape expansion.",
+      "human_impact": "A malformed graph could flood logs or produce an unusable diagnostic.",
+      "agent_impact": "A failure could consume the context budget or inject large untrusted text.",
+      "root_cause": "Validation errors reflected raw identifiers and the diagnostic cap did not account for JSON escaping.",
+      "proposed_fix": "Use generic validation messages with omitted-value count/hash evidence, reduce the maximum error text, and serialize evidence with safe ASCII escaping.",
+      "regression_test": "Require the 1 MiB identifier to be absent from public/durable evidence and require escaped malformed-Unicode error JSON below 4096 bytes.",
+      "tradeoff": "Diagnostics disclose less raw third-party detail; hashes support correlation without replaying content.",
+      "status": "RESOLVED_AT_8AE0EB5_AND_B719459_FINAL_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-020",
+      "severity": "P0",
+      "category": "tracked-user-work-deletion",
+      "observed": "remove --apply deleted a force-tracked scientific result beneath an ignored removal root and returned PASS complete=true.",
+      "minimal_reproduction": "Create artifacts/graft/context/protected.txt, force-add and commit it, then run remove --apply on the predecessor adapter.",
+      "expected": "Any tracked descendant blocks all removal before the first deletion and the protected file survives.",
+      "actual": "Recursive deletion treated ignored location as ownership and erased tracked work while reporting success.",
+      "human_impact": "A documented cleanup command could irreversibly destroy committed scientific evidence.",
+      "agent_impact": "An agent following removal guidance could cause user-work loss under a misleading green result.",
+      "root_cause": "Deletion authority was inferred from broad target roots and receipts without a Git tracked-file preflight.",
+      "proposed_fix": "Query Git for every removal root, attest counts/hashes without publishing names, and refuse all deletion when any tracked path exists.",
+      "regression_test": "Force-track a sentinel under a removal root; require check/apply FAIL, zero prior-target deletion, unchanged runtime hash, unchanged Git status, and surviving bytes.",
+      "tradeoff": "Users must move or remove tracked material through a normal reviewed source change before cleanup.",
+      "status": "RESOLVED_AT_8AE0EB5_EXACT_LATE_REDTEAM_AND_FINAL_RELEASE_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-021",
+      "severity": "P0",
+      "category": "cleanup-race-user-work-deletion",
+      "observed": "After a clean initial removal inventory, a non-cooperating writer could add a private file to a later removal target while the first target was being deleted; the predecessor then deleted that file and returned PASS.",
+      "minimal_reproduction": "Intercept the first shutil.rmtree call, create artifacts/graft/late-user-file.txt, then allow cleanup to continue.",
+      "expected": "A late tracked or unknown descendant is detected before its target is deleted and survives with a non-pass result.",
+      "actual": "The inventory was computed once and every target was recursively removed from stale authority evidence.",
+      "human_impact": "Concurrent work in a broad ignored directory could be lost during a seemingly safe cleanup.",
+      "agent_impact": "Parallel tooling could race an agent-triggered cleanup and lose artifacts without a warning.",
+      "root_cause": "Removal separated authorization from later recursive deletion without revalidating the complete surface.",
+      "proposed_fix": "Repeat Git and ownership preflight immediately before every target deletion and document that unrelated writers must be stopped.",
+      "regression_test": "Inject an unknown private file during the first deletion; require exit 2/FAIL, a gained-unknown diagnostic, and preserved injected bytes.",
+      "tradeoff": "Cleanup is slower and can partially remove earlier adapter-owned targets before a later race is detected; same-user mutation after the final preflight remains an OS-confinement residual.",
+      "status": "RESOLVED_FOR_REPRODUCED_CROSS_TARGET_RACE_AT_B719459; SAME_TARGET_OS_RACE_DOCUMENTED"
+    },
+    {
+      "id": "GRAFT-V2-022",
+      "severity": "P1",
+      "category": "cleanup-receipt-authority",
+      "observed": "Removal accepted a runtime receipt when its authority was changed, an owner note was added, or the tools object was removed because only core digest fields were compared.",
+      "minimal_reproduction": "Tamper each receipt shape independently, run remove --check and --apply, and observe the predecessor classify zero unknown descendants and delete the runtime.",
+      "expected": "Deletion requires the exact adapter-owned receipt schema, authority, tool keys, and identity field shapes; altered claims make the runtime unknown.",
+      "actual": "Subset comparison ignored the fields that declared authority and executable identity.",
+      "human_impact": "A modified receipt could be treated as current deletion authorization despite expressing different ownership.",
+      "agent_impact": "An agent could erase an ambiguous runtime based on incomplete receipt validation.",
+      "root_cause": "Runtime use and cleanup implemented permissive core-field checks instead of one exact schema validator.",
+      "proposed_fix": "Use a shared exact receipt validator for both runtime execution and cleanup, including exact keys, authority, and Node/npm identity shapes.",
+      "regression_test": "Parameterize authority, extra-key, and missing-tools tampering; require check/apply FAIL and byte-identical surviving runtime.",
+      "tradeoff": "Any receipt schema extension requires an explicit adapter migration and old ambiguous state must be reviewed manually.",
+      "status": "RESOLVED_AT_B719459_FOCUSED_AND_REAL_SEEDED_REMOVAL_BOUNDARY"
+    },
+    {
+      "id": "GRAFT-V2-023",
+      "severity": "P1",
+      "category": "graph-publication-atomicity",
+      "observed": "A graph language containing a lone Unicode surrogate passed structural validation, replaced the prior graph/receipt, and then caused public evidence hashing to raise UnicodeEncodeError; the command exited 2 after promoting unusable state.",
+      "minimal_reproduction": "Build a valid graph, then build a replacement with meta.languages=[U+D800] and compare graph/receipt bytes after the failed command.",
+      "expected": "Non-UTF-8 metadata fails validation before publication; a rejected build preserves the previous complete graph and receipt.",
+      "actual": "Validation allowed the surrogate and failure occurred only in the post-promotion public projection.",
+      "human_impact": "A failed refresh could silently replace known-good navigation state with evidence that cannot be published safely.",
+      "agent_impact": "Subsequent agent queries could see inconsistent state after a visible failure.",
+      "root_cause": "String-list validation checked length/control characters but not UTF-8 encodability, and hashing used non-ASCII serialization.",
+      "proposed_fix": "Reject non-UTF-8 list entries before graph replacement and use deterministic ASCII-safe JSON for omitted-value hashing.",
+      "regression_test": "Require surrogate-language build exit 2/FAIL and exact preservation of the prior graph-tree and receipt bytes.",
+      "tradeoff": "Malformed Unicode labels are rejected rather than normalized; legitimate Unicode remains accepted.",
+      "status": "RESOLVED_AT_B719459_FOCUSED_AND_FINAL_RELEASE_BOUNDARY"
+    }
+  ],
+  "candidate_regression_mapping": [
+    {
+      "observed_issue": "Generated formatting and static typing failures",
+      "mapped_findings": ["GRAFT-O-008", "GRAFT-V2-001", "GRAFT-V2-002"],
+      "regression_evidence": "Exact Python 3.12 and 3.13 rendered release matrices ran Ruff formatting/lint and Pyrefly within the 230-test generated boundary",
+      "status": "OBSERVED_AT_BOTH_RENDERED_RELEASE_BOUNDARIES",
+      "residual": "Hosted Actions remains UNVERIFIED."
+    },
+    {
+      "observed_issue": "npm configuration identity and reviewed installer version",
+      "mapped_findings": ["GRAFT-O-003", "GRAFT-O-005", "GRAFT-V2-003", "GRAFT-V2-008"],
+      "regression_evidence": "Distinct /dev/null user and private global-config probe, exact npm 10.9.0 acceptance, and npm-99 pre-replacement rejection",
+      "status": "OBSERVED_AT_FOCUSED_AND_REAL_PROBE_BOUNDARY",
+      "residual": "Connected install and other Node/npm combinations remain UNVERIFIED."
+    },
+    {
+      "observed_issue": "Unrequested root .ignore creation",
+      "mapped_findings": ["GRAFT-O-001", "GRAFT-V2-004"],
+      "regression_evidence": "GRAFT_NO_IGNORE plus --no-ignore receipt assertions and exact seeded lifecycle with no root .ignore or .graft",
+      "status": "OBSERVED_AT_EXACT_REAL_PACKAGE_BOUNDARY",
+      "residual": "Third-party writes outside enumerated state still require OS confinement."
+    },
+    {
+      "observed_issue": "Public adapter commands selecting an unsupported bare interpreter",
+      "mapped_findings": ["GRAFT-O-012", "GRAFT-V2-007"],
+      "regression_evidence": "Rendered-document scan rejects uncovered bare adapter commands; exact public examples use uv run --locked --group dev python and pass cross-version gates",
+      "status": "OBSERVED_AT_CROSS_VERSION_RENDERED_BOUNDARY",
+      "residual": "uv remains a prerequisite; independent newcomer comprehension remains UNVERIFIED."
+    },
+    {
+      "observed_issue": "Real Graft file-node span convention",
+      "mapped_findings": ["GRAFT-O-007", "GRAFT-O-016", "GRAFT-V2-009"],
+      "regression_evidence": "Exact 0.16 file-kind convention passed a seeded 540-node graph while invalid symbol/file bounds remained rejected in cross-version tests",
+      "status": "OBSERVED_AT_EXACT_REAL_AND_CROSS_VERSION_BOUNDARIES",
+      "residual": "The convention is version-specific and does not establish semantic graph completeness."
+    },
+    {
+      "observed_issue": "Install evidence overstated lifecycle-script execution",
+      "mapped_findings": ["GRAFT-O-014", "GRAFT-O-016", "GRAFT-V2-011"],
+      "regression_evidence": "Failing-install regression requires authorization and attempt fields without an unobserved execution assertion",
+      "status": "OBSERVED_AT_CROSS_VERSION_FAILING_INSTALL_BOUNDARY",
+      "residual": "Actual lifecycle-script execution needs independent observation."
+    },
+    {
+      "observed_issue": "Workflow omitted the durable experiment branch",
+      "mapped_findings": ["GRAFT-O-008", "GRAFT-V2-012"],
+      "regression_evidence": "Workflow parser asserts experimental-graft-variant and audit/experimental-graft-variant-v2 push filters",
+      "status": "OBSERVED_IN_SOURCE; HOSTED_EXECUTION_UNVERIFIED",
+      "residual": "No hosted GitHub Actions run has yet established trigger behavior."
+    },
+    {
+      "observed_issue": "Strict returned source-code and pointer binding",
+      "mapped_findings": ["GRAFT-O-006", "GRAFT-O-015", "GRAFT-O-016"],
+      "regression_evidence": "Source span/path/code-slice, extra/missing key, and graph schema tests in the focused adapter suite",
+      "status": "OBSERVED_AT_CROSS_VERSION_IMPLEMENTATION_BOUNDARY",
+      "residual": "Schema and source binding do not establish semantic completeness."
+    },
+    {
+      "observed_issue": "Graph transaction rollback, evidence-write failure, and signal interruption",
+      "mapped_findings": ["GRAFT-O-001", "GRAFT-O-016"],
+      "regression_evidence": "Failed build, staging/swap/evidence-write fault, prior-graph preservation, and signal-path tests",
+      "status": "OBSERVED_IN_FOCUSED_CROSS_VERSION_MATRIX",
+      "residual": "Final real-package interruption and detached-session containment remain UNVERIFIED."
+    },
+    {
+      "observed_issue": "Install rollback, stale staging/backup/quarantine, and cleanup faults",
+      "mapped_findings": ["GRAFT-O-001", "GRAFT-O-014", "GRAFT-O-016", "GRAFT-V2-006"],
+      "regression_evidence": "Pre-commit install rollback, post-commit backup-cleanup, stale-state quarantine, five-root inventory, and recovery tests",
+      "status": "OBSERVED_IN_FOCUSED_AND_SEEDED_REMOVAL_MATRIX",
+      "residual": "SIGKILL can leave visible in-project state requiring explicit review/removal."
+    },
+    {
+      "observed_issue": "PATH shadowing and Node/Git/npm executable substitution",
+      "mapped_findings": ["GRAFT-O-005", "GRAFT-V2-008"],
+      "regression_evidence": "PATH conflict, version spoof, manifest/lock/CLI/tree tamper, exact npm 10.9.0, and pre/post substitution tests",
+      "status": "OBSERVED_AT_CROSS_VERSION_IDENTITY_BOUNDARY",
+      "residual": "Registry byte identity is not reproducible source-to-dist provenance."
+    },
+    {
+      "observed_issue": "Deadline, inherited signal mask, same-group descendants, selector failure, and background-process cleanup",
+      "mapped_findings": ["GRAFT-O-004", "GRAFT-O-016"],
+      "regression_evidence": "Timeout, early-pipe-close, signal-mask, same-group descendant, and selector-failure focused tests",
+      "status": "OBSERVED_IN_FOCUSED_CROSS_VERSION_MATRIX",
+      "residual": "A deliberately detached setsid child can escape portable process-group cleanup and remains UNVERIFIED containment."
+    },
+    {
+      "observed_issue": "Release evidence JSON coercion and unknown-field handling",
+      "mapped_findings": ["GRAFT-O-008", "GRAFT-O-016"],
+      "regression_evidence": "Generated release-CLI malformed, coercion, missing, extra, non-finite, and unknown-field tests",
+      "status": "OBSERVED_IN_BOTH_RENDERED_RELEASE_MATRICES",
+      "residual": "Hosted implementation and report-publication matrices passed. Hosted CI does not verify native non-Linux platforms or connected Graft installation."
+    },
+    {
+      "observed_issue": "Check response unknown-field and imperative-text injection",
+      "mapped_findings": ["GRAFT-O-004", "GRAFT-O-016", "GRAFT-V2-005", "GRAFT-V2-013"],
+      "regression_evidence": "Exact top-level/context/graph key tests, injected instruction cases, no upstream-provided prose/identifier strings, fixed project status/reason, and omitted identifier count/hash checks",
+      "status": "OBSERVED_IN_CROSS_VERSION_AND_EXACT_REAL_MATRIX",
+      "residual": "Validated ask strings and failure diagnostics remain bounded but explicitly UNTRUSTED; schema upgrades require review."
+    },
+    {
+      "observed_issue": "Doctor distinction between missing prerequisites and observed unsafe/tampered state",
+      "mapped_findings": ["GRAFT-O-005", "GRAFT-O-016", "GRAFT-V2-010", "GRAFT-V2-014"],
+      "regression_evidence": "Expected-status version matrix, runtime receipt/tool/version tamper assertions, and unsafe managed-state symlink doctor test",
+      "status": "OBSERVED_IN_CROSS_VERSION_AND_EXACT_REAL_MATRIX",
+      "residual": "Connected-install state and unsupported tool combinations remain UNVERIFIED."
+    },
+    {
+      "observed_issue": "Tracked hidden Python source makes real Graft 0.16 incomplete and F1 unavailable",
+      "mapped_findings": ["GRAFT-O-012", "GRAFT-O-015", "GRAFT-V2-015"],
+      "regression_evidence": "Exact final-F1 build-applicability replay plus rendered-public-doc assertions and the current documentation-only 14/14 matrix",
+      "status": "OBSERVED_AT_RENDERED_AND_CURRENT_DOCUMENTATION_BOUNDARY",
+      "residual": "The upstream omission is not fixed; the safe outcome is visible F1 unavailability while F0 remains usable."
+    },
+    {
+      "observed_issue": "Absolute host paths made public check size and privacy checkout-location-dependent",
+      "mapped_findings": ["GRAFT-O-004", "GRAFT-O-016", "GRAFT-V2-005", "GRAFT-V2-016"],
+      "regression_evidence": "Long-parent real-shape projection plus doctor/removal tests assert project-relative managed paths, omitted host executable paths, and check stdout below 4096 bytes",
+      "status": "OBSERVED_IN_LONG_PATH_CROSS_VERSION_REAL_AND_HELD_OUT_MATRIX",
+      "residual": "Durable ignored evidence intentionally retains full local identity and must still be scrubbed before sharing."
+    },
+    {
+      "observed_issue": "Untrusted graph language metadata and successful install host paths were republished in public PASS output",
+      "mapped_findings": ["GRAFT-O-004", "GRAFT-O-016", "GRAFT-V2-017", "GRAFT-V2-018"],
+      "regression_evidence": "Exact late-red-team replay plus the final focused suite assert count/hash-only language metadata and path-minimized public install output",
+      "status": "OBSERVED_RESOLVED_AT_FINAL_LOCAL_BOUNDARY",
+      "residual": "Ignored durable evidence intentionally retains exact untrusted labels and full local tool identities."
+    },
+    {
+      "observed_issue": "Oversized or malformed upstream values exceeded the public error budget",
+      "mapped_findings": ["GRAFT-O-004", "GRAFT-O-016", "GRAFT-V2-019"],
+      "regression_evidence": "One-megabyte identifier and escaped malformed-Unicode error tests require omission/hashes and JSON below 4096 bytes",
+      "status": "OBSERVED_RESOLVED_AT_FINAL_LOCAL_BOUNDARY",
+      "residual": "Bounded diagnostic text remains explicitly untrusted."
+    },
+    {
+      "observed_issue": "Cleanup could delete tracked work, accept altered receipts, or race a later-target writer",
+      "mapped_findings": ["GRAFT-O-001", "GRAFT-O-014", "GRAFT-V2-020", "GRAFT-V2-021", "GRAFT-V2-022"],
+      "regression_evidence": "Tracked/unknown descendants, exact receipt shape, and cross-target race injections require non-pass results and surviving bytes; seeded real 0.16 cleanup classified 7522 owned and zero unknown paths before complete removal",
+      "status": "OBSERVED_RESOLVED_FOR_TESTED_CASES_AT_FINAL_LOCAL_BOUNDARY",
+      "residual": "Stop unrelated writers before cleanup; same-user mutation after the final preflight cannot be fully eliminated without OS confinement."
+    },
+    {
+      "observed_issue": "Malformed Unicode metadata could fail after graph promotion",
+      "mapped_findings": ["GRAFT-O-001", "GRAFT-O-016", "GRAFT-V2-023"],
+      "regression_evidence": "Surrogate-language refresh must fail before publication and preserve the exact previous graph tree and receipt",
+      "status": "OBSERVED_RESOLVED_AT_FINAL_LOCAL_BOUNDARY",
+      "residual": "Schema evolution and new upstream text fields still require deliberate review."
+    }
+  ]
+}

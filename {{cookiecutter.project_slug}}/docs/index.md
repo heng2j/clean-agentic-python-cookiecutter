@@ -2,7 +2,7 @@
 status: normative
 authority: documentation-index
 owner: maintainers
-last_verified: 2026-09-01
+last_verified: 2026-09-03
 applies_to:
   - "docs/**"
   - "AGENTS.md"
@@ -29,6 +29,15 @@ Agents start with `AGENTS.md`; this page is a human navigation map, not a mandat
 - [Support and trust boundary](reference/support-and-trust.md)
 - [Troubleshooting](troubleshooting.md)
 - [Contributing](../CONTRIBUTING.md)
+
+## Optional experiments
+
+- [Graft experiment entry point](../GRAFT_EXPERIMENT.md)
+- [Graft integration, privacy, and removal reference](integrations/graft.md)
+- [Controlled Graft evaluation tutorial](tutorials/evaluate-graft.md)
+
+Graft remains optional and derived; these links are not part of the ordinary
+Python setup path.
 
 ## Operating model
 

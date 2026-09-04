@@ -2,23 +2,24 @@
 
 ## Purpose
 
-This branch layers a bounded Graft experiment on top of
-`scientific-open-source-variant` at baseline commit
-`72a7e52eb0e2ac35ef4ca36f716dc2e183afc6c4`.
+This branch layers a bounded Graft experiment on
+`scientific-open-source-variant` commit
+`72a7e52eb0e2ac35ef4ca36f716dc2e183afc6c4`. It asks:
 
-It exists to answer an empirical question before anything is promoted to
-`main`:
+> Can structural navigation reduce total accepted-change cost without reducing
+> correctness, scope discipline, reviewability, privacy, or human understanding?
 
-> Does Graft reduce repeated repository exploration and total accepted-change
-> cost for generated Python projects without reducing correctness, increasing
-> review/rework, crowding persistent context, or weakening human understanding?
+The answer is **not established**. A useful graph or smaller response is not a
+successful task. Correctness and human acceptance come first; total context must
+include setup, tool schemas, queries, output, fallback source reads, corrections,
+and review.
 
-## Generate a project from this branch
+## Generate this branch
 
 ```bash
 uvx --from 'cookiecutter==2.7.1' cookiecutter \
   https://github.com/heng2j/clean-agentic-python-cookiecutter \
-  --checkout experimental-graft-variant
+  --checkout audit/experimental-graft-variant-v2
 
 cd clean-agentic-scientific-python-project
 uv lock --check
@@ -26,73 +27,60 @@ uv sync --locked --group dev
 uv run --locked --group dev python tools/cleanai.py gauntlet fast
 ```
 
-Then open `GRAFT_EXPERIMENT.md` in the generated project. Graft remains absent
-until you explicitly review and install the pinned external package.
+The ordinary Python path above does not install, start, or require Graft. Open
+the generated [`GRAFT_EXPERIMENT.md`](%7B%7Bcookiecutter.project_slug%7D%7D/GRAFT_EXPERIMENT.md)
+only if you deliberately choose the experiment.
 
-## Included
+## Capability decisions
 
-A generated project receives:
+| Level | Capability | Decision |
+|---|---|---|
+| F0 | No Graft: source, `rg`, contracts, tests, and CleanAI gates | **Keep as the default and control** |
+| F1 | Bounded structural CLI through the project adapter | **Keep experimental**; verify every consequential result |
+| F2 | MCP tools | **Remove/disable**; fixed schemas, upstream instructions, root assumptions, and process lifecycle are not justified |
+| F3 | Deterministic visualization/export | **Do not promote**; no safe, useful export earned its maintenance cost |
+| F4 | LSP enrichment | **Disable**; extra dependencies and accuracy/cost remain unevaluated |
+| F5 | Deep/model-backed summaries | **Disable**; source-disclosure, credential, cost, and hallucination risks are outside this profile |
+| F6 | Hooks, status lines, or prompt injection | **Disable**; persistent context and global side effects conflict with the experiment's trust model |
 
-- `GRAFT_EXPERIMENT.md` as the human entry point;
-- a project-owned structural adapter pinned to Graft `0.17.0`;
-- a conservative Node floor of `22.12.0`;
-- graph and runtime state confined to the already ignored
-  `artifacts/graft/` tree;
-- an inactive, project-local `.mcp.json.example`;
-- a machine-readable experiment policy under `.cleanai/`;
-- no-Graft, CLI-pull, and MCP-pull evaluation cohorts;
-- an integration/trust-boundary guide;
-- a hands-on A/B evaluation tutorial and portable evaluator prompt; and
-- focused adapter and template-rendering tests.
+## What the generated project includes
 
-The adapter forces telemetry off, removes common model credentials, redirects
-dotenv loading away from the project `.env`, uses content-hash freshness,
-suppresses the inspected release's npm update check, and prevents upstream
-ignore-file writes.
+- a concise human entry point and on-demand integration guide;
+- a project-owned, command-specific adapter;
+- a reviewed project-local npm lock for published `@nanonets/graft` `0.16.0`;
+- an ignored project-local runtime under `tools/graft-runtime/node_modules/`
+  and regenerable graph/evidence state under `artifacts/graft/`;
+- no-Graft and structural-CLI comparison cohorts;
+- an evaluation tutorial and portable evaluator prompt; and
+- focused adapter, removal, and template tests, plus a separately recorded
+  real-package validation journey.
 
-The variant deliberately does **not** append a large Graft block to `AGENTS.md`
-or `CLAUDE.md`. Product-specific instructions stay on demand so persistent
-context remains small.
+It does not install during generation, alter user-home configuration, call
+`graft init`, enable MCP/hooks/status lines/prompt injection, invoke LSP/deep or
+model-backed operations, commit graph output, or add Graft to a Python gate.
 
-## Deliberately excluded
+## Authority and routing
 
-The template does not:
+Humans own intent, architecture, epistemic standards, integration, and
+acceptance. Use this order:
 
-- install Node or Graft;
-- add Graft to Python dependencies;
-- run `graft init`;
-- activate hooks, status lines, automatic prompt injection, or global settings;
-- invoke `graft build --deep`, LSP enrichment, visualization, or model-backed
-  blast naming;
-- commit the generated graph; or
-- make Graft part of fast, full, hardening, or release gates.
+1. human-owned contracts, ADRs, invariants, and explicit decisions;
+2. executable contracts and deterministic gates;
+3. current source and observed behavior;
+4. derived Graft navigation evidence; and
+5. historical or generated reference material.
 
-Graft output is derived navigation evidence. It does not override current
-source, executable behavior, contracts, ADRs, tests, or human acceptance.
-Ranked retrieval is not exhaustive search.
-
-## Evaluation workflow
-
-For the strongest causal comparison, use the same committed generated project
-and change only tool availability:
-
-1. `baseline-no-graft`;
-2. `graft-structural-cli`; and
-3. optional `graft-mcp-pull`.
-
-Use stable tasks, fresh worktrees, the same model/client/permissions/budget,
-independent acceptance commands, repeated runs, and a decision rule written
-before results exist. Include graph build and refresh cost, fixed MCP context,
-human interventions, reviewer corrections, and rework—not only token savings.
-
-For a secondary template-overhead comparison, generate a control project from
-`scientific-open-source-variant` and an experimental project from this branch.
-That answers a different question because their tracked files differ.
+Graft can suggest **where to inspect**; it cannot decide **what to believe**.
+Ranked retrieval and static relationship analysis are not exhaustive. Use `rg` or
+`git grep`, exact source reads, runtime evidence, and tests for completeness or
+behavior claims.
 
 ## Promotion boundary
 
-Keep this work on `experimental-graft-variant` until repeated task-level evidence
-shows no correctness or rework regression and the total context, setup, compute,
-privacy, portability, and maintenance costs are justified. The first promoted
-version may retain only CLI pull mode even if MCP or broader automation
-underperforms.
+F1 remains experimental until repeated, fresh-worktree comparisons show no
+correctness, human-acceptance, reviewer-correction, rework, privacy, or scope
+regression and demonstrate a worthwhile total-cost improvement on more than the
+tiny generated example. Missing measurements are `UNVERIFIED`, never zero.
+
+Do not promote this branch to `main` from a visually persuasive graph, a single
+agent run, or output-token reduction alone.
